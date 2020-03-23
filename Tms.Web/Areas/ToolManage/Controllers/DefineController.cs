@@ -9,33 +9,33 @@ namespace Tms.Web.Areas.ToolManage.Controllers
 {
     public class DefineController : ControllerBase
     {
-        private DefineApp entityApp = new DefineApp();
+        private DefineApp defineApp = new DefineApp();
    
 
         [HttpGet]
         public ActionResult Get()
         {
-            var data = entityApp.GetList();
+            var data = defineApp.GetList();
             return Content(data.ToJson());
         }
         [HttpPost]
         public ActionResult Update(DefineEntity defineEntity)
         {
-            var data = entityApp.UpDate(defineEntity);
+            var data = defineApp.UpDate(defineEntity);
             return Content(data.ToJson());
         }
 
         [HttpPost]
         public ActionResult Insert(DefineEntity defineEntity)
         {
-            var data = entityApp.Insert(defineEntity);
+            var data = defineApp.Insert(defineEntity);
             return Content(data.ToJson());
         }
 
         [HttpPost]
         public ActionResult Delete(DefineEntity defineEntity)
         {
-            var data = entityApp.Delete(defineEntity);
+            var data = defineApp.Delete(defineEntity);
             return Content(data.ToJson());
         }
 
@@ -46,7 +46,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
          
             var data = new
             {
-                rows = entityApp.GetList(pagination,keyword),
+                rows = defineApp.GetList(pagination,keyword),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records
