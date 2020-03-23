@@ -7,36 +7,36 @@ using Tms.Domain.Entity.ToolManage;
 using System.Web.Mvc;
 namespace Tms.Web.Areas.ToolManage.Controllers
 {
-    // 夹具实体controller
-    public class EntityController : ControllerBase
+    // 采购新增入库controller,BuyToWareHouse
+    public class BtwhController : ControllerBase
     {
-        private EntityApp entityApp = new EntityApp();
+        private BuyToWareHouseApp btwhApp = new BuyToWareHouseApp();
    
 
         [HttpGet]
         public ActionResult Get()
         {
-            var data = entityApp.GetList();
+            var data = btwhApp.GetList();
             return Content(data.ToJson());
         }
         [HttpPost]
-        public ActionResult Update(ToolEntity toolEntity)
+        public ActionResult Update(BuyToWareHouseEntity btwhEntity)
         {
-            var data = entityApp.UpDate(toolEntity);
-            return Content(data.ToJson());
-        }
-
-        [HttpPost]
-        public ActionResult Insert(ToolEntity toolEntity)
-        {
-            var data = entityApp.Insert(toolEntity);
+            var data = btwhApp.UpDate(btwhEntity);
             return Content(data.ToJson());
         }
 
         [HttpPost]
-        public ActionResult Delete(ToolEntity toolEntity)
+        public ActionResult Insert(BuyToWareHouseEntity btwhEntity)
         {
-            var data = entityApp.Delete(toolEntity);
+            var data = btwhApp.Insert(btwhEntity);
+            return Content(data.ToJson());
+        }
+
+        [HttpPost]
+        public ActionResult Delete(BuyToWareHouseEntity btwhEntity)
+        {
+            var data = btwhApp.Delete(btwhEntity);
             return Content(data.ToJson());
         }
 
@@ -47,7 +47,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
          
             var data = new
             {
-                rows = entityApp.GetList(pagination,keyword),
+                rows = btwhApp.GetList(pagination,keyword),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records

@@ -7,6 +7,7 @@ using Tms.Domain.Entity.ToolManage;
 using System.Web.Mvc;
 namespace Tms.Web.Areas.ToolManage.Controllers
 {
+    // 夹具报修controller
     public class RepairController : ControllerBase
     {
         private RepairApp repairApp = new RepairApp();

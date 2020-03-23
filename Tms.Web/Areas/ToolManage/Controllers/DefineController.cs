@@ -7,10 +7,10 @@ using Tms.Domain.Entity.ToolManage;
 using System.Web.Mvc;
 namespace Tms.Web.Areas.ToolManage.Controllers
 {
+    // 夹具定义controller
     public class DefineController : ControllerBase
     {
         private DefineApp defineApp = new DefineApp();
-   
 
         [HttpGet]
         public ActionResult Get()

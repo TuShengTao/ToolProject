@@ -7,36 +7,36 @@ using Tms.Domain.Entity.ToolManage;
 using System.Web.Mvc;
 namespace Tms.Web.Areas.ToolManage.Controllers
 {
-    // 夹具实体controller
-    public class EntityController : ControllerBase
+    // 夹具报废controller
+    public class JunkedController : ControllerBase
     {
-        private EntityApp entityApp = new EntityApp();
+        private JunkedApp junkedApp = new JunkedApp();
    
 
         [HttpGet]
         public ActionResult Get()
         {
-            var data = entityApp.GetList();
+            var data = junkedApp.GetList();
             return Content(data.ToJson());
         }
         [HttpPost]
-        public ActionResult Update(ToolEntity toolEntity)
+        public ActionResult Update(JunkedEntity junkedEntity)
         {
-            var data = entityApp.UpDate(toolEntity);
-            return Content(data.ToJson());
-        }
-
-        [HttpPost]
-        public ActionResult Insert(ToolEntity toolEntity)
-        {
-            var data = entityApp.Insert(toolEntity);
+            var data = junkedApp.UpDate(junkedEntity);
             return Content(data.ToJson());
         }
 
         [HttpPost]
-        public ActionResult Delete(ToolEntity toolEntity)
+        public ActionResult Insert(JunkedEntity junkedEntity)
         {
-            var data = entityApp.Delete(toolEntity);
+            var data = junkedApp.Insert(junkedEntity);
+            return Content(data.ToJson());
+        }
+
+        [HttpPost]
+        public ActionResult Delete(JunkedEntity junkedEntity)
+        {
+            var data = junkedApp.Delete(junkedEntity);
             return Content(data.ToJson());
         }
 
@@ -47,7 +47,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
          
             var data = new
             {
-                rows = entityApp.GetList(pagination,keyword),
+                rows = junkedApp.GetList(pagination,keyword),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records

@@ -7,36 +7,36 @@ using Tms.Domain.Entity.ToolManage;
 using System.Web.Mvc;
 namespace Tms.Web.Areas.ToolManage.Controllers
 {
-    // 夹具实体controller
-    public class EntityController : ControllerBase
+    // 夹具领用controller
+    public class WhfController : ControllerBase
     {
-        private EntityApp entityApp = new EntityApp();
+        private WareHouseFlowApp whfApp = new WareHouseFlowApp();
    
 
         [HttpGet]
         public ActionResult Get()
         {
-            var data = entityApp.GetList();
+            var data = whfApp.GetList();
             return Content(data.ToJson());
         }
         [HttpPost]
-        public ActionResult Update(ToolEntity toolEntity)
+        public ActionResult Update(WareHouseFlowEntity whfEntity)
         {
-            var data = entityApp.UpDate(toolEntity);
-            return Content(data.ToJson());
-        }
-
-        [HttpPost]
-        public ActionResult Insert(ToolEntity toolEntity)
-        {
-            var data = entityApp.Insert(toolEntity);
+            var data = whfApp.UpDate(whfEntity);
             return Content(data.ToJson());
         }
 
         [HttpPost]
-        public ActionResult Delete(ToolEntity toolEntity)
+        public ActionResult Insert(WareHouseFlowEntity whfEntity)
         {
-            var data = entityApp.Delete(toolEntity);
+            var data = whfApp.Insert(whfEntity);
+            return Content(data.ToJson());
+        }
+
+        [HttpPost]
+        public ActionResult Delete(WareHouseFlowEntity whfEntity)
+        {
+            var data = whfApp.Delete(whfEntity);
             return Content(data.ToJson());
         }
 
@@ -47,7 +47,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
          
             var data = new
             {
-                rows = entityApp.GetList(pagination,keyword),
+                rows = whfApp.GetList(pagination,keyword),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records

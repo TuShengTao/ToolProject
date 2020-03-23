@@ -1,4 +1,7 @@
 ﻿
+using System;
+using System.Web;
+
 namespace Tms.Code
 {
     public class OperatorProvider
@@ -21,7 +24,16 @@ namespace Tms.Code
             {
                 // 这里要做异常处理 当用户登录半小时后 就会空指针 目前未处理
                 // 
-                operatorModel = DESEncrypt.Decrypt(WebHelper.GetSession(LoginUserKey).ToString()).ToObject<OperatorModel>();
+                try
+                {
+                    operatorModel = DESEncrypt.Decrypt(WebHelper.GetSession(LoginUserKey).ToString()).ToObject<OperatorModel>();
+
+                }
+                catch (Exception ex)
+                {
+                    HttpContext.Current.Response.Write("服务器错误,Error:" + ex.Message);
+                    return operatorModel;
+                }
             }
             return operatorModel;
         }
