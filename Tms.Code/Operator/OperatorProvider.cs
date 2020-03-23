@@ -20,6 +20,7 @@ namespace Tms.Code
             else
             {
                 // 这里要做异常处理 当用户登录半小时后 就会空指针 目前未处理
+                // 
                 operatorModel = DESEncrypt.Decrypt(WebHelper.GetSession(LoginUserKey).ToString()).ToObject<OperatorModel>();
             }
             return operatorModel;

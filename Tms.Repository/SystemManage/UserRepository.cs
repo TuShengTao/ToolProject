@@ -42,7 +42,7 @@ namespace Tms.Repository.SystemManage
             {
                 if (!string.IsNullOrEmpty(keyValue))
                 {
-                    db.Update(userEntity);
+                    db.Update(userEntity); // 修改
                 }
                 else
                 {
