@@ -141,6 +141,7 @@
     <Compile Include="Areas\SystemSecurity\Controllers\LogController.cs" />
     <Compile Include="Areas\SystemSecurity\Controllers\ServerMonitoringController.cs" />
     <Compile Include="Areas\SystemSecurity\SystemSecurityAreaRegistration.cs" />
+    <Compile Include="Areas\ToolManage\Controllers\RepairController.cs" />
     <Compile Include="Areas\ToolManage\Controllers\DefineController.cs" />
     <Compile Include="Areas\ToolManage\Controllers\EntityController.cs" />
     <Compile Include="Areas\ToolManage\ToolManageAreaRegistration.cs" />
