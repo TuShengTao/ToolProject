@@ -17,9 +17,24 @@ namespace Tms.Web.Areas.SystemManage.Controllers
 
         [HttpGet]
        // [HandlerAjaxOnly]
-        public ActionResult GetGridJson(string keyword)
+        public ActionResult GetGridJson(Pagination pagination,string keyword)
         {
-            var data = roleApp.GetList(keyword);
+
+            var data = roleApp.GetList();
+
+            return Content(data.ToJson());
+        }
+        [HttpGet]
+        // [HandlerAjaxOnly]
+        public ActionResult GetRoleList(Pagination pagination, string keyword)
+        {
+            var data = new
+            {
+                rows = roleApp.GetRoleList(pagination, keyword),
+                total = pagination.total,  // 总页数
+                page = pagination.page,  // 当前页
+                records = pagination.records //  总行数
+            };
             return Content(data.ToJson());
         }
         [HttpGet]
@@ -34,13 +49,15 @@ namespace Tms.Web.Areas.SystemManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SubmitForm(RoleEntity roleEntity, string permissionIds, string keyValue)
         {   
+            // 前台需要传一个字符串数组  后台用List接收
+            //  F_Type 是角色类型 1系统角色 2是业务角色
             roleApp.SubmitForm(roleEntity, permissionIds.Split(','), keyValue);// 修改角色的权限
             return Success("操作成功。");
         }
         [HttpPost]
-        [HandlerAjaxOnly]
-        [HandlerAuthorize]
-        [ValidateAntiForgeryToken]
+        //[HandlerAjaxOnly]
+        //[HandlerAuthorize]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteForm(string keyValue)
         {
             roleApp.DeleteForm(keyValue);

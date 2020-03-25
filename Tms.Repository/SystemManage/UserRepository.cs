@@ -19,8 +19,6 @@ namespace Tms.Repository.SystemManage
                 db.Commit();
             }
         }
-
-
         // 批量删除用户
         public void BatchDeleteForm(List<string> keyValues)
         {

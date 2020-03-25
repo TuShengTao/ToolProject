@@ -16,14 +16,14 @@ namespace Tms.Web
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             // 判断是否是系统管理员 是就放行 然后返回，不是就继续往下走 if判断  
-            // 超过 60 分钟 一段时间 会失效 然后为null 报错 目前未解决 有bug  要进行异常处理  目前是7天 cookie
+            // 超过 30 分钟 一段时间 会失效 然后为null 报错 目前未解决 有bug  要进行异常处理  目前是
             bool isSystem = OperatorProvider.Provider.GetCurrent().IsSystem;
 
-            //if (isSystem!=null && isSystem )
-            //{
+            if (isSystem != null && isSystem)
+            {
 
-            //    return;
-            //}
+                return;  // 是管理员 就放行全部的接口
+            }
             if (Ignore == false)
             {
                 return;

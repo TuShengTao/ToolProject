@@ -14,6 +14,7 @@ namespace Tms.Application.SystemManage
         private ModuleApp moduleApp = new ModuleApp();
         private ModuleButtonApp moduleButtonApp = new ModuleButtonApp();
 
+        // 查询全部
         public List<RoleEntity> GetList(string keyword = "")
         {
             var expression = ExtLinq.True<RoleEntity>();
@@ -22,10 +23,25 @@ namespace Tms.Application.SystemManage
                 expression = expression.And(t => t.F_FullName.Contains(keyword));
                 expression = expression.Or(t => t.F_EnCode.Contains(keyword));
             }
-            //  把角色 和岗位都查出来  所以注释下面 筛选的语句
-            expression = expression.And(t => t.F_Category == 1); 
+            //  在role表里把把角色查出来  （2 代表吧岗位信息查出来）
+            expression = expression.And(t => t.F_Category == 1);
             return service.IQueryable(expression).OrderBy(t => t.F_SortCode).ToList();
         }
+        // 分页查询
+        public List<RoleEntity> GetRoleList(Pagination pagination, string keyword)
+        {
+            var expression = ExtLinq.True<RoleEntity>();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                expression = expression.And(t => t.F_FullName.Contains(keyword));
+                expression = expression.Or(t => t.F_EnCode.Contains(keyword));
+                expression = expression.Or(t => t.F_Type.Contains(keyword));
+            }
+            //  在role表里把把角色查出来  （2 代表吧岗位信息查出来）
+            expression = expression.And(t => t.F_Category == 1);
+            return service.FindList(expression, pagination);
+        }
+
         public RoleEntity GetForm(string keyValue)
         {
             return service.FindEntity(keyValue);

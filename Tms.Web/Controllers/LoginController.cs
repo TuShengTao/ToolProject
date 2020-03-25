@@ -85,7 +85,7 @@ namespace Tms.Web.Controllers
                         operatorModel.IsSystem = false;
                     }
                     //权限的关键  
-                    OperatorProvider.Provider.AddCurrent(operatorModel);  //cookie 添加当前用户的 roleId等 
+                    OperatorProvider.Provider.AddCurrent(operatorModel);  //cookie/session 添加当前用户的 roleId等 
                     logEntity.F_Account = userEntity.F_Account;
                     logEntity.F_NickName = userEntity.F_RealName;
                     logEntity.F_Result = true;

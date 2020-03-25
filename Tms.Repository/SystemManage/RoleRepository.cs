@@ -4,6 +4,7 @@ using Tms.Domain.Entity.SystemManage;
 using Tms.Domain.IRepository.SystemManage;
 using Tms.Repository.SystemManage;
 using System.Collections.Generic;
+using System;
 
 namespace Tms.Repository.SystemManage
 {
@@ -28,7 +29,8 @@ namespace Tms.Repository.SystemManage
                 }
                 else
                 {
-                    roleEntity.F_Category = 1;
+                    roleEntity.F_Category = 1;  // 类型为1 意思是添加角色 /  2是岗位
+                    roleEntity.F_CreatorTime = DateTime.Now;
                     db.Insert(roleEntity);
                 }
                 db.Delete<RoleAuthorizeEntity>(t => t.F_ObjectId == roleEntity.F_Id);

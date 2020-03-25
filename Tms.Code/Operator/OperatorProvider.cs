@@ -22,8 +22,9 @@ namespace Tms.Code
             }
             else
             {
-                // 这里要做异常处理 当用户登录半小时后 就会空指针 目前未处理
-                // 
+                // 这里要做异常处理 当用户登录30分钟后 就会空指针 目前未处理
+                // 目前用户超过session设置的过期时间（在WebHelper里设置时间）内没有再次请求，超过时间再请求就会catch到异常
+                // 后台返回Catch的错误信息，前台应该进行处理，再次跳转到登录页面
                 try
                 {
                     operatorModel = DESEncrypt.Decrypt(WebHelper.GetSession(LoginUserKey).ToString()).ToObject<OperatorModel>();
@@ -31,7 +32,7 @@ namespace Tms.Code
                 }
                 catch (Exception ex)
                 {
-                    HttpContext.Current.Response.Write("服务器错误,Error:" + ex.Message);
+                    HttpContext.Current.Response.Write("服务器错误,Error:" + ex.Message);// 返回前台消息应该为 登录超时
                     return operatorModel;
                 }
             }
