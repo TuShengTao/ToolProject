@@ -10,6 +10,11 @@ namespace Tms.Application.ToolManage
     public class DefineApp
     {
         private IDefine service = new DefineRepository();
+        // 批量删除
+        public void BatchDeleteForm(List<int> keyValues)
+        {
+            service.BatchDeleteForm(keyValues);
+        }
 
         // 获取所有
         public List<DefineEntity> GetList()

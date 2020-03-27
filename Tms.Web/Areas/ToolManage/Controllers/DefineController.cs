@@ -38,6 +38,13 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             var data = defineApp.Delete(defineEntity);
             return Content(data.ToJson());
         }
+        [HttpPost]
+        // 批量删除
+        public ActionResult BatchDeleteForm(List<int> keyValues)
+        {
+            defineApp.BatchDeleteForm(keyValues);
+            return Success("这些用户删除成功！");
+        }
 
         [HttpGet]
         // 分页查询

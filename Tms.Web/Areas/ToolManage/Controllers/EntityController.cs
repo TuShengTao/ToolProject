@@ -40,6 +40,15 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             return Content(data.ToJson());
         }
 
+        [HttpPost]
+        // 批量删除
+        public ActionResult BatchDeleteForm(List<string> keyValues)
+        {
+
+            entityApp.BatchDeleteForm(keyValues);
+            return Success("这些用户删除成功！");
+        }
+
         [HttpGet]
         // 分页查询
        public ActionResult GetGridJson(Pagination pagination, string keyword)

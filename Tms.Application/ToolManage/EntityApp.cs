@@ -10,6 +10,10 @@ namespace Tms.Application.ToolManage
     public class EntityApp
     {
         private IEntity service = new EntityRepository();
+        public void BatchDeleteForm(List<string> keyValues)
+        {
+            service.BatchDeleteForm(keyValues);
+        }
 
         // 获取所有
         public List<ToolEntity> GetList()
