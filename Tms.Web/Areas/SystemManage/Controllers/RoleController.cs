@@ -17,7 +17,7 @@ namespace Tms.Web.Areas.SystemManage.Controllers
 
         [HttpGet]
        // [HandlerAjaxOnly]
-        public ActionResult GetGridJson(Pagination pagination,string keyword)
+        public ActionResult GetGridJson()
         {
 
             var data = roleApp.GetList();
@@ -45,11 +45,12 @@ namespace Tms.Web.Areas.SystemManage.Controllers
             return Content(data.ToJson());
         }
         [HttpPost]
-        [HandlerAjaxOnly]
-        [ValidateAntiForgeryToken]
-        public ActionResult SubmitForm(RoleEntity roleEntity, string permissionIds, string keyValue)
+        //[HandlerAjaxOnly]
+        //[ValidateAntiForgeryToken]
+       
+        public ActionResult SubmitForm(RoleEntity roleEntity,string permissionIds, string keyValue)
         {   
-            // 前台需要传一个字符串数组  后台用List接收
+            
             //  F_Type 是角色类型 1系统角色 2是业务角色
             roleApp.SubmitForm(roleEntity, permissionIds.Split(','), keyValue);// 修改角色的权限
             return Success("操作成功。");

@@ -50,6 +50,7 @@ namespace Tms.Application.SystemManage
         {
             service.DeleteForm(keyValue);
         }
+        // roleEntity:角色基本信息  permissionIds:角色权限id数组 keyValue :角色主键 如果为空说明是修改
         public void SubmitForm(RoleEntity roleEntity, string[] permissionIds, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -67,16 +68,16 @@ namespace Tms.Application.SystemManage
             {
                 RoleAuthorizeEntity roleAuthorizeEntity = new RoleAuthorizeEntity();
                 roleAuthorizeEntity.F_Id = Common.GuId();
-                roleAuthorizeEntity.F_ObjectType = 1;
-                roleAuthorizeEntity.F_ObjectId = roleEntity.F_Id;
+                roleAuthorizeEntity.F_ObjectType = 1; // 表示类型是角色
+                roleAuthorizeEntity.F_ObjectId = roleEntity.F_Id;// 角色表主键 赋值给角色资源表的ObjectId
                 roleAuthorizeEntity.F_ItemId = itemId;
                 if (moduledata.Find(t => t.F_Id == itemId) != null)
                 {
-                    roleAuthorizeEntity.F_ItemType = 1;
+                    roleAuthorizeEntity.F_ItemType = 1;  // 表示是模块
                 }
                 if (buttondata.Find(t => t.F_Id == itemId) != null)
                 {
-                    roleAuthorizeEntity.F_ItemType = 2;
+                    roleAuthorizeEntity.F_ItemType = 2;// 表示是按钮
                 }
                 roleAuthorizeEntitys.Add(roleAuthorizeEntity);
             }
