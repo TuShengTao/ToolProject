@@ -28,6 +28,15 @@ namespace Tms.Web.Areas.SystemManage.Controllers
             };
             return Content(data.ToJson());
         }
+        //查询所有用户
+        [HttpGet]
+        public ActionResult GetAllUser()
+        {
+            var data = userApp.GetAllList();
+
+            return Content(data.ToJson());
+        }
+
         [HttpGet]
         // 根据账号查用户 
         public ActionResult GetFormByAccount(string account)

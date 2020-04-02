@@ -5,6 +5,7 @@ using Tms.Domain.IRepository.SystemManage;
 using Tms.Repository.SystemManage;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Tms.Application.SystemManage
 {
@@ -12,7 +13,11 @@ namespace Tms.Application.SystemManage
     {
         private IUserRepository service = new UserRepository();
         private UserLogOnApp userLogOnApp = new UserLogOnApp();
-
+        //查询所有用户
+        public List<UserEntity> GetAllList()
+        {
+            return service.IQueryable().OrderBy(t => t.F_CreatorTime).ToList();
+        }
         public List<UserEntity> GetList(Pagination pagination, string keyword)
         {
             var expression = ExtLinq.True<UserEntity>();
