@@ -59,7 +59,7 @@ namespace Tms.Web.Controllers
                 //}
 
                 String roleToken = "";//接口返回的token
-                UserEntity userEntity = new UserApp().CheckLogin(username, password);
+                UserEntity userEntity = new UserApp().CheckLogin(username, password);// 去数据库查用户信息
                 if (userEntity != null)
                 {
                     OperatorModel operatorModel = new OperatorModel();
