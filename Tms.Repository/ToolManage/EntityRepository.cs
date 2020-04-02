@@ -22,5 +22,30 @@ namespace Tms.Repository.ToolManage
                 db.Commit();
             }
         }
+
+        public void DeleteForm(string keyValue)
+        {
+            using (var db = new RepositoryBase().BeginTrans())
+            {
+                db.Delete<ToolEntity>(t => t.T_Id == keyValue);
+                db.Commit();
+            }
+        }
+
+        public void SubmitForm(ToolEntity toolEntity, string keyValue)
+        {
+            using (var db = new RepositoryBase().BeginTrans())
+            {
+                if (!string.IsNullOrEmpty(keyValue))
+                {
+                    db.Update(toolEntity); // 修改
+                }
+                else
+                {
+                    db.Insert(toolEntity);
+                }
+                db.Commit();
+            }
+        }
     }
 }

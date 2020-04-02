@@ -34,6 +34,42 @@ namespace Tms.Application.ToolManage
         {
             return service.Delete(toolEntity);
         }
+
+        public void DeleteForm(string keyValue)
+        {
+            service.DeleteForm(keyValue);
+        }
+
+        // 根据 账号查用户 防止添加账号时重复
+        public int GetFormByCodeAndSeqId(string code,int seqId)
+        {
+            var expression = ExtLinq.True<ToolEntity>();
+            expression = expression.And(t => t.T_Code.Contains(code));
+            expression = expression.And(t => t.T_SeqId.ToString().Contains(seqId.ToString()));
+            if (service.FindEntity(expression) != null)
+            {
+                return 1;  // 存在
+            }
+            else
+            {
+                return 0; // 不存在
+            }
+
+        }
+
+        public void SubmitForm(ToolEntity toolEntity, string keyValue)
+        {
+            if (!string.IsNullOrEmpty(keyValue))
+            {
+                toolEntity.Modify(keyValue); //  如果 keyValue 是空 就去执行修改 否则去创建
+            }
+            else
+            {
+                toolEntity.Create();
+            }
+            service.SubmitForm(toolEntity, keyValue);
+        }
+
         public List<ToolEntity> GetList(Pagination pagination, string keyword)
         {
             var expression = ExtLinq.True<ToolEntity>();

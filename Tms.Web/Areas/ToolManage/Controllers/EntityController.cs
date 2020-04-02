@@ -19,6 +19,16 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             var data = entityApp.GetList();
             return Content(data.ToJson());
         }
+
+        [HttpGet]
+        // 根据账号查用户 
+        public ActionResult GetFormByCodeAndSeqId(string code, int seqId)
+        {
+            var count = entityApp.GetFormByCodeAndSeqId(code, seqId);
+
+            return Content(count.ToJson());
+        }
+
         [HttpPost]
         public ActionResult Update(ToolEntity toolEntity)
         {
@@ -41,6 +51,27 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         }
 
         [HttpPost]
+        // [HandlerAjaxOnly]
+        //   [ValidateAntiForgeryToken]
+        public ActionResult SubmitForm(ToolEntity toolEntity, string keyValue)
+        {
+            entityApp.SubmitForm(toolEntity, keyValue);
+            return Success("操作成功。");
+        }
+
+        [HttpGet]
+        // 权限验证暂时关闭
+        //[HandlerAuthorize]
+        // [HandlerAjaxOnly]
+        //[ValidateAntiForgeryToken]
+        public ActionResult DeleteForm(string keyValue)
+        {
+            //  删除用户的时候 要去判断该用户有没有登录  登录了 不能进行删除 （还未实现）
+            entityApp.DeleteForm(keyValue);
+            return Success("该用户删除成功!");
+        }
+
+        [HttpPost]
         // 批量删除
         public ActionResult BatchDeleteForm(List<string> keyValues)
         {
@@ -53,7 +84,6 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         // 分页查询
        public ActionResult GetGridJson(Pagination pagination, string keyword)
         {
-         
             var data = new
             {
                 rows = entityApp.GetList(pagination,keyword),
