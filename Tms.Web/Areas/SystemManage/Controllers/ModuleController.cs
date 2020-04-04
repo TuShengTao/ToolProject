@@ -13,7 +13,7 @@ namespace Tms.Web.Areas.SystemManage.Controllers
         private ModuleApp moduleApp = new ModuleApp();
 
         [HttpGet]
-        [HandlerAjaxOnly]
+        //[HandlerAjaxOnly]
         public ActionResult GetTreeSelectJson()
         {
             var data = moduleApp.GetList();
@@ -29,7 +29,7 @@ namespace Tms.Web.Areas.SystemManage.Controllers
             return Content(treeList.TreeSelectJson());
         }
         [HttpGet]
-        [HandlerAjaxOnly]
+        //[HandlerAjaxOnly]
         public ActionResult GetTreeGridJson(string keyword)
         {
             var data = moduleApp.GetList();
@@ -52,24 +52,24 @@ namespace Tms.Web.Areas.SystemManage.Controllers
             return Content(treeList.TreeGridJson());
         }
         [HttpGet]
-        [HandlerAjaxOnly]
+        //[HandlerAjaxOnly]
         public ActionResult GetFormJson(string keyValue)
         {
             var data = moduleApp.GetForm(keyValue);
             return Content(data.ToJson());
         }
         [HttpPost]
-        [HandlerAjaxOnly]
-        [ValidateAntiForgeryToken]
+       // [HandlerAjaxOnly]
+        //[ValidateAntiForgeryToken]
         public ActionResult SubmitForm(ModuleEntity moduleEntity, string keyValue)
         {
             moduleApp.SubmitForm(moduleEntity, keyValue);
             return Success("操作成功。");
         }
         [HttpPost]
-        [HandlerAjaxOnly]
-        [HandlerAuthorize]
-        [ValidateAntiForgeryToken]
+       // [HandlerAjaxOnly]
+        //[HandlerAuthorize]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteForm(string keyValue)
         {
             moduleApp.DeleteForm(keyValue);

@@ -13,7 +13,7 @@ namespace Tms.Web.Areas.SystemManage.Controllers
         private ModuleApp moduleApp = new ModuleApp();
         private ModuleButtonApp moduleButtonApp = new ModuleButtonApp();
         [HttpGet]
-        [HandlerAjaxOnly]
+       // [HandlerAjaxOnly]
         public ActionResult GetTreeSelectJson(string moduleId)
         {
             var data = moduleButtonApp.GetList(moduleId);
@@ -29,7 +29,7 @@ namespace Tms.Web.Areas.SystemManage.Controllers
             return Content(treeList.TreeSelectJson());
         }
         [HttpGet]
-        [HandlerAjaxOnly]
+       // [HandlerAjaxOnly]
         public ActionResult GetTreeGridJson(string moduleId)
         {
             var data = moduleButtonApp.GetList(moduleId);
@@ -48,23 +48,23 @@ namespace Tms.Web.Areas.SystemManage.Controllers
             return Content(treeList.TreeGridJson());
         }
         [HttpGet]
-        [HandlerAjaxOnly]
+        //[HandlerAjaxOnly]
         public ActionResult GetFormJson(string keyValue)
         {
             var data = moduleButtonApp.GetForm(keyValue);
             return Content(data.ToJson());
         }
         [HttpPost]
-        [HandlerAjaxOnly]
-        [ValidateAntiForgeryToken]
+        //[HandlerAjaxOnly]
+        //[ValidateAntiForgeryToken]
         public ActionResult SubmitForm(ModuleButtonEntity moduleButtonEntity, string keyValue)
         {
             moduleButtonApp.SubmitForm(moduleButtonEntity, keyValue);
             return Success("操作成功。");
         }
         [HttpPost]
-        [HandlerAjaxOnly]
-        [ValidateAntiForgeryToken]
+        //[HandlerAjaxOnly]
+      //  [ValidateAntiForgeryToken]
         public ActionResult DeleteForm(string keyValue)
         {
             moduleButtonApp.DeleteForm(keyValue);
@@ -76,7 +76,7 @@ namespace Tms.Web.Areas.SystemManage.Controllers
             return View();
         }
         [HttpGet]
-        [HandlerAjaxOnly]
+        //[HandlerAjaxOnly]
         public ActionResult GetCloneButtonTreeJson()
         {
             var moduledata = moduleApp.GetList();
@@ -123,7 +123,7 @@ namespace Tms.Web.Areas.SystemManage.Controllers
             return Content(treeList.TreeViewJson());
         }
         [HttpPost]
-        [HandlerAjaxOnly]
+       // [HandlerAjaxOnly]
         public ActionResult SubmitCloneButton(string moduleId, string Ids)
         {
             moduleButtonApp.SubmitCloneButton(moduleId, Ids);

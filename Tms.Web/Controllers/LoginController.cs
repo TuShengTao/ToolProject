@@ -47,7 +47,6 @@ namespace Tms.Web.Controllers
         //[HandlerAjaxOnly]
         public ActionResult CheckLogin(string username, string password, string code)
         {
-         
             LogEntity logEntity = new LogEntity();
             logEntity.F_ModuleName = "系统登录";
             logEntity.F_Type = DbLogType.Login.ToString();
@@ -57,7 +56,6 @@ namespace Tms.Web.Controllers
                 //{
                 //    throw new Exception("验证码错误，请重新输入");
                 //}
-
                 String roleToken = "";//接口返回的token
                 UserEntity userEntity = new UserApp().CheckLogin(username, password);// 去数据库查用户信息
                 if (userEntity != null)

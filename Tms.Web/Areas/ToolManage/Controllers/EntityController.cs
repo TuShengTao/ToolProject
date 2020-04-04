@@ -29,6 +29,8 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         [HttpPost]
         public ActionResult Insert(ToolEntity toolEntity)
         {
+            toolEntity.T_Id = Common.GuId();
+            toolEntity.T_RegDate = DateTime.Now;
             var data = entityApp.Insert(toolEntity);
             return Content(data.ToJson());
         }

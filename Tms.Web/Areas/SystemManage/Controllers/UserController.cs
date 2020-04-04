@@ -18,8 +18,8 @@ namespace Tms.Web.Areas.SystemManage.Controllers
        // [HandlerAjaxOnly]
         public ActionResult GetGridJson(Pagination pagination, string keyword)
         {
-            //
-         var data = new
+
+            var data = new
             {
                 rows = userApp.GetList(pagination, keyword),
                 total = pagination.total,  // 总页数
@@ -46,6 +46,7 @@ namespace Tms.Web.Areas.SystemManage.Controllers
         }
 
         [HttpGet]
+        [HandlerAuthorize]
         // [HandlerAjaxOnly]
         public ActionResult GetGridJsonBySql(Pagination pagination, string keyword)
         {

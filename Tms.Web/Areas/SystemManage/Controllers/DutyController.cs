@@ -19,7 +19,6 @@ namespace Tms.Web.Areas.SystemManage.Controllers
             var data = dutyApp.GetList(keyword);
             return Content(data.ToJson());
         }
-
         [HttpGet]
         [HandlerAjaxOnly]
         public ActionResult GetFormJson(string keyValue)
