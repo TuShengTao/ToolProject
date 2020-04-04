@@ -29,7 +29,8 @@ namespace Tms.Application.SystemManage
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.F_FullName.Contains(keyword));
-                //expression = expression.Or(t => t.F_RealName.Contains(keyword));
+                expression = expression.Or(t => t.F_EnCode.Contains(keyword));
+                
             }
             //  在数据里查出的用户信息要筛选掉系统岗位
             expression = expression.And(t => t.F_Category != 1);
