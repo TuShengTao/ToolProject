@@ -62,7 +62,7 @@ namespace Tms.Web.Areas.SystemManage.Controllers
             moduleButtonApp.SubmitForm(moduleButtonEntity, keyValue);
             return Success("操作成功。");
         }
-        [HttpPost]
+        [HttpGet]
         //[HandlerAjaxOnly]
       //  [ValidateAntiForgeryToken]
         public ActionResult DeleteForm(string keyValue)

@@ -66,13 +66,17 @@ namespace Tms.Web.Areas.SystemManage.Controllers
             moduleApp.SubmitForm(moduleEntity, keyValue);
             return Success("操作成功。");
         }
-        [HttpPost]
+        [HttpGet]
        // [HandlerAjaxOnly]
         //[HandlerAuthorize]
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteForm(string keyValue)
         {
-            moduleApp.DeleteForm(keyValue);
+            int flag = moduleApp.DeleteForm(keyValue);
+            if (flag == -1)
+            {
+                return Error("删除失败！操作的模块包含子模块。");
+            }
             return Success("删除成功。");
         }
     }

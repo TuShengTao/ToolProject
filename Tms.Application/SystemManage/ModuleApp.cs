@@ -21,15 +21,16 @@ namespace Tms.Application.SystemManage
         {
             return service.FindEntity(keyValue);
         }
-        public void DeleteForm(string keyValue)
+        public int DeleteForm(string keyValue)
         {
             if (service.IQueryable().Count(t => t.F_ParentId.Equals(keyValue)) > 0)
             {
-                throw new Exception("删除失败！操作的对象包含了下级数据。");
+                return -1;
             }
             else
             {
                 service.Delete(t => t.F_Id == keyValue);
+                return 1;
             }
         }
         public void SubmitForm(ModuleEntity moduleEntity, string keyValue)
