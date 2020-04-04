@@ -55,7 +55,7 @@ namespace Tms.Web.Areas.SystemManage.Controllers
             roleApp.SubmitForm(roleEntity, permissionIds.Split(','), keyValue);// 修改角色的权限
             return Success("操作成功。");
         }
-        [HttpPost]
+        [HttpGet]
         //[HandlerAjaxOnly]
         //[HandlerAuthorize]
         //[ValidateAntiForgeryToken]
