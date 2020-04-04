@@ -5,6 +5,7 @@ using Tms.Repository.SystemManage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Tms.Code;
 
 namespace Tms.Application.SystemManage
 {
@@ -15,6 +16,17 @@ namespace Tms.Application.SystemManage
         public List<OrganizeEntity> GetList()
         {
             return service.IQueryable().OrderBy(t => t.F_CreatorTime).ToList();
+        }
+        public List<OrganizeEntity> GetLists(Pagination pagination, string keyword)
+        {
+            var expression = ExtLinq.True<OrganizeEntity>();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                expression = expression.And(t => t.F_FullName.Contains(keyword));
+                //expression = expression.Or(t => t.F_RealName.Contains(keyword));
+            }
+            //  在数据里查出的用户信息要筛选掉 admin这个管理员
+            return service.FindList(expression, pagination);
         }
         public OrganizeEntity GetForm(string keyValue)
         {
@@ -31,6 +43,10 @@ namespace Tms.Application.SystemManage
                 service.Delete(t => t.F_Id == keyValue);
             }
         }
+        public void BatchDeleteForm(List<string> keyValues)
+        {
+            service.BatchDeleteForm(keyValues);
+        }
         public void SubmitForm(OrganizeEntity organizeEntity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -43,6 +59,18 @@ namespace Tms.Application.SystemManage
                 organizeEntity.Create();
                 service.Insert(organizeEntity);
             }
+        }
+        // 判断父节点下是否已存在此名称
+        public int GetFormByParent(string full_name, string parentId)
+        {
+            var expression = ExtLinq.True<OrganizeEntity>();
+            expression = expression.And(t => t.F_ParentId.Contains(parentId));
+            foreach (var item in service.IQueryable(expression))
+            {
+                if (item.F_FullName == full_name) return 1; 
+            }
+            return 0;
+
         }
     }
 }
