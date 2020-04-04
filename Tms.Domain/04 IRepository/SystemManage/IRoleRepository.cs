@@ -9,5 +9,6 @@ namespace Tms.Domain.IRepository.SystemManage
     {
         void DeleteForm(string keyValue);
         void SubmitForm(RoleEntity roleEntity, List<RoleAuthorizeEntity> roleAuthorizeEntitys, string keyValue);
+        void BatchDeleteForm(List<string> keyValues);
     }
 }
