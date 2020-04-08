@@ -24,11 +24,12 @@ namespace Tms.Application.ToolManage
         }
         public int Insert(FamilyEntity fanilyEntity)
         {
+            fanilyEntity.T_Id = Common.GuId();
             return service.Insert(fanilyEntity);
         }
-        public int Delete(FamilyEntity fanilyEntity)
+        public int Delete(string keyValue)
         {
-            return service.Delete(fanilyEntity);
+            return service.Delete(t => t.T_Id == keyValue);
         }
         public List<FamilyEntity> GetList(Pagination pagination, string keyword)
         {
@@ -39,8 +40,18 @@ namespace Tms.Application.ToolManage
                 expression = expression.Or(t => t.T_FamilyName.Contains(keyword));
                 expression = expression.Or(t => t.T_DepartmentId.Contains(keyword));
             }
-       
             return service.FindList(expression, pagination);
+        }
+        // 判断是否已存在此名称
+        public int GetFormByExit(string departmentId, string familyName)
+        {
+            var expression = ExtLinq.True<FamilyEntity>();
+            expression = expression.And(t => t.T_DepartmentId.Contains(departmentId));
+            foreach (var item in service.IQueryable(expression))
+            {
+                if (item.T_FamilyName == familyName) return 1;
+            }
+            return 0;
         }
 
     }

@@ -141,6 +141,7 @@
     <Compile Include="Areas\SystemSecurity\Controllers\LogController.cs" />
     <Compile Include="Areas\SystemSecurity\Controllers\ServerMonitoringController.cs" />
     <Compile Include="Areas\SystemSecurity\SystemSecurityAreaRegistration.cs" />
+    <Compile Include="Areas\ToolManage\Controllers\FamilyController.cs" />
     <Compile Include="Areas\ToolManage\Controllers\WhfController.cs" />
     <Compile Include="Areas\ToolManage\Controllers\BtwhController.cs" />
     <Compile Include="Areas\ToolManage\Controllers\JunkedController.cs" />
