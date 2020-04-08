@@ -17,10 +17,20 @@ namespace Tms.Repository.ToolManage
                 {
                     string value = keyValues[i];
                     db.Delete<ToolEntity>(t => t.T_Id == value);
-                   
+
                 }
                 db.Commit();
             }
         }
+
+        public void DeleteForm(string keyValue)
+        {
+            using (var db = new RepositoryBase().BeginTrans())
+            {
+                db.Delete<ToolEntity>(t => t.T_Id == keyValue);
+                db.Commit();
+            }
+        }
+
     }
 }
