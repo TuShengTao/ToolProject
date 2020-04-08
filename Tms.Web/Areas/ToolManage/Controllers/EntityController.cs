@@ -27,6 +27,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         }
 
         [HttpPost]
+
         public ActionResult Insert(ToolEntity toolEntity)
         {
             toolEntity.T_Id = Common.GuId();
