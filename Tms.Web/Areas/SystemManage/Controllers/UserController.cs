@@ -18,8 +18,8 @@ namespace Tms.Web.Areas.SystemManage.Controllers
        // [HandlerAjaxOnly]
         public ActionResult GetGridJson(Pagination pagination, string keyword)
         {
-            //
-         var data = new
+
+            var data = new
             {
                 rows = userApp.GetList(pagination, keyword),
                 total = pagination.total,  // 总页数
@@ -28,6 +28,15 @@ namespace Tms.Web.Areas.SystemManage.Controllers
             };
             return Content(data.ToJson());
         }
+        //查询所有用户
+        [HttpGet]
+        public ActionResult GetAllUser()
+        {
+            var data = userApp.GetAllList();
+
+            return Content(data.ToJson());
+        }
+
         [HttpGet]
         // 根据账号查用户 
         public ActionResult GetFormByAccount(string account)
@@ -46,6 +55,7 @@ namespace Tms.Web.Areas.SystemManage.Controllers
         }
 
         [HttpGet]
+        [HandlerAuthorize]
         // [HandlerAjaxOnly]
         public ActionResult GetGridJsonBySql(Pagination pagination, string keyword)
         {

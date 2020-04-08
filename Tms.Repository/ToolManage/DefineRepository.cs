@@ -9,7 +9,7 @@ namespace Tms.Repository.ToolManage
 {
     public class DefineRepository : RepositoryBase<DefineEntity>,IDefine
     {
-        // 批量删除用户
+        // 批量删除
         public void BatchDeleteForm(List<int> keyValues)
         {
             using (var db = new RepositoryBase().BeginTrans())

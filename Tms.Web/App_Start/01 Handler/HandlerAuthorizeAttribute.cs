@@ -44,9 +44,12 @@ namespace Tms.Web
             var roleId = operatorProvider.RoleId;   
             // moduleId 是界面级别功能模块Id
             var moduleId = WebHelper.GetCookie("NFine_currentmoduleid");  // 前端发起某个模块页面的请求时把这个模块页面的Id存进cookie
-            var action = HttpContext.Current.Request.ServerVariables["SCRIPT_NAME"].ToString();
+            // 此方法教程 ： https://www.xin3721.com/ArticlecSharp/c12656.html
+            var action = HttpContext.Current.Request.ServerVariables["SCRIPT_NAME"].ToString();  // 获取 执行脚本的名称
+            var RequestUrl = HttpContext.Current.Request.ServerVariables["Path_Info"].ToString(); // 请求的url 如查询用户url： /SystemManage/User/GetGridJson
             //  从 cookie 里面取具有的权限模块名 与当前 请求的action
             return new RoleAuthorizeApp().ActionValidate(roleId, moduleId, action);
+           // return new RoleAuthorizeApp().ActionValidate(roleId, moduleId, RequestUrl);
         }
     }
 }

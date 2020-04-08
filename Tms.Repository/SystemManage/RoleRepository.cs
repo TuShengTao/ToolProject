@@ -38,5 +38,19 @@ namespace Tms.Repository.SystemManage
                 db.Commit();
             }
         }
+
+        // 批量删除机构
+        public void BatchDeleteForm(List<string> keyValues)
+        {
+            using (var db = new RepositoryBase().BeginTrans())
+            {
+                for (int i = 0; i < keyValues.Count; i++)
+                {
+                    string value = keyValues[i];
+                    db.Delete<RoleEntity>(t => t.F_Id == value);
+                }
+                db.Commit();
+            }
+        }
     }
 }
