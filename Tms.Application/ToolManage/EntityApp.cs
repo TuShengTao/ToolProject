@@ -18,7 +18,7 @@ namespace Tms.Application.ToolManage
         // 获取所有
         public List<ToolEntity> GetList()
         {
-            
+
             return service.IQueryable().ToList();
 
         }
@@ -41,33 +41,51 @@ namespace Tms.Application.ToolManage
         }
 
         // 根据 账号查用户 防止添加账号时重复
-        public int GetFormByCodeAndSeqId(string code,int seqId)
+        public List<ToolEntity> GetFormByCode(string code)
         {
             var expression = ExtLinq.True<ToolEntity>();
             expression = expression.And(t => t.T_Code.Contains(code));
-            expression = expression.And(t => t.T_SeqId.ToString().Contains(seqId.ToString()));
             if (service.FindEntity(expression) != null)
             {
-                return 1;  // 存在
+                var sql1 = "select * from Tools_Entity where T_Code = '" + code + "'";
+                var list1 = service.FindList(sql1);
+                var sql2 = "select * from Tools_Entity where T_Code = '" + code + "' and T_IsDelete = 1";
+                var list2 = service.FindList(sql2);
+                if (list2.Count != 0) return list2;
+                else return list1;  //存在
             }
             else
             {
-                return 0; // 不存在
+                return null; // 不存在
             }
 
         }
 
-        public void SubmitForm(ToolEntity toolEntity, string keyValue)
+        public void SubmitForm(ToolEntity toolEntity, string keyValue, string keyNumber, string keyCode, string keySeqId)
         {
-            if (!string.IsNullOrEmpty(keyValue))
+            if (!string.IsNullOrEmpty(keyValue) && string.IsNullOrEmpty(keyNumber))
             {
-                toolEntity.Modify(keyValue); //  如果 keyValue 是空 就去执行修改 否则去创建
+                toolEntity.T_Id = keyValue; //  如果 keyValue 是空 就去执行修改 否则去创建
+                toolEntity.T_Code = keyCode;
+                toolEntity.T_SeqId = int.Parse(keySeqId);
+                service.Update(toolEntity);
+            }
+            else if (string.IsNullOrEmpty(keyValue) && string.IsNullOrEmpty(keyNumber))
+            {
+                toolEntity.T_Id = Common.GuId();
+                toolEntity.T_RegDate = DateTime.Now;
+                toolEntity.T_UsedCount = 0;
+                toolEntity.T_SeqId = 1;
+                service.Insert(toolEntity);
             }
             else
             {
-                toolEntity.Create();
+                toolEntity.T_Id = Common.GuId();
+                toolEntity.T_RegDate = DateTime.Now;
+                toolEntity.T_UsedCount = 0;
+                toolEntity.T_SeqId = int.Parse(keyNumber);
+                service.Insert(toolEntity);
             }
-            service.SubmitForm(toolEntity, keyValue);
         }
 
         public List<ToolEntity> GetList(Pagination pagination, string keyword)
@@ -79,7 +97,7 @@ namespace Tms.Application.ToolManage
                 expression = expression.Or(t => t.T_ToolType.Contains(keyword));
                 expression = expression.Or(t => t.T_Code.Contains(keyword));
             }
-         /*   expression = expression.And(t => t.F_Account != "admin");*/
+            /*   expression = expression.And(t => t.F_Account != "admin");*/
             return service.FindList(expression, pagination);
         }
 

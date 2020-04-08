@@ -17,7 +17,7 @@ namespace Tms.Repository.ToolManage
                 {
                     string value = keyValues[i];
                     db.Delete<ToolEntity>(t => t.T_Id == value);
-                   
+
                 }
                 db.Commit();
             }
@@ -32,20 +32,5 @@ namespace Tms.Repository.ToolManage
             }
         }
 
-        public void SubmitForm(ToolEntity toolEntity, string keyValue)
-        {
-            using (var db = new RepositoryBase().BeginTrans())
-            {
-                if (!string.IsNullOrEmpty(keyValue))
-                {
-                    db.Update(toolEntity); // 修改
-                }
-                else
-                {
-                    db.Insert(toolEntity);
-                }
-                db.Commit();
-            }
-        }
     }
 }

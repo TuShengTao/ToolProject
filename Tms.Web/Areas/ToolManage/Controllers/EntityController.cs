@@ -11,7 +11,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
     public class EntityController : ControllerBase
     {
         private EntityApp entityApp = new EntityApp();
-   
+
 
         [HttpGet]
         public ActionResult Get()
@@ -22,9 +22,9 @@ namespace Tms.Web.Areas.ToolManage.Controllers
 
         [HttpGet]
         // 根据账号查用户 
-        public ActionResult GetFormByCodeAndSeqId(string code, int seqId)
+        public ActionResult GetFormByCode(string code)
         {
-            var count = entityApp.GetFormByCodeAndSeqId(code, seqId);
+            var count = entityApp.GetFormByCode(code);
 
             return Content(count.ToJson());
         }
@@ -33,32 +33,35 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         public ActionResult Update(ToolEntity toolEntity)
         {
             var data = entityApp.UpDate(toolEntity);
-            return Content(data.ToJson());
+            //return Content(data.ToJson());
+            return Success("修改成功。");
         }
 
         [HttpPost]
         public ActionResult Insert(ToolEntity toolEntity)
         {
+            toolEntity.T_Id = Common.GuId();
+            toolEntity.T_RegDate = DateTime.Now;
+            toolEntity.T_UsedCount = 0;
             var data = entityApp.Insert(toolEntity);
-            return Content(data.ToJson());
+            //return Content(data.ToJson());
+            return Success("操作成功。");
         }
 
-        [HttpPost]
+        /**[HttpPost]
         public ActionResult Delete(ToolEntity toolEntity)
         {
             var data = entityApp.Delete(toolEntity);
             return Content(data.ToJson());
-        }
-
+        }*/
         [HttpPost]
         // [HandlerAjaxOnly]
         //   [ValidateAntiForgeryToken]
-        public ActionResult SubmitForm(ToolEntity toolEntity, string keyValue)
+        public ActionResult SubmitForm(ToolEntity toolEntity, string keyValue, string keyNumber, string keyCode, string keySeqId)
         {
-            entityApp.SubmitForm(toolEntity, keyValue);
+            entityApp.SubmitForm(toolEntity, keyValue, keyNumber, keyCode, keySeqId);
             return Success("操作成功。");
         }
-
         [HttpGet]
         // 权限验证暂时关闭
         //[HandlerAuthorize]
@@ -82,11 +85,11 @@ namespace Tms.Web.Areas.ToolManage.Controllers
 
         [HttpGet]
         // 分页查询
-       public ActionResult GetGridJson(Pagination pagination, string keyword)
+        public ActionResult GetGridJson(Pagination pagination, string keyword)
         {
             var data = new
             {
-                rows = entityApp.GetList(pagination,keyword),
+                rows = entityApp.GetList(pagination, keyword),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records
