@@ -30,5 +30,6 @@ namespace Tms.Domain.Entity.ToolManage
         public Nullable<bool> T_LaststDealResult { get; set; }
         public string T_Description { get; set; }
         public Nullable<bool> T_IsJunked { get; set; }
+        public Nullable<int> T_DefineId { get; set; }
     }
 }
