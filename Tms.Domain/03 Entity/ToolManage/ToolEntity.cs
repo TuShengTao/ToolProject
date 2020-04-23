@@ -12,7 +12,7 @@ namespace Tms.Domain.Entity.ToolManage
 {
 
 
-    public class ToolEntity : IEntity<ToolEntity>
+    public  class ToolEntity 
     {
         public string T_Code { get; set; }
         public int T_SeqId { get; set; }
@@ -26,11 +26,12 @@ namespace Tms.Domain.Entity.ToolManage
         public string T_Location { get; set; }
         public Nullable<int> T_UsedCount { get; set; }
         public Nullable<System.DateTime> T_RegDate { get; set; }
+        public System.DateTime T_CreatorTime { get; set; }
         public bool T_IsPassBuyToW { get; set; }
         public Nullable<int> T_RepairedCounts { get; set; }
         public Nullable<int> T_DefineId { get; set; }
         public Nullable<System.DateTime> T_ToolProductedDate { get; set; }
         public string T_DepartmentId { get; set; }
-        public int T_IsDelete { get; set; }
+        public bool T_IsDelete { get; set; }
     }
 }

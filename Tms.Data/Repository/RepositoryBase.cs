@@ -19,6 +19,7 @@ namespace Tms.Data
     public class RepositoryBase : IRepositoryBase, IDisposable
     {
         private TmsDbContext dbcontext = new TmsDbContext();
+        
         private DbTransaction dbTransaction { get; set; }
         public IRepositoryBase BeginTrans()
         {
@@ -104,6 +105,7 @@ namespace Tms.Data
         }
         public TEntity FindEntity<TEntity>(object keyValue) where TEntity : class
         {
+            
             return dbcontext.Set<TEntity>().Find(keyValue);
         }
         public TEntity FindEntity<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class
@@ -124,8 +126,15 @@ namespace Tms.Data
         }
         public List<TEntity> FindList<TEntity>(string strSql, DbParameter[] dbParameter) where TEntity : class
         {
+            
             return dbcontext.Database.SqlQuery<TEntity>(strSql, dbParameter).ToList<TEntity>();
         }
+
+        public int ExecuteSql(string strSql, DbParameter[] dbParameter)
+        {
+            return dbcontext.Database.ExecuteSqlCommand(strSql,dbParameter);
+        }
+
         public List<TEntity> FindList<TEntity>(Pagination pagination) where TEntity : class,new()
         {
             bool isAsc = pagination.sord.ToLower() == "asc" ? true : false;
@@ -160,6 +169,7 @@ namespace Tms.Data
             string[] _order = pagination.sidx.Split(',');
             MethodCallExpression resultExp = null;
             var tempData = dbcontext.Set<TEntity>().Where(predicate);
+            
             foreach (string item in _order)
             {
                 string _orderPart = item;
@@ -182,5 +192,7 @@ namespace Tms.Data
             tempData = tempData.Skip<TEntity>(pagination.rows * (pagination.page - 1)).Take<TEntity>(pagination.rows).AsQueryable();
             return tempData.ToList();
         }
+
+        
     }
 }

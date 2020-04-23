@@ -35,7 +35,7 @@ namespace Tms.Application.ToolManage
             var expression = ExtLinq.True<BuyToWareHouseEntity>();
             if (!string.IsNullOrEmpty(keyword))
             {
-                expression = expression.And(t => t.T_Id.Contains(keyword));
+               // expression = expression.And(t => t.T_Id.Contains(keyword));
                 expression = expression.And(t =>t.T_ApplicantId.Contains(keyword)); // 申请人
                 expression = expression.And(t => t.T_LastDealDate.ToString().Contains(keyword)); // 
                 expression = expression.And(t => t.T_FirstDealId.Contains(keyword));  // 初审人

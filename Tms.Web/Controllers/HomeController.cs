@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Tms.Web.Controllers
 {
-    [HandlerLogin]
+    
     public class HomeController : Controller
     {
         [HttpGet]

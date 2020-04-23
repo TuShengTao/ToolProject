@@ -64,12 +64,18 @@
     <Compile Include="SystemSecurity\LogMap.cs" />
     <Compile Include="ToolManage\BuyToWareHouseMap.cs" />
     <Compile Include="ToolManage\CheckMap.cs" />
+    <Compile Include="ToolManage\EntityDefineMap.cs" />
     <Compile Include="ToolManage\DefineMap.cs" />
     <Compile Include="ToolManage\EntityMap.cs" />
     <Compile Include="ToolManage\FamilyMap.cs" />
+    <Compile Include="ToolManage\JunkedViewMap.cs" />
     <Compile Include="ToolManage\JunkedMap.cs" />
     <Compile Include="ToolManage\ProductLinesMap.cs" />
+    <Compile Include="ToolManage\BtwhViewMap.cs" />
+    <Compile Include="ToolManage\WhfViewMap.cs" />
+    <Compile Include="ToolManage\RepairViewMap.cs" />
     <Compile Include="ToolManage\RepairMap.cs" />
+    <Compile Include="ToolManage\CodeSeqIdMap.cs" />
     <Compile Include="ToolManage\TypeMap.cs" />
     <Compile Include="ToolManage\WareHouseFlowMap.cs" />
   </ItemGroup>

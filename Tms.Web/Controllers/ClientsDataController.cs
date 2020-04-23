@@ -41,6 +41,8 @@ namespace Tms.Web.Controllers
 
         [HttpGet]
         //[HandlerAjaxOnly]
+        // 在登录界面 不验证登录是否超时
+        [HandlerLogin(false)]
         public ActionResult GetUserInfo()
         {
           

@@ -10,7 +10,15 @@ namespace Tms.Application.ToolManage
     public class DefineApp
     {
         private IDefine service = new DefineRepository();
-        // 批量删除
+
+        //根据code查夹具定义 返回一个夹具定义
+        public DefineEntity getFormByCode(string code)
+        {
+            var expression = ExtLinq.True<DefineEntity>();
+            expression = expression.And(t => t.T_Code.Equals(code));
+            var data = service.FindEntity(expression);
+            return data;
+        }
         public void BatchDeleteForm(List<int> keyValues)
         {
             service.BatchDeleteForm(keyValues);
@@ -23,6 +31,7 @@ namespace Tms.Application.ToolManage
             return service.IQueryable().ToList();
 
         }
+       
         public int UpDate(DefineEntity defineEntity)
         {
             return service.Update(defineEntity);
@@ -41,11 +50,13 @@ namespace Tms.Application.ToolManage
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.T_Name.Contains(keyword));// 夹具经手人 关键字查询且分页
+
                 expression = expression.Or(t => t.T_FamilyId.Contains(keyword));
                 expression = expression.Or(t => t.T_Code.Contains(keyword));
                 expression = expression.Or(t => t.T_PartNo.Contains(keyword));
                 expression = expression.Or(t => t.T_Model.Contains(keyword));
             }
+            
          /*   expression = expression.And(t => t.F_Account != "admin");*/
             return service.FindList(expression, pagination);
         }

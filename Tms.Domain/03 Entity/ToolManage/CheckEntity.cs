@@ -12,7 +12,7 @@ namespace Tms.Domain.Entity.ToolManage
 {
 
 
-    public  class CheckEntity : IEntity<CheckEntity>
+    public  class CheckEntity 
     {
         public string T_Id { get; set; }
         public string T_One { get; set; }

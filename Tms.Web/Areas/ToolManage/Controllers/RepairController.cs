@@ -11,7 +11,10 @@ namespace Tms.Web.Areas.ToolManage.Controllers
     public class RepairController : ControllerBase
     {
         private RepairApp repairApp = new RepairApp();
-   
+        private EntityApp entityApp = new EntityApp();
+        private RepairViewApp repairViewApp = new RepairViewApp();
+
+
 
         [HttpGet]
         public ActionResult Get()
@@ -29,7 +32,15 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         [HttpPost]
         public ActionResult Insert(RepairEntity repairEntity)
         {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            repairEntity.T_ApplicantId = operatorProvider.UserId;
+            repairEntity.T_DepartmentId = operatorProvider.DepartmentId;
+            repairEntity.T_ApplicantTime = DateTime.Now;
             var data = repairApp.Insert(repairEntity);
+            //修改实体表夹具状态 
+            ToolEntity toolEntity = new ToolEntity();
+            toolEntity.T_Id = repairEntity.T_Id;   //主键
+            toolEntity.T_ToolStatus = 4; //报修申请中
             return Content(data.ToJson());
         }
 
@@ -42,12 +53,12 @@ namespace Tms.Web.Areas.ToolManage.Controllers
 
         [HttpGet]
         // 分页查询
-       public ActionResult GetGridJson(Pagination pagination, string keyword)
+       public ActionResult GetGridJson(Pagination pagination, string keyword,int searchFlag)
         {
          
             var data = new
             {
-                rows = repairApp.GetList(pagination,keyword),
+                rows = repairViewApp.GetList(pagination,keyword, searchFlag),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records

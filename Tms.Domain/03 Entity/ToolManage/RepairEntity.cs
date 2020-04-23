@@ -12,15 +12,16 @@ namespace Tms.Domain.Entity.ToolManage
 {
 
 
-    public  class RepairEntity : IEntity<RepairEntity>
+    public  class RepairEntity 
     {
+        public int Id { get; set; }
         public string T_Id { get; set; }
         public string T_Description { get; set; }
         public string T_Img { get; set; }
         public string T_ApplicantId { get; set; }
         public Nullable<System.DateTime> T_ApplicantTime { get; set; }
         public string T_DealId { get; set; }
-        public Nullable<System.DateTime> T_DealIdTime { get; set; }
+        public Nullable<System.DateTime> T_DealTime { get; set; }
         public string T_RepairPerson { get; set; }
         public Nullable<byte> T_Stauts { get; set; }
         public string T_DepartmentId { get; set; }

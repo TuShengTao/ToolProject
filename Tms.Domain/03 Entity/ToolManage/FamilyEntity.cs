@@ -11,10 +11,16 @@ using System;
 namespace Tms.Domain.Entity.ToolManage
 {
 
-    public  class FamilyEntity : IEntity<FamilyEntity>
+    public  class FamilyEntity 
     {
         public string T_Id { get; set; }
         public string T_DepartmentId { get; set; }
-        public string T_FamilyName { get; set; }
+        public string T_Name { get; set; }
+
+        public string T_ParentId { get; set; }
+        public int T_IsModel { get; set; }
+
+        public int T_IsPartNo { get; set; }
+        public int T_IsFamily { get; set; }
     }
 }

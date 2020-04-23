@@ -11,6 +11,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
     public class WhfController : ControllerBase
     {
         private WareHouseFlowApp whfApp = new WareHouseFlowApp();
+        private WhfViewApp whfViewApp = new WhfViewApp();
    
 
         [HttpGet]
@@ -42,12 +43,12 @@ namespace Tms.Web.Areas.ToolManage.Controllers
 
         [HttpGet]
         // 分页查询
-       public ActionResult GetGridJson(Pagination pagination, string keyword)
+       public ActionResult GetGridJson(Pagination pagination, string keyword,int searchFlag)
         {
          
             var data = new
             {
-                rows = whfApp.GetList(pagination,keyword),
+                rows = whfViewApp.GetList(pagination,keyword,searchFlag),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records

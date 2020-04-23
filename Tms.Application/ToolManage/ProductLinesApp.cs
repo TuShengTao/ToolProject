@@ -11,11 +11,13 @@ namespace Tms.Application.ToolManage
     {
         private IProductLines service = new ProductLinesRepository();
 
-        // 获取所有
+        // 获取所有 根据部门查 
         public List<ProductLineEntity> GetList()
         {
-            
-            return service.IQueryable().ToList();
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            var expression = ExtLinq.True<ProductLineEntity>();
+            expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId) );
+            return service.IQueryable(expression).ToList();
 
         }
         public int UpDate(ProductLineEntity lineEntity)

@@ -32,7 +32,8 @@ namespace Tms.Code
                 }
                 catch (Exception ex)
                 {
-                    HttpContext.Current.Response.Write("服务器错误,Error:" + ex.Message);// 返回前台消息应该为 登录超时
+                    // HttpContext.Current.Response.Write("服务器错误,Error:" + ex.Message);// 返回前台消息应该为 登录超时
+                    operatorModel = null;
                     return operatorModel;
                 }
             }

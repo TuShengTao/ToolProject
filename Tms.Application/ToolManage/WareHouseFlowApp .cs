@@ -38,9 +38,7 @@ namespace Tms.Application.ToolManage
                 expression = expression.And(t => t.T_Id.Contains(keyword));
                 expression = expression.And(t => t.T_RecPersonId.Contains(keyword)); // 记录人
                 expression = expression.And(t => t.T_ProductLineId.ToString().Contains(keyword)); // 生产线
-                //  expression = expression.And(t => t.T_Hander.Contains(keyword));  // 经手人
-                expression = expression.And(t => t.T_ApplicantName.Contains(keyword));  // 领用人
-                expression = expression.And(t => t.T_ProductModel.Contains(keyword)); // 生产型号
+               
                 expression = expression.And(t => t.T_Classes.Contains(keyword)); // 班次
 
             }

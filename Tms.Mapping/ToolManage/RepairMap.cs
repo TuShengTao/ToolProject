@@ -9,7 +9,7 @@ namespace Tms.Mapping.ToolManage
         public RepairMap()
         {
             this.ToTable("Tools_Repair");
-            this.HasKey(t => t.T_Id);
+            this.HasKey(t => t.Id);
         }
     }
 }

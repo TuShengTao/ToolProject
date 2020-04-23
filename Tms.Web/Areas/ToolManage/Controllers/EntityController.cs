@@ -7,13 +7,102 @@ using Tms.Domain.Entity.ToolManage;
 using System.Web.Mvc;
 namespace Tms.Web.Areas.ToolManage.Controllers
 {
+    
     // 夹具实体controller
     public class EntityController : ControllerBase
     {
         private EntityApp entityApp = new EntityApp();
+        private EntityDefineApp entityDefineApp = new EntityDefineApp();
+        
+        [HttpPost]
+        public ActionResult InsertToWareHouse(BuyToWareHouseEntity buyToWareHouseEntity, ToolEntity toolEntity)
+        {
+            string T_Id = Common.GuId();
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            buyToWareHouseEntity.T_Id = T_Id;  //外键
+            buyToWareHouseEntity.T_ApplicantId = operatorProvider.UserId;
+            buyToWareHouseEntity.T_ApplicantPerson = operatorProvider.UserName;
+            buyToWareHouseEntity.T_DepartmentId = operatorProvider.DepartmentId;
+            buyToWareHouseEntity.T_CreateTime = DateTime.Now;
+           
+            toolEntity.T_Id = T_Id; //主键 
+            toolEntity.T_ToolStatus = 5;  //申请采购入库状态
+            toolEntity.T_CreatorTime = buyToWareHouseEntity.T_CreateTime;
+            toolEntity.T_DepartmentId = operatorProvider.DepartmentId;
+            toolEntity.T_RecPersonId = operatorProvider.UserId;
+
+            int result = entityApp.InsertToWareHouse(buyToWareHouseEntity, toolEntity);
+
+            if (result != 0 )
+            {
+                return Success("申请成功!");
+            }
+            else
+            {
+                return Error("申请失败！请刷新重试！");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UseUpdateInsert(WareHouseFlowEntity useEntity)
+        {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            useEntity.T_OutDate = DateTime.Now;
+            useEntity.T_RecPersonId = operatorProvider.UserId;
+            useEntity.T_DepartmentId = operatorProvider.DepartmentId;
+            int flag = entityApp.UseUpdateInsert(useEntity);
+            if(flag == 1)
+            {
+                return Success("领用成功!");
+            }
+            else
+            {
+                return Error("领用失败！请刷新重试！");
+            }
+
+        }
+        [HttpPost]
+        public ActionResult JunkedUpdateInsert(JunkedEntity junkedEntity)
+        {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            junkedEntity.T_ApplicantId = operatorProvider.UserId;
+            junkedEntity.T_DepartmentId = operatorProvider.DepartmentId;
+            junkedEntity.T_ApplicantDate = DateTime.Now;
+
+            int flag = entityApp.JunkedUpdateInsert(junkedEntity);
+            if (flag == 1)
+            {
+                return Success("申请成功!");
+            }
+            else
+            {
+                return Error("申请失败！请刷新重试！");
+            }
+
+        }
+        [HttpPost]
+        public ActionResult RepairUpdateInsert(RepairEntity repairEntity)
+        {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            repairEntity.T_ApplicantId = operatorProvider.UserId;
+            repairEntity.T_DepartmentId = operatorProvider.DepartmentId;
+            repairEntity.T_ApplicantTime = DateTime.Now;
+
+            int flag = entityApp.RepairUpdateInsert(repairEntity);
+            if (flag == 1)
+            {
+                return Success("申请成功!");
+            }
+            else
+            {
+                return Error("申请失败！请刷新重试！");
+            }
+
+        }
 
 
         [HttpGet]
+        
         public ActionResult Get()
         {
             var data = entityApp.GetList();
@@ -21,12 +110,18 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         }
 
         [HttpGet]
-        // 根据账号查用户 
         public ActionResult GetFormByCode(string code)
         {
             var count = entityApp.GetFormByCode(code);
 
             return Content(count.ToJson());
+        }
+
+        [HttpPost]
+        public ActionResult VerifyIfExist(ToolEntity toolEntity)
+        {
+            var flag = entityApp.VerifyIfExist(toolEntity);
+            return Content(flag.ToJson()); // 前台为1 则通过 
         }
 
         [HttpPost]
@@ -85,18 +180,16 @@ namespace Tms.Web.Areas.ToolManage.Controllers
 
         [HttpGet]
         // 分页查询
-        public ActionResult GetGridJson(Pagination pagination, string keyword)
+        public ActionResult GetGridJson(Pagination pagination, string keyword,int searchType)
         {
             var data = new
             {
-                rows = entityApp.GetList(pagination, keyword),
+                rows = entityDefineApp.GetList(pagination, keyword,searchType),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records
             };
             return Content(data.ToJson());
         }
-
-
     }
 }

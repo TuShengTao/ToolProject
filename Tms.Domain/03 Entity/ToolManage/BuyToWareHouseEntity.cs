@@ -9,10 +9,11 @@
 using System;
 namespace Tms.Domain.Entity.ToolManage
 {
-    
-    
-    public class  BuyToWareHouseEntity : IEntity<BuyToWareHouseEntity>
+
+
+    public class BuyToWareHouseEntity
     {
+        public int Id {get;set;}
         public string T_Id { get; set; }
         public string T_ApplicantId { get; set; }
         public string T_FirstDealId { get; set; }
@@ -22,7 +23,7 @@ namespace Tms.Domain.Entity.ToolManage
         public string T_LastDealer { get; set; }
         public Nullable<System.DateTime> T_LastDealDate { get; set; }
         public string T_ApplicantPerson { get; set; }
-        public byte[] T_CreateTime { get; set; }
+        public System.DateTime T_CreateTime { get; set; }
         public Nullable<bool> T_FirstDealResult { get; set; }
         public Nullable<bool> T_LastDealResult { get; set; }
         public Nullable<bool> T_IsInWarehouse { get; set; }

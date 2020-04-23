@@ -11,9 +11,9 @@ using System;
 namespace Tms.Domain.Entity.ToolManage
 {
 
-    public  class JunkedEntity : IEntity<JunkedEntity
-        >
+    public  class JunkedEntity
     {
+        public int Id { get; set; }
         public string T_Id { get; set; }
         public string T_DepartmentId { get; set; }
         public Nullable<int> T_LifeTime { get; set; }

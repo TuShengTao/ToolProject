@@ -10,7 +10,7 @@ namespace Tms.Mapping.ToolManage
         public JunkedMap()
         {
             this.ToTable("Tools_Junked");
-            this.HasKey(t => t.T_Id);
+            this.HasKey(t => t.Id);
         }
     }
 }

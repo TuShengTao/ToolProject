@@ -44,7 +44,8 @@ namespace Tms.Web.Controllers
             return RedirectToAction("Index", "Login");
         }
         [HttpPost]
-        //[HandlerAjaxOnly]
+        //登录超时验证 不验证此登录接口
+        [HandlerLogin(false)]
         public ActionResult CheckLogin(string username, string password, string code)
         {
             LogEntity logEntity = new LogEntity();
