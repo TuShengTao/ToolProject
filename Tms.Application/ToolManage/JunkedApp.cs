@@ -41,7 +41,7 @@ namespace Tms.Application.ToolManage
                 expression = expression.And(t => t.T_FirstDealId.Contains(keyword));  // 初审人
                 expression = expression.And(t => t.T_LastDealId.Contains(keyword));  // 终审人
             }
-            expression = expression.And(t => t.T_IsJunked !=false);
+           //expression = expression.And(t => t.T_IsJunked !=0);
             return service.FindList(expression, pagination);
         }
 
