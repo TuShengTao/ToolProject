@@ -51,7 +51,7 @@ namespace Tms.Application.ToolManage
             {
                 expression = expression.And(t => t.T_Name.Contains(keyword));// 夹具经手人 关键字查询且分页
 
-                expression = expression.Or(t => t.T_FamilyId.Contains(keyword));
+                expression = expression.Or(t => t.T_Family.Contains(keyword));
                 expression = expression.Or(t => t.T_Code.Contains(keyword));
                 expression = expression.Or(t => t.T_PartNo.Contains(keyword));
                 expression = expression.Or(t => t.T_Model.Contains(keyword));

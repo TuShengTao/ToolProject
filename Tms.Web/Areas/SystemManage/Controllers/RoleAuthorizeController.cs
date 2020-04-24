@@ -27,6 +27,7 @@ namespace Tms.Web.Areas.SystemManage.Controllers
             var treeList = new List<TreeViewModel>();
             // 给前端返回一个当前角色的权限Id数组
             List<string> permissionIds = new List<string>();
+
             foreach (ModuleEntity item in moduledata)
             {
                 TreeViewModel tree = new TreeViewModel();
@@ -43,6 +44,17 @@ namespace Tms.Web.Areas.SystemManage.Controllers
                 tree.img = item.F_Icon == "" ? "" : item.F_Icon;
                 treeList.Add(tree);
             }
+
+            // 把模块的id加进去
+
+            //foreach (ModuleEntity item in moduledata)
+            //{
+            //    if (authorizedata.Count(t => t.F_ItemId == item.F_Id) == 1 ? true : false)
+            //    {
+            //        permissionIds.Add(item.F_Id);
+            //    }
+            //}
+
             foreach (ModuleButtonEntity item in buttondata)
             {
                 TreeViewModel tree = new TreeViewModel();

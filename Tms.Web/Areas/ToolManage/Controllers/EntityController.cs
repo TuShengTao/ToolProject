@@ -35,11 +35,11 @@ namespace Tms.Web.Areas.ToolManage.Controllers
 
             if (result != 0 )
             {
-                return Success("申请成功!");
+                return Success("提交成功!");
             }
             else
             {
-                return Error("申请失败！请刷新重试！");
+                return Error("提交失败！请刷新重试！");
             }
         }
 
@@ -72,11 +72,11 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             int flag = entityApp.JunkedUpdateInsert(junkedEntity);
             if (flag == 1)
             {
-                return Success("申请成功!");
+                return Success("提交成功!");
             }
             else
             {
-                return Error("申请失败！请刷新重试！");
+                return Error("提交失败！请刷新重试！");
             }
 
         }
@@ -91,11 +91,11 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             int flag = entityApp.RepairUpdateInsert(repairEntity);
             if (flag == 1)
             {
-                return Success("申请成功!");
+                return Success("提交成功!");
             }
             else
             {
-                return Error("申请失败！请刷新重试！");
+                return Error("提交失败！请刷新重试！");
             }
 
         }

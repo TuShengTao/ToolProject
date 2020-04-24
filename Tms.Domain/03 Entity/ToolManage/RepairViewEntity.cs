@@ -21,23 +21,23 @@ namespace Tms.Domain.Entity.ToolManage
         public string T_Code { get; set; }
         public int T_SeqId { get; set; }
         public string T_ToolType { get; set; }
-        public Nullable<int> T_DefineId { get; set; }
+        public int T_DefineId { get; set; }
 
         public int Id { get; set; }
         public string T_Id { get; set; }
         public string T_Description { get; set; }
         public string T_Img { get; set; }
         public string T_ApplicantId { get; set; }
-        public Nullable<System.DateTime> T_ApplicantTime { get; set; }
+        public System.DateTime T_ApplicantTime { get; set; }
         public string T_DealId { get; set; }
-        public Nullable<System.DateTime> T_DealTime { get; set; }
+        public System.DateTime T_DealTime { get; set; }
         public string T_RepairPerson { get; set; }
-        public Nullable<byte> T_Stauts { get; set; }
+        public byte T_Stauts { get; set; }
         public string T_DepartmentId { get; set; }
-        public Nullable<bool> T_RepairedStatus { get; set; }
-        public Nullable<System.DateTime> T_CreatorTime { get; set; }
-        public Nullable<System.DateTime> T_RepairedDate { get; set; }
-        public Nullable<bool> T_IsToRepair { get; set; }
+        public bool T_RepairedStatus { get; set; }
+        public System.DateTime T_CreatorTime { get; set; }
+        public System.DateTime T_RepairedDate { get; set; }
+        public bool T_IsToRepair { get; set; }
 
     }
 }

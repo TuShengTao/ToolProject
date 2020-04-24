@@ -20,8 +20,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         private JunkedApp junkedApp = new JunkedApp();
         private EntityApp entityApp = new EntityApp();
         private JunkedViewApp JunkedViewApp = new JunkedViewApp(); 
-   
-
+  
         [HttpGet]
         public ActionResult Get()
         {
@@ -63,12 +62,12 @@ namespace Tms.Web.Areas.ToolManage.Controllers
 
         [HttpGet]
         // 分页查询
-       public ActionResult GetGridJson(Pagination pagination, string keyword,int searchFlag)
+       public ActionResult GetGridJson(Pagination pagination, string keyword,int searchType)
         {
          
             var data = new
             {
-                rows = JunkedViewApp.GetList(pagination,keyword,searchFlag),
+                rows = JunkedViewApp.GetList(pagination,keyword, searchType),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records

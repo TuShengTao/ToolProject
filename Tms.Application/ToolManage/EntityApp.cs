@@ -15,13 +15,21 @@ namespace Tms.Application.ToolManage
     {
        
         private IEntity service = new EntityRepository();
+        private IBuyToWareHouse buyService = new BuyToWareHouseRepository();
         // 夹具领用 有夹具实体修改 有领用记录的添加 需要补充pojo
         public int InsertToWareHouse(BuyToWareHouseEntity buyToWareHouseEntity,ToolEntity toolEntity)
         {
-
             int result = service.InsertToWareHouse(buyToWareHouseEntity,toolEntity);
-
-            return result;
+             
+            if(result != 0)
+            {
+                buyService.Insert(buyToWareHouseEntity);
+                return result;
+            }
+            else
+            {
+                return 0;
+            }
         }
         public int  UseUpdateInsert(WareHouseFlowEntity insertEntity)
         {

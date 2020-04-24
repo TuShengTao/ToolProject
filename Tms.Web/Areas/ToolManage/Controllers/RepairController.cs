@@ -14,8 +14,6 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         private EntityApp entityApp = new EntityApp();
         private RepairViewApp repairViewApp = new RepairViewApp();
 
-
-
         [HttpGet]
         public ActionResult Get()
         {
@@ -53,12 +51,12 @@ namespace Tms.Web.Areas.ToolManage.Controllers
 
         [HttpGet]
         // 分页查询
-       public ActionResult GetGridJson(Pagination pagination, string keyword,int searchFlag)
+       public ActionResult GetGridJson(Pagination pagination, string keyword,int searchType)
         {
          
             var data = new
             {
-                rows = repairViewApp.GetList(pagination,keyword, searchFlag),
+                rows = repairViewApp.GetList(pagination,keyword, searchType),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records

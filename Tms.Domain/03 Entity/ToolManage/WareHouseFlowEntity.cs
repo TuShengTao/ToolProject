@@ -23,7 +23,7 @@ namespace Tms.Domain.Entity.ToolManage
         public string T_Description { get; set; }
         public System.DateTime T_OutDate { get; set; }
         public Nullable<System.DateTime> T_BackDate { get; set; }
-        public Nullable<int> T_ToolStatus { get; set; }
+        public int T_ToolStatus { get; set; }
         public string T_Classes { get; set; }
         public string T_DepartmentId { get; set; }
     }

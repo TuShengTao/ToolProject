@@ -107,12 +107,12 @@ namespace Tms.Repository.ToolManage
                 {
                     //  如果没有数据说明库里还没有此code的夹具，然后在Tools_CodeSeqId表新建
                     StringBuilder strInsertSql = new StringBuilder();
-                    strInsertSql.Append(@"insert into Tools_CodeSeqId(T_Code,T_SeqId,T_Occupy,T_DepartmentId ) values(@CodeInsert@SeqId,@State,@DepartMentId)");
+                    strInsertSql.Append(@"insert into Tools_CodeSeqId(T_Code,T_SeqId,T_Occupy,T_DepartmentId ) values(@CodeInsert,@SeqId,@State,@DepartMentId)");
                     int seqId = 1;
                     int state = 1;
                     DbParameter[] dbParameterInsert = { 
                         new SqlParameter("@CodeInsert", toolEntity.T_Code), new SqlParameter("@DepartMentId", toolEntity.T_DepartmentId),
-                        new SqlParameter("@SeqId",seqId) ,
+                        new SqlParameter("@SeqId",seqId),
                         new SqlParameter("@State",state)
 
                     };
@@ -124,7 +124,7 @@ namespace Tms.Repository.ToolManage
                     toolEntity.T_SeqId = ToolSeqId;  //补全 SeqId
                     // 补全实体后做添加 
                     db.Insert<ToolEntity>(toolEntity); //添加实体表
-                    db.Insert<BuyToWareHouseEntity>(buyToWareHouseEntity);            
+                    //db.Insert<BuyToWareHouseEntity>(buyToWareHouseEntity);    //不能在此进行添加 有外键约束        
                 }
                 resultFlag = db.Commit();  // 如果失败就回滚
                 return resultFlag; 
