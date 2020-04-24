@@ -33,7 +33,20 @@ namespace Tms.Application.ToolManage
                 expression = expression.Or(t => t.T_PartNo.Contains(keyword));
                 expression = expression.Or(t => t.T_Family.Contains(keyword));
             }
-            /*   expression = expression.And(t => t.F_Account != "admin");*/
+            if (searchType == 1)
+            {
+                expression = expression.And(t => t.T_FirstDealId == null); //查未初审的
+            }
+            else if (searchType == 2)
+            {
+                expression = expression.And(t => t.T_FirstDealResult == true);  //查初审通过过的
+            }
+            else if(searchType == 3)
+            {
+                //查所有未处理的  searchType = 3
+                expression = expression.And(t => t.T_FirstDealResult != false);
+                expression = expression.And(t => t.T_LaststDealResult == null);  //查出所有的报废请求
+            }
             return service.FindList(expression, pagination);
         }
     }

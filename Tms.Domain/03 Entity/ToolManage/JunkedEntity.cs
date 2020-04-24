@@ -26,10 +26,10 @@ namespace Tms.Domain.Entity.ToolManage
         public string T_LastDealId { get; set; }
         public Nullable<System.DateTime> T_LastDealDate { get; set; }
 
-        public bool T_FirstDealResult { get; set; }
-        public bool T_LaststDealResult { get; set; }
+        public Nullable<int> T_FirstDealResult { get; set; }
+        public Nullable<int> T_LaststDealResult { get; set; }
         public string T_Description { get; set; }
-        public bool T_IsJunked { get; set; }
+        public Nullable<int> T_IsJunked { get; set; }
     
     }
 }
