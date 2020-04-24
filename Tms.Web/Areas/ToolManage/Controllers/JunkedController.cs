@@ -28,9 +28,9 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             return Content(data.ToJson());
         }
         [HttpPost]
-        public ActionResult Update(JunkedEntity junkedEntity)
+        public ActionResult Update(JunkedViewEntity junkedViewEntity ,string type)
         {
-            var data = junkedApp.UpDate(junkedEntity);
+            var data = junkedApp.UpDate(junkedViewEntity, type);
             return Content(data.ToJson());
         }
 

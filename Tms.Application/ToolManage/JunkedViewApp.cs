@@ -45,7 +45,7 @@ namespace Tms.Application.ToolManage
             {
                 //查所有未处理的  searchType = 3
                 expression = expression.And(t => t.T_FirstDealResult != 0 );
-                expression = expression.And(t => t.T_LaststDealResult == null);  //查出所有的报废请求
+                expression = expression.And(t => t.T_LastDealResult == null);  //查出所有的报废请求
             }
             return service.FindList(expression, pagination);
         }

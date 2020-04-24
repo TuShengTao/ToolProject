@@ -18,9 +18,44 @@ namespace Tms.Application.ToolManage
             return service.IQueryable().ToList();
 
         }
-        public int UpDate(JunkedEntity junkedEntity)
+        public int UpDate(JunkedViewEntity junkedViewEntity, string type)
         {
-            return service.Update(junkedEntity);
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            JunkedEntity junkedEntity = new JunkedEntity();
+            ToolEntity toolEntity = new ToolEntity();
+            toolEntity.T_Id = junkedViewEntity.T_Id; //主键
+            toolEntity.T_SeqId = junkedViewEntity.T_SeqId;
+            toolEntity.T_Code = junkedViewEntity.T_Code;
+            toolEntity.T_DepartmentId = junkedViewEntity.T_DepartmentId;
+            junkedEntity.Id = junkedViewEntity.Id; //主键
+            if (type == "First")
+            {
+                junkedEntity.T_FirstDealId = operatorProvider.UserId;
+                junkedEntity.T_FirstDealDate = DateTime.Now;
+                junkedEntity.T_FirstDealResult = junkedViewEntity.T_FirstDealResult;
+                
+            }
+            else if (type == "End")
+            {
+                if (junkedViewEntity.T_LastDealResult == 1)
+                {
+                    toolEntity.T_ToolStatus = -1; //废弃了
+                    junkedEntity.T_IsJunked = 1;
+                }
+                else
+                {
+                    toolEntity.T_ToolStatus = 2; //出库状态
+                }
+                junkedEntity.T_LastDealResult = junkedViewEntity.T_LastDealResult;
+                junkedEntity.T_LastDealId = operatorProvider.UserId;
+                junkedEntity.T_LastDealDate = DateTime.Now;
+            }
+            else 
+            { 
+            
+            }
+            return service.JunkedCheck(junkedEntity,toolEntity,type);
+            //return service.Update(junkedEntity);
         }
         public int Insert(JunkedEntity junkedEntity)
         {

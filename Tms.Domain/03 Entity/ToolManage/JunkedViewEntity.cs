@@ -36,8 +36,10 @@ namespace Tms.Domain.Entity.ToolManage
         public Nullable<System.DateTime> T_LastDealDate { get; set; }
         public Nullable<System.DateTime> T_CreatorTime { get; set; }
         public Nullable<int> T_FirstDealResult { get; set; }
-        public Nullable<int> T_LaststDealResult { get; set; }
+        public Nullable<int> T_LastDealResult { get; set; }
         public string T_Description { get; set; }
+        public string T_LastFeedBack { get; set; }
+        public string T_FirstFeedBack { get; set; }
         public Nullable<int> T_IsJunked { get; set; }
 
     }
