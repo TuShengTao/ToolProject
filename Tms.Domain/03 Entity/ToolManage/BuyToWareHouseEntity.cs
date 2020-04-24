@@ -18,10 +18,10 @@ namespace Tms.Domain.Entity.ToolManage
         public string T_ApplicantId { get; set; }
         public string T_FirstDealId { get; set; }
         public string T_FirstDealer { get; set; }
-        public System.DateTime T_FirstDealDate { get; set; }
+        public Nullable<System.DateTime> T_FirstDealDate { get; set; }
         public string T_LastDealId { get; set; }
         public string T_LastDealer { get; set; }
-        public System.DateTime T_LastDealDate { get; set; }
+        public Nullable<System.DateTime> T_LastDealDate { get; set; }
         public string T_ApplicantPerson { get; set; }
         public System.DateTime T_CreateTime { get; set; }
         public bool T_FirstDealResult { get; set; }

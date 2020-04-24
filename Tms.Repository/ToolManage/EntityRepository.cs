@@ -27,17 +27,16 @@ namespace Tms.Repository.ToolManage
             }
         }
         
-        public int UpdateByJudge(object insertEntity,string toolId,int newStatus,int oldStatus)
+        public int UpdateByJudge(object insertEntity,string toolId,int newStatus)
         {
             using (var db = new RepositoryBase().BeginTrans())
             {
                 StringBuilder strSql = new StringBuilder();
 
-                strSql.Append(@"update Tools_Entity set T_ToolStatus = @NewStatus  where T_Id = @T_Id and T_ToolStatus = @OldStatus ");
+                strSql.Append(@"update Tools_Entity set T_ToolStatus = @NewStatus  where T_Id = @T_Id");
                 DbParameter[] dbParameter =
                 {
                     new SqlParameter("@NewStatus",newStatus),
-                    new SqlParameter("@OldStatus",oldStatus),
                     new SqlParameter("@T_Id",toolId),
 
                 };

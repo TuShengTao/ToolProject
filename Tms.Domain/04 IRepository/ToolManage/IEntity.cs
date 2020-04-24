@@ -8,7 +8,7 @@ namespace Tms.Domain.IRepository.ToolManage
     {
         void DeleteForm(string keyValue);
         void BatchDeleteForm(List<string> keyValues);
-        int UpdateByJudge(object insertEntity, string toolId, int newStatus, int oldStatus);
+        int UpdateByJudge(object insertEntity, string toolId, int newStatus);
         int InsertToWareHouse(BuyToWareHouseEntity buyToWareHouseEntity, ToolEntity toolEntity);
 
     }

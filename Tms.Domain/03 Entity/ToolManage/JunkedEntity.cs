@@ -22,9 +22,9 @@ namespace Tms.Domain.Entity.ToolManage
         public System.DateTime T_ApplicantDate { get; set; }
         public string T_Img { get; set; }
         public string T_FirstDealId { get; set; }
-        public System.DateTime T_FirstDealDate { get; set; }
+        public Nullable<System.DateTime> T_FirstDealDate { get; set; }
         public string T_LastDealId { get; set; }
-        public System.DateTime T_LastDealDate { get; set; }
+        public Nullable<System.DateTime> T_LastDealDate { get; set; }
 
         public bool T_FirstDealResult { get; set; }
         public bool T_LaststDealResult { get; set; }

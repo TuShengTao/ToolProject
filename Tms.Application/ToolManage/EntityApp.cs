@@ -33,17 +33,17 @@ namespace Tms.Application.ToolManage
         }
         public int  UseUpdateInsert(WareHouseFlowEntity insertEntity)
         {
-            return service.UpdateByJudge(insertEntity,insertEntity.T_Id,2,1);
+            return service.UpdateByJudge(insertEntity,insertEntity.T_Id,2);
         }
 
         public int JunkedUpdateInsert(JunkedEntity insertEntity)
         {
-            return service.UpdateByJudge(insertEntity, insertEntity.T_Id, 3, 1);
+            return service.UpdateByJudge(insertEntity, insertEntity.T_Id, 3);
         }
 
         public int RepairUpdateInsert(RepairEntity insertEntity)
         {
-            return service.UpdateByJudge(insertEntity, insertEntity.T_Id, 4, 1);
+            return service.UpdateByJudge(insertEntity, insertEntity.T_Id, 4);
         }
 
 
@@ -78,8 +78,7 @@ namespace Tms.Application.ToolManage
         }
         public List<ToolEntity> VerifyIfExist(ToolEntity toolEntity)
         {
-    
-            var sql = "select * from Tools_Entity where T_Code = '" + toolEntity.T_Code + "'and T_SeqId = '"+toolEntity.T_SeqId+"' and T_ToolStatus = 1 and T_isDelete = 0";
+            var sql = "select * from Tools_Entity where T_Code = '" + toolEntity.T_Code + "'and T_SeqId = '"+toolEntity.T_SeqId+"' and T_ToolStatus in(1,2) ";
             var list = service.FindList(sql);
             if(list.Count == 1)
             {
