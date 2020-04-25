@@ -18,9 +18,17 @@ namespace Tms.Application.ToolManage
             return service.IQueryable().ToList();
 
         }
-        public int UpDate(WareHouseFlowEntity wareHouseFlowEntity)
+        public int UpDate(WhfViewEntity whfViewEntity)
         {
-            return service.Update(wareHouseFlowEntity);
+            ToolEntity toolEntity = new ToolEntity();
+            WareHouseFlowEntity houseFlowEntity = new WareHouseFlowEntity();
+            toolEntity.T_Id = whfViewEntity.T_Id;
+            houseFlowEntity.Id = whfViewEntity.Id;
+            toolEntity.T_UsedCount = whfViewEntity.T_UsedCount + 1;
+            toolEntity.T_ToolStatus = 1;//入库
+            houseFlowEntity.T_ToolStatus = 1;//已归还
+            houseFlowEntity.T_BackDate = DateTime.Now;
+            return service.backTool(houseFlowEntity, toolEntity);
         }
         public int Insert(WareHouseFlowEntity wareHouseFlowEntity)
         {

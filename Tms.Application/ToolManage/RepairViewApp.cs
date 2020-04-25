@@ -38,6 +38,10 @@ namespace Tms.Application.ToolManage
             {
                 expression = expression.And(t => t.T_Stauts.Equals(0));  
             }
+            if(searchType == "goBack")
+            {
+                expression = expression.And(t => t.T_ApplicantId.Equals(operatorProvider.UserId));
+            }
              expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId)); //各个workcell数据分离 
             return service.FindList(expression, pagination);
         }

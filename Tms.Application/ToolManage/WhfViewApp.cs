@@ -21,9 +21,12 @@ namespace Tms.Application.ToolManage
             return service.IQueryable().ToList();
         }
 
-        public List<WhfViewEntity> GetList(Pagination pagination, string keyword,int searchType)
+        public List<WhfViewEntity> GetList(Pagination pagination, string keyword, string searchType )
         {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
             var expression = ExtLinq.True<WhfViewEntity>();
+            expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId)); //各个workcell数据分离 
+
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.T_Name.Contains(keyword));
@@ -33,7 +36,13 @@ namespace Tms.Application.ToolManage
                 expression = expression.Or(t => t.T_PartNo.Contains(keyword));
                 expression = expression.Or(t => t.T_Family.Contains(keyword));
             }
-            /*   expression = expression.And(t => t.F_Account != "admin");*/
+            if (searchType == "back")
+            {
+                expression = expression.And(t => t.T_ToolStatus == 0);
+                expression = expression.And(t => t.T_RecPersonId.Equals(operatorProvider.UserId));
+
+            }
+
             return service.FindList(expression, pagination);
         }
     }

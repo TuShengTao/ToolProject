@@ -21,9 +21,9 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             return Content(data.ToJson());
         }
         [HttpPost]
-        public ActionResult Update(RepairViewEntity repairViewEntity)
+        public ActionResult Update(RepairViewEntity repairViewEntity,string type)
         {
-            var data = repairApp.UpDate(repairViewEntity);
+            var data = repairApp.UpDate(repairViewEntity,type);
              return Content(data.ToJson());
         }
 

@@ -18,12 +18,11 @@ namespace Tms.Domain.Entity.ToolManage
         public string T_Id { get; set; }
         public string T_Hander { get; set; }
         public string T_RecPersonId { get; set; }
-
-        public int T_ProductLineId { get; set; }
+        public Nullable<int> T_ProductLineId { get; set; }
         public string T_Description { get; set; }
         public System.DateTime T_OutDate { get; set; }
         public Nullable<System.DateTime> T_BackDate { get; set; }
-        public int T_ToolStatus { get; set; }
+        public Nullable<int> T_ToolStatus { get; set; }
         public string T_Classes { get; set; }
         public string T_DepartmentId { get; set; }
     }
