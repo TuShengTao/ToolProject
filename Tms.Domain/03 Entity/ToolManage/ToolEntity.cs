@@ -15,9 +15,9 @@ namespace Tms.Domain.Entity.ToolManage
     public  class ToolEntity 
     {
         public string T_Code { get; set; }
-        public int T_SeqId { get; set; }
+        public Nullable<int> T_SeqId { get; set; }
         public string T_ToolType { get; set; }
-        public int T_ToolStatus { get; set; }
+        public Nullable<int> T_ToolStatus { get; set; }
         public string T_Id { get; set; }
         public string T_Img { get; set; }
         public string T_Hander { get; set; }

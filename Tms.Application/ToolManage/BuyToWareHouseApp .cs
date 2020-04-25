@@ -79,7 +79,7 @@ namespace Tms.Application.ToolManage
             {
                // expression = expression.And(t => t.T_Id.Contains(keyword));
                 expression = expression.And(t =>t.T_ApplicantId.Contains(keyword)); // 申请人
-                expression = expression.And(t => t.T_LastDealDate.ToString().Contains(keyword)); // 
+               // expression = expression.And(t => t.T_LastDealDate.ToString().Contains(keyword)); // 
                 expression = expression.And(t => t.T_FirstDealId.Contains(keyword));  // 初审人
                 expression = expression.And(t => t.T_LastDealId.Contains(keyword));  // 终审人
             }
