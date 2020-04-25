@@ -33,6 +33,7 @@ namespace Tms.Application.ToolManage
                 junkedEntity.T_FirstDealId = operatorProvider.UserId;
                 junkedEntity.T_FirstDealDate = DateTime.Now;
                 junkedEntity.T_FirstDealResult = junkedViewEntity.T_FirstDealResult;
+                junkedEntity.T_FirstFeedBack = junkedViewEntity.T_FirstFeedBack;
                 
             }
             else if (type == "End")
@@ -49,6 +50,7 @@ namespace Tms.Application.ToolManage
                 junkedEntity.T_LastDealResult = junkedViewEntity.T_LastDealResult;
                 junkedEntity.T_LastDealId = operatorProvider.UserId;
                 junkedEntity.T_LastDealDate = DateTime.Now;
+                junkedEntity.T_LastFeedBack = junkedViewEntity.T_LastFeedBack;
             }
             else 
             { 

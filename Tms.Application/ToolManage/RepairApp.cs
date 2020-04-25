@@ -18,9 +18,37 @@ namespace Tms.Application.ToolManage
             return service.IQueryable().ToList();
 
         }
-        public int UpDate(RepairEntity repairEntity)
+        public int UpDate(RepairViewEntity repairViewEntity)
         {
-            return service.Update(repairEntity);
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+
+            ToolEntity toolEntity = new ToolEntity();
+            RepairEntity repairEntity = new RepairEntity();
+            toolEntity.T_Id = repairViewEntity.T_Id; //主键
+            toolEntity.T_SeqId = repairViewEntity.T_SeqId;
+            toolEntity.T_Code = repairViewEntity.T_Code;
+            repairEntity.T_DealTime = DateTime.Now;
+            repairEntity.T_DealId = operatorProvider.UserId;
+            repairEntity.Id = repairViewEntity.Id; //主键
+
+            if (repairViewEntity.T_Stauts == -1)  // 不通过
+            {
+                toolEntity.T_ToolStatus = 1;  // 未出库状态
+                repairEntity.T_IsToRepair = 0;//去维修
+                repairEntity.T_Stauts = -1;
+            }
+            else if (repairViewEntity.T_Stauts == 1) //通过
+            {
+                toolEntity.T_ToolStatus = 0;  //维修中
+                repairEntity.T_IsToRepair = 1;//去维修
+                repairEntity.T_RepairedStatus = 0;//维修状态 未完成
+                repairEntity.T_Stauts = 1;
+            }
+            else { 
+            //
+            }
+            repairEntity.T_FeedBack = repairViewEntity.T_FeedBack;
+            return service.RepairCheck(repairEntity,toolEntity);
         }
         public int Insert(RepairEntity repairEntity)
         {

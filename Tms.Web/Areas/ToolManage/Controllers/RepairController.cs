@@ -21,10 +21,10 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             return Content(data.ToJson());
         }
         [HttpPost]
-        public ActionResult Update(RepairEntity repairEntity)
+        public ActionResult Update(RepairViewEntity repairViewEntity)
         {
-            var data = repairApp.UpDate(repairEntity);
-            return Content(data.ToJson());
+            var data = repairApp.UpDate(repairViewEntity);
+             return Content(data.ToJson());
         }
 
         [HttpPost]
@@ -51,7 +51,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
 
         [HttpGet]
         // 分页查询
-       public ActionResult GetGridJson(Pagination pagination, string keyword,int searchType)
+       public ActionResult GetGridJson(Pagination pagination, string keyword,string searchType)
         {
          
             var data = new

@@ -23,6 +23,7 @@ namespace Tms.Application.ToolManage
 
         public List<JunkedViewEntity> GetList(Pagination pagination, string keyword,int searchType)
         {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
             var expression = ExtLinq.True<JunkedViewEntity>();
             if (!string.IsNullOrEmpty(keyword))
             {
@@ -47,6 +48,7 @@ namespace Tms.Application.ToolManage
                 expression = expression.And(t => t.T_FirstDealResult != 0 );
                 expression = expression.And(t => t.T_LastDealResult == null);  //查出所有的报废请求
             }
+            expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId));//各个workcell数据分离 
             return service.FindList(expression, pagination);
         }
     }

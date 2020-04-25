@@ -21,8 +21,9 @@ namespace Tms.Application.ToolManage
             return service.IQueryable().ToList();
         }
 
-        public List<RepairViewEntity> GetList(Pagination pagination, string keyword,int searchType)
+        public List<RepairViewEntity> GetList(Pagination pagination, string keyword,string searchType)
         {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
             var expression = ExtLinq.True<RepairViewEntity>();
             if (!string.IsNullOrEmpty(keyword))
             {
@@ -33,7 +34,11 @@ namespace Tms.Application.ToolManage
                 expression = expression.Or(t => t.T_PartNo.Contains(keyword));
                 expression = expression.Or(t => t.T_Family.Contains(keyword));
             }
-            /*   expression = expression.And(t => t.F_Account != "admin");*/
+            if(searchType == "dealRepair")
+            {
+                expression = expression.And(t => t.T_Stauts.Equals(0));  
+            }
+             expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId)); //各个workcell数据分离 
             return service.FindList(expression, pagination);
         }
     }
