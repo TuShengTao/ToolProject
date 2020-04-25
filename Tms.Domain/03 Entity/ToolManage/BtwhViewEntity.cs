@@ -31,24 +31,23 @@ namespace Tms.Domain.Entity.ToolManage
         public Nullable<int> T_UsedCount { get; set; }
         public Nullable<System.DateTime> T_RegDate { get; set; }
         public Nullable<System.DateTime> T_CreatorTime { get; set; }
-        public bool T_IsPassBuyToW { get; set; }
+        public int T_IsPassBuyToW { get; set; }
         public Nullable<int> T_RepairedCounts { get; set; }
         public Nullable<int> T_DefineId { get; set; }
         public Nullable<System.DateTime> T_ToolProductedDate { get; set; }
-        public bool T_IsDelete { get; set; }
         public int Id {get;set;}
         public string T_ApplicantId { get; set; }
         public string T_FirstDealId { get; set; }
-        public string T_FirstDealer { get; set; }
         public Nullable<System.DateTime> T_FirstDealDate { get; set; }
         public string T_LastDealId { get; set; }
-        public string T_LastDealer { get; set; }
         public Nullable<System.DateTime> T_LastDealDate { get; set; }
         public string T_ApplicantPerson { get; set; }
-        public Nullable<bool> T_FirstDealResult { get; set; }
-        public Nullable<bool> T_LastDealResult { get; set; }
-        public Nullable<bool> T_IsInWarehouse { get; set; }
+        public Nullable<int> T_FirstDealResult { get; set; }
+        public Nullable<int> T_LastDealResult { get; set; }
+        public Nullable<int> T_IsInWarehouse { get; set; }
         public string T_Description { get; set; }
         public string T_DepartmentId { get; set; }
+        public string T_LastFeedBack { get; set; }
+        public string T_FirstFeedBack { get; set; }
     }
 }

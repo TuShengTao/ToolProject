@@ -20,7 +20,7 @@ namespace Tms.Domain.Entity.ToolManage
         public string T_Location { get; set; }
         public Nullable<int> T_UsedCount { get; set; }
         public Nullable<System.DateTime> T_RegDate { get; set; }
-        public bool T_IsPassBuyToW { get; set; }
+        public Nullable<int> T_IsPassBuyToW { get; set; }
         public Nullable<int> T_RepairedCounts { get; set; }
         public Nullable<int> T_DefineId { get; set; }
         public Nullable<System.DateTime> T_ToolProductedDate { get; set; }

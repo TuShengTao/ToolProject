@@ -21,9 +21,9 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             return Content(data.ToJson());
         }
         [HttpPost]
-        public ActionResult Update(BuyToWareHouseEntity btwhEntity)
+        public ActionResult Update(BtwhViewEntity btwhViewEntity, string type)
         {
-            var data = btwhApp.UpDate(btwhEntity);
+            var data = btwhApp.UpDate(btwhViewEntity,type);
             return Content(data.ToJson());
         }
 
@@ -42,12 +42,12 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         }
 
         [HttpGet]
-       public ActionResult GetGridJson(Pagination pagination, string keyword,int searchFlag)
+       public ActionResult GetGridJson(Pagination pagination, string keyword,int searchType)
         {
          
             var data = new
             {
-                rows = btwhViewApp.GetList(pagination,keyword, searchFlag),
+                rows = btwhViewApp.GetList(pagination,keyword, searchType),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records
