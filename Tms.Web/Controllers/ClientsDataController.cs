@@ -49,6 +49,11 @@ namespace Tms.Web.Controllers
         public ActionResult GetUserInfo()
         {
             var operatorProvider = OperatorProvider.Provider.GetCurrent();//session里的用户信息
+            var exceptionData = new { };
+            if (operatorProvider == null)
+            {
+                return Content(exceptionData.ToString());
+            }
             string roleId = operatorProvider.RoleId;  //用户角色Id
 
             var moduledata = moduleApp.GetList();

@@ -13,7 +13,6 @@ namespace Tms.Application.ToolManage
 {
     public class EntityApp
     {
-       
         private IEntity service = new EntityRepository();
         private IBuyToWareHouse buyService = new BuyToWareHouseRepository();
         public int InsertToWareHouse(BuyToWareHouseEntity buyToWareHouseEntity,ToolEntity toolEntity)

@@ -48,6 +48,16 @@ namespace Tms.Application.ToolManage
                 expression = expression.And(t => t.T_FirstDealResult != 0 );
                 expression = expression.And(t => t.T_LastDealResult == null);  //查出所有的报废请求
             }
+            else if (searchType == 4) //查询关于我的
+            {
+                expression = expression.And(t => t.T_ApplicantId.Equals(operatorProvider.UserId));//查出所有关于 我 的操作记录
+                expression = expression.Or(t => t.T_FirstDealId.Equals(operatorProvider.UserId));
+                expression = expression.Or(t => t.T_LastDealId.Equals(operatorProvider.UserId));
+            }
+            else
+            {
+
+            }
             expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId));//各个workcell数据分离 
             return service.FindList(expression, pagination);
         }
