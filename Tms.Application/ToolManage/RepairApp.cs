@@ -81,10 +81,12 @@ namespace Tms.Application.ToolManage
         public List<RepairEntity> GetList(Pagination pagination, string keyword)
         {
             var expression = ExtLinq.True<RepairEntity>();
+            expression = expression.And(t => t.T_IsToRepair.ToString().Contains("true"));  //是去修理的
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.T_Id.Contains(keyword));// 夹具实体id
                 expression = expression.Or(t => t.T_RepairedDate.ToString().Contains(keyword));// 修复时间
+                expression = expression.Or(t => t.T_Code.Contains(keyword));// 夹具代码
             }
          /*   expression = expression.And(t => t.F_Account != "admin");*/
             return service.FindList(expression, pagination);
