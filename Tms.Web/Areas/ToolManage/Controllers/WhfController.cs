@@ -11,6 +11,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
     public class WhfController : ControllerBase
     {
         private WareHouseFlowApp whfApp = new WareHouseFlowApp();
+        private WhfViewApp whfViewApp = new WhfViewApp();
    
 
         [HttpGet]
@@ -20,10 +21,10 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             return Content(data.ToJson());
         }
         [HttpPost]
-        public ActionResult Update(WareHouseFlowEntity whfEntity)
+        public ActionResult Update(WhfViewEntity whfViewEntity)
         {
-            var data = whfApp.UpDate(whfEntity);
-            return Content(data.ToJson());
+            var data = whfApp.UpDate(whfViewEntity);
+           return Content(data.ToJson());
         }
 
         [HttpPost]
@@ -42,19 +43,16 @@ namespace Tms.Web.Areas.ToolManage.Controllers
 
         [HttpGet]
         // 分页查询
-       public ActionResult GetGridJson(Pagination pagination, string keyword)
+       public ActionResult GetGridJson(Pagination pagination, string keyword,string searchType)
         {
-         
             var data = new
             {
-                rows = whfApp.GetList(pagination,keyword),
+                rows = whfViewApp.GetList(pagination,keyword,searchType),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records
             };
             return Content(data.ToJson());
         }
-
-
     }
 }

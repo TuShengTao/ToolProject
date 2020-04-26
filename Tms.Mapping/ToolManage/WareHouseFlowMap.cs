@@ -10,8 +10,8 @@ namespace Tms.Mapping.ToolManage
     {
         public WareHouseFlowMap()
         {
-            this.ToTable("Tool_WareHouseFlow");
-            this.HasKey(t => t.T_Id);
+            this.ToTable("Tools_WareHouseFlow");
+            this.HasKey(t => t.Id);
         }
     }
 }

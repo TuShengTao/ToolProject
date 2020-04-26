@@ -12,6 +12,9 @@ namespace Tms.Web.Controllers
     [HandlerLogin]
     public class ClientsDataController : Controller
     {
+        private RoleAuthorizeApp roleAuthorizeApp = new RoleAuthorizeApp();
+        private ModuleApp moduleApp = new ModuleApp();
+        private ModuleButtonApp moduleButtonApp = new ModuleButtonApp();
         [HttpGet]
         //[HandlerAjaxOnly]
         public ActionResult GetClientsDataJson()
@@ -41,19 +44,48 @@ namespace Tms.Web.Controllers
 
         [HttpGet]
         //[HandlerAjaxOnly]
+        // 在登录界面 不验证登录是否超时
+        [HandlerLogin(false)]
         public ActionResult GetUserInfo()
         {
-          
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();//session里的用户信息
+            string roleId = operatorProvider.RoleId;  //用户角色Id
 
-            var roles = new List<object>();
-            roles.Add("admin");
-            roles.Add("tms");
+            var moduledata = moduleApp.GetList();
+            var buttondata = moduleButtonApp.GetList();
+            var authorizedata = new List<RoleAuthorizeEntity>();
+            if (!string.IsNullOrEmpty(roleId))
+            {
+                authorizedata = roleAuthorizeApp.GetList(roleId);
+            }
+            // 给前端返回一个当前角色的权限Id数组
+            List<string> roles = new List<string>();
+
+            // 把模块的id加进去
+            foreach (ModuleEntity item in moduledata)
+            {
+                if (authorizedata.Count(t => t.F_ItemId == item.F_Id) == 1 ? true : false)
+                {
+                    roles.Add(item.F_Id);
+                }
+            }
+
+            // 把按钮的id加进去
+            foreach (ModuleButtonEntity item in buttondata)
+            {
+                if (authorizedata.Count(t => t.F_ItemId == item.F_Id) == 1 ? true : false)
+                {
+                    roles.Add(item.F_Id);
+                }
+            }
+            roles.Add("admin");  //后期删除
+            roles.Add("tms"); // 后期删除 
             var dataTest = new
             {
                 roles = roles,
                 name = "屠圣涛",
                 avatar = "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
-                introduction = "后台模拟数据！"
+                introduction = "后台模拟的用户信息描述！"
             };
             return Content(dataTest.ToJson());
         }

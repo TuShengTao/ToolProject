@@ -37,7 +37,7 @@ namespace Tms.Application.ToolManage
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.T_Id.Contains(keyword));
-                expression = expression.Or(t => t.T_FamilyName.Contains(keyword));
+                expression = expression.Or(t => t.T_Name.Contains(keyword));
                 expression = expression.Or(t => t.T_DepartmentId.Contains(keyword));
             }
             return service.FindList(expression, pagination);
@@ -49,7 +49,7 @@ namespace Tms.Application.ToolManage
             expression = expression.And(t => t.T_DepartmentId.Contains(departmentId));
             foreach (var item in service.IQueryable(expression))
             {
-                if (item.T_FamilyName == familyName) return 1;
+                if (item.T_Name == familyName) return 1;
             }
             return 0;
         }

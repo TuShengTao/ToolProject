@@ -61,9 +61,15 @@
     <Compile Include="SystemSecurity\LogApp.cs" />
     <Compile Include="ToolManage\DefineApp.cs" />
     <Compile Include="ToolManage\BuyToWareHouseApp .cs" />
+    <Compile Include="ToolManage\BtwhViewApp.cs" />
+    <Compile Include="ToolManage\RepairViewApp.cs" />
+    <Compile Include="ToolManage\JunkedViewApp.cs" />
+    <Compile Include="ToolManage\WhfViewApp.cs" />
+    <Compile Include="ToolManage\EntityDefineApp.cs" />
     <Compile Include="ToolManage\ProductLinesApp.cs" />
     <Compile Include="ToolManage\FamilyApp.cs" />
     <Compile Include="ToolManage\CheckApp.cs" />
+    <Compile Include="ToolManage\CodeSeqIdApp.cs" />
     <Compile Include="ToolManage\TypeApp.cs" />
     <Compile Include="ToolManage\WareHouseFlowApp .cs" />
     <Compile Include="ToolManage\RepairApp.cs" />

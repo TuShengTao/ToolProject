@@ -11,6 +11,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
     public class BtwhController : ControllerBase
     {
         private BuyToWareHouseApp btwhApp = new BuyToWareHouseApp();
+        private BtwhViewApp btwhViewApp = new BtwhViewApp();
    
 
         [HttpGet]
@@ -20,9 +21,9 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             return Content(data.ToJson());
         }
         [HttpPost]
-        public ActionResult Update(BuyToWareHouseEntity btwhEntity)
+        public ActionResult Update(BtwhViewEntity btwhViewEntity, string type)
         {
-            var data = btwhApp.UpDate(btwhEntity);
+            var data = btwhApp.UpDate(btwhViewEntity,type);
             return Content(data.ToJson());
         }
 
@@ -41,13 +42,12 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         }
 
         [HttpGet]
-        // 分页查询
-       public ActionResult GetGridJson(Pagination pagination, string keyword)
+       public ActionResult GetGridJson(Pagination pagination, string keyword,int searchType)
         {
          
             var data = new
             {
-                rows = btwhApp.GetList(pagination,keyword),
+                rows = btwhViewApp.GetList(pagination,keyword, searchType),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records

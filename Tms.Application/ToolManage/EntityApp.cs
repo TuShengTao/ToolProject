@@ -5,11 +5,48 @@ using Tms.Repository.ToolManage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.Text;
+
 namespace Tms.Application.ToolManage
 {
     public class EntityApp
     {
+       
         private IEntity service = new EntityRepository();
+        private IBuyToWareHouse buyService = new BuyToWareHouseRepository();
+        public int InsertToWareHouse(BuyToWareHouseEntity buyToWareHouseEntity,ToolEntity toolEntity)
+        {
+            toolEntity.T_IsPassBuyToW = 0;//默认为 未入库
+            int result = service.InsertToWareHouse(buyToWareHouseEntity,toolEntity);
+           
+            if(result != 0)
+            {
+                buyService.Insert(buyToWareHouseEntity);
+                return result;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        public int  UseUpdateInsert(WareHouseFlowEntity insertEntity)
+        {
+            return service.UpdateByJudge(insertEntity,insertEntity.T_Id,2);
+        }
+
+        public int JunkedUpdateInsert(JunkedEntity insertEntity)
+        {
+            return service.UpdateByJudge(insertEntity, insertEntity.T_Id, 3);
+        }
+
+        public int RepairUpdateInsert(RepairEntity insertEntity)
+        {
+            return service.UpdateByJudge(insertEntity, insertEntity.T_Id, 4);
+        }
+
+
         public void BatchDeleteForm(List<string> keyValues)
         {
             service.BatchDeleteForm(keyValues);
@@ -39,14 +76,38 @@ namespace Tms.Application.ToolManage
         {
             service.DeleteForm(keyValue);
         }
+        public List<ToolEntity> VerifyIfExist(ToolEntity toolEntity)
+        {
+            var sql = "select * from Tools_Entity where T_Code = '" + toolEntity.T_Code + "'and T_SeqId = '"+toolEntity.T_SeqId+"' and T_ToolStatus in(1,2) ";
+            var list = service.FindList(sql);
+            if(list.Count == 1)
+            {
+                return list;
+            }
+            return null;
 
-        // 根据 账号查用户 防止添加账号时重复
+        }
+     
+        // 测试代码
+        //public List<ToolEntity> test()
+        //{
+        //    StringBuilder strSql = new StringBuilder();
+        //    strSql.Append(@"select * from Tools_Entity where T_Code = @Code ");
+        //    DbParameter[] parameter =
+        //    {
+        //         new SqlParameter("@Code","sss")
+        //    };
+        //    var data = service.FindList(strSql.ToString(),parameter);
+        //    return data; 
+        //}
+
         public List<ToolEntity> GetFormByCode(string code)
         {
             var expression = ExtLinq.True<ToolEntity>();
             expression = expression.And(t => t.T_Code.Contains(code));
             if (service.FindEntity(expression) != null)
             {
+                
                 var sql1 = "select * from Tools_Entity where T_Code = '" + code + "'";
                 var list1 = service.FindList(sql1);
                 var sql2 = "select * from Tools_Entity where T_Code = '" + code + "' and T_IsDelete = 1";

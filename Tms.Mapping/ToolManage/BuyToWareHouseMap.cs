@@ -9,7 +9,7 @@ namespace Tms.Mapping.ToolManage
         public BuyToWareHouseMap()
         {
             this.ToTable("Tools_BuyToWareHouse");
-            this.HasKey(t => t.T_Id);
+            this.HasKey(t => t.Id);
         }
     }
 }

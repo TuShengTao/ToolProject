@@ -12,9 +12,11 @@ namespace Tms.Domain.Entity.ToolManage
 {
 
 
-    public  class ProductLineEntity : IEntity<ProductLineEntity>
+    public  class ProductLineEntity 
     {
         public int T_Id { get; set; }
         public string T_LineName { get; set; }
+
+        public string T_DepartmentId { get; set; }
     }
 }

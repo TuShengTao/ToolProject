@@ -12,10 +12,19 @@ namespace Tms.Web.Areas.ToolManage.Controllers
     {
         private DefineApp defineApp = new DefineApp();
 
+
+
         [HttpGet]
         public ActionResult Get()
         {
             var data = defineApp.GetList();
+            return Content(data.ToJson());
+        }
+
+        [HttpGet]
+        public ActionResult getFormByCode(string code)
+        {
+            var data = defineApp.getFormByCode(code);
             return Content(data.ToJson());
         }
         [HttpPost]
