@@ -31,9 +31,9 @@ namespace Tms.Application.ToolManage
         {
             return service.Insert(defineEntity);
         }
-        public int Delete(DefineEntity defineEntity)
+        public void DeleteForm(int keyValue)
         {
-            return service.Delete(defineEntity);
+             service.Delete(keyValue);
         }
         public List<DefineEntity> GetList(Pagination pagination, string keyword)
         {
@@ -49,6 +49,21 @@ namespace Tms.Application.ToolManage
          /*   expression = expression.And(t => t.F_Account != "admin");*/
             return service.FindList(expression, pagination);
         }
+        public int GetFormByDefine(string code)
+        {
+            var expression = ExtLinq.True<DefineEntity>();
+            expression = expression.And(t => t.T_Code.Contains(code));
+            if (service.FindEntity(expression) != null)
+            {
+                return 1;  // 存在
+            }
+            else
+            {
+                return 0; // 不存在
+            }
+
+        }
+        
 
     }
 }

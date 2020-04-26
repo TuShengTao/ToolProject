@@ -21,29 +21,31 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         [HttpPost]
         public ActionResult Update(DefineEntity defineEntity)
         {
+            defineEntity.T_EditedTime = DateTime.Now;
             var data = defineApp.UpDate(defineEntity);
-            return Content(data.ToJson());
+            return Success("操作成功。");
         }
 
         [HttpPost]
         public ActionResult Insert(DefineEntity defineEntity)
         {
+            defineEntity.T_CreatorTime = DateTime.Now;
             var data = defineApp.Insert(defineEntity);
-            return Content(data.ToJson());
+            return Success("操作成功。");
         }
 
         [HttpPost]
-        public ActionResult Delete(DefineEntity defineEntity)
+        public ActionResult DeleteForm(int keyValue)
         {
-            var data = defineApp.Delete(defineEntity);
-            return Content(data.ToJson());
+            defineApp.DeleteForm(keyValue);
+            return Success("夹具定义删除成功！");
         }
         [HttpPost]
         // 批量删除
         public ActionResult BatchDeleteForm(List<int> keyValues)
         {
             defineApp.BatchDeleteForm(keyValues);
-            return Success("这些用户删除成功！");
+            return Success("这些夹具定义删除成功！");
         }
 
         [HttpGet]
@@ -60,7 +62,16 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             };
             return Content(data.ToJson());
         }
+        [HttpGet]
+        // 根据账号查用户 
+        public ActionResult GetFormByDefine(string code)
+        {
+            var count = defineApp.GetFormByDefine(code);
 
+            return Content(count.ToJson());
+        }
+
+     
 
     }
 }

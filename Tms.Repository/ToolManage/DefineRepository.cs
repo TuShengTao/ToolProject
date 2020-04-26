@@ -24,5 +24,13 @@ namespace Tms.Repository.ToolManage
             }
         }
 
+        public void Delete(int keyValue)
+        {
+            using (var db = new RepositoryBase().BeginTrans())
+            {
+                db.Delete<DefineEntity>(t => t.T_Id == keyValue);
+                db.Commit();
+            }
+        }
     }
 }
