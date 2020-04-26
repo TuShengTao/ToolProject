@@ -37,6 +37,8 @@ namespace Tms.Domain.Entity.ToolManage
         public int T_RepairedStatus { get; set; }
         public Nullable<System.DateTime> T_CreatorTime { get; set; }
         public Nullable<System.DateTime> T_RepairedDate { get; set; }
+
+        public Nullable<int> T_RepairedCounts { get; set; }
         public int T_IsToRepair { get; set; }
         public string T_FeedBack { get; set; }
 

@@ -20,12 +20,16 @@ namespace Tms.Application.ToolManage
         }
             public int UpDate(RepairViewEntity repairViewEntity,string type)
         {
-            if (type == "goBack")
+            if (type == "myApply")
             {
                 ToolEntity toolEntity = new ToolEntity();
                 RepairEntity repairEntity = new RepairEntity();
+                repairEntity.Id = repairViewEntity.Id; //主键
+                toolEntity.T_Id = repairViewEntity.T_Id; //主键
                 toolEntity.T_ToolStatus = 1;//入库
+                toolEntity.T_RepairedCounts = repairViewEntity.T_RepairedCounts + 1;
                 repairEntity.T_RepairedStatus = 1;//维修状态 完成
+                
                 repairEntity.T_RepairPerson = repairViewEntity.T_RepairPerson;//修复人
                 return service.RepairCheck(repairEntity, toolEntity);
             }
@@ -45,7 +49,7 @@ namespace Tms.Application.ToolManage
                 if (repairViewEntity.T_Stauts == -1)  // 不通过
                 {
                     toolEntity.T_ToolStatus = 1;  // 未出库状态
-                    repairEntity.T_IsToRepair = 0;//去维修
+                    repairEntity.T_IsToRepair = 0;//不去维修
                     repairEntity.T_Stauts = -1;
                 }
                 else if (repairViewEntity.T_Stauts == 1) //通过

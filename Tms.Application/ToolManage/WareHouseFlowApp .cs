@@ -28,6 +28,11 @@ namespace Tms.Application.ToolManage
             toolEntity.T_ToolStatus = 1;//入库
             houseFlowEntity.T_ToolStatus = 1;//已归还
             houseFlowEntity.T_BackDate = DateTime.Now;
+
+            string dtBack = houseFlowEntity.T_BackDate.ToDateTimeString();//这是归还时间
+            string dtOut =whfViewEntity.T_OutDate.ToDateTimeString(); //这是出库时间
+            TimeSpan ts = DateTime.Parse(dtBack) - DateTime.Parse(dtOut);  //可转为各种单位
+            toolEntity.T_UsedTime = ts.Seconds + whfViewEntity.T_UsedTime;     //夹具使用时间 以秒为单位
             return service.backTool(houseFlowEntity, toolEntity);
         }
         public int Insert(WareHouseFlowEntity wareHouseFlowEntity)

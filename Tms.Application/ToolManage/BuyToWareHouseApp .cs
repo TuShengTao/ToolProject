@@ -44,6 +44,7 @@ namespace Tms.Application.ToolManage
                 {
                     toolEntity.T_ToolStatus = 1; // 未出库即入库
                     toolEntity.T_IsPassBuyToW = 1;//通过入库
+                    toolEntity.T_RegDate = DateTime.Now;
                     buyEntity.T_IsInWarehouse = 1; //已在库中
                   
                 }

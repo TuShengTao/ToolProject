@@ -19,6 +19,9 @@ namespace Tms.Application.ToolManage
         public int InsertToWareHouse(BuyToWareHouseEntity buyToWareHouseEntity,ToolEntity toolEntity)
         {
             toolEntity.T_IsPassBuyToW = 0;//默认为 未入库
+            toolEntity.T_UsedCount = 0;//使用次数为0
+            toolEntity.T_UsedTime = 0; //使用时间 0秒
+            toolEntity.T_RepairedCounts = 0;//维修次数 
             int result = service.InsertToWareHouse(buyToWareHouseEntity,toolEntity);
            
             if(result != 0)
