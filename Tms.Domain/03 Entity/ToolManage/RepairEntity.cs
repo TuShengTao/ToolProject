@@ -28,5 +28,8 @@ namespace Tms.Domain.Entity.ToolManage
         public Nullable<System.DateTime> T_CreatorTime { get; set; }
         public Nullable<System.DateTime> T_RepairedDate { get; set; }
         public Nullable<bool> T_IsToRepair { get; set; }
+        public string T_Code { get; set; }
+        public int T_SeqId { get; set; }
+        public Nullable<int> T_DefineId { get; set; }
     }
 }
