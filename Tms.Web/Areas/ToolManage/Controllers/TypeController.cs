@@ -53,7 +53,5 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             };
             return Content(data.ToJson());
         }
-
-
     }
 }

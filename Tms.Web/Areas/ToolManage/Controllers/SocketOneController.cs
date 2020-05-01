@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using Tms_FrameworkML.ConsoleApp;
+
 
 namespace Tms.Web.Areas.ToolManage.Controllers
 {
@@ -15,9 +17,14 @@ namespace Tms.Web.Areas.ToolManage.Controllers
     public class SocketOneController : Controller
     {
         static Dictionary<string, WebSocket> CONNECT_POOL = new Dictionary<string, WebSocket>();//用户连接池
+
+
        //测试1,定义socke监听
         public void One(string user)
         {
+
+           
+
             HttpContextBase context = ControllerContext.HttpContext;
             context.AcceptWebSocketRequest(async (ctx) =>
             {
@@ -37,8 +44,8 @@ namespace Tms.Web.Areas.ToolManage.Controllers
                         WebSocketReceiveResult result = await socket.ReceiveAsync(buffer, token);
                         string userMessage = Encoding.UTF8.GetString(buffer.Array, 0, result.Count);
 
-                        userMessage = "You sent: " + userMessage + " at " +
-                        DateTime.Now.ToLongTimeString();
+
+                        userMessage = "You sent: 结果 : " + userMessage + " at "+DateTime.Now.ToLongTimeString();
 
                         //响应处理
                         buffer = new ArraySegment<byte>(Encoding.UTF8.GetBytes(userMessage));
