@@ -12,7 +12,7 @@ namespace Tms_FrameworkML.ConsoleApp
 {
     public static class ModelBuilder
     {
-        private static string TRAIN_DATA_FILEPATH = @"D:\MyStudy\NET\NetStudy\XmTest\ToolProject\ToolProject\Tms.ML\wikipedia-detox-250-line-data.tsv";
+        private static string TRAIN_DATA_FILEPATH = @"C:\Users\tushengtao\AppData\Local\Temp\f878d682-ab9b-4dad-a137-750b3d9a4128.tsv";
         private static string MODEL_FILEPATH = @"C:\Users\tushengtao\AppData\Local\Temp\MLVSTools\Tms.FrameworkML\Tms.FrameworkML.Model\MLModel.zip";
         // Create MLContext to be shared across the model creation workflow objects 
         // Set a random seed for repeatable/deterministic results across multiple trainings.
@@ -44,12 +44,9 @@ namespace Tms_FrameworkML.ConsoleApp
         public static IEstimator<ITransformer> BuildTrainingPipeline(MLContext mlContext)
         {
             // Data process configuration with pipeline data transformations 
-            var dataProcessPipeline = mlContext.Transforms.Text.FeaturizeText("SentimentText_tf", "SentimentText")
-                                      .Append(mlContext.Transforms.CopyColumns("Features", "SentimentText_tf"))
-                                      .Append(mlContext.Transforms.NormalizeMinMax("Features", "Features"))
-                                      .AppendCacheCheckpoint(mlContext);
+            var dataProcessPipeline = mlContext.Transforms.Concatenate("Features", new[] { "UseTime", "RepairCounts" });
             // Set the training algorithm 
-            var trainer = mlContext.BinaryClassification.Trainers.AveragedPerceptron(labelColumnName: "Sentiment", numberOfIterations: 10, featureColumnName: "Features");
+            var trainer = mlContext.BinaryClassification.Trainers.LightGbm(labelColumnName: "Result", featureColumnName: "Features");
 
             var trainingPipeline = dataProcessPipeline.Append(trainer);
 
@@ -71,7 +68,7 @@ namespace Tms_FrameworkML.ConsoleApp
             // Cross-Validate with single dataset (since we don't have two datasets, one for training and for evaluate)
             // in order to evaluate and get the model's accuracy metrics
             Console.WriteLine("=============== Cross-validating to get model's accuracy metrics ===============");
-            var crossValidationResults = mlContext.BinaryClassification.CrossValidateNonCalibrated(trainingDataView, trainingPipeline, numberOfFolds: 5, labelColumnName: "Sentiment");
+            var crossValidationResults = mlContext.BinaryClassification.CrossValidateNonCalibrated(trainingDataView, trainingPipeline, numberOfFolds: 5, labelColumnName: "Result");
             PrintBinaryClassificationFoldsAverageMetrics(crossValidationResults);
         }
 

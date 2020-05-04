@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Tms.Code;
-using Tms_FrameworkML.ConsoleApp;
 namespace Tms.Web.Areas.ToolManage.Controllers
 {
     public class DataController : ControllerBase

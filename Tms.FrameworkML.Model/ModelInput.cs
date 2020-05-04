@@ -6,12 +6,16 @@ namespace Tms_FrameworkML.Model
 {
     public class ModelInput
     {
-        [ColumnName("Sentiment"), LoadColumn(0)]
-        public bool Sentiment { get; set; }
+        [ColumnName("UseTime"), LoadColumn(0)]
+        public float UseTime { get; set; }
 
 
-        [ColumnName("SentimentText"), LoadColumn(1)]
-        public string SentimentText { get; set; }
+        [ColumnName("RepairCounts"), LoadColumn(1)]
+        public float RepairCounts { get; set; }
+
+
+        [ColumnName("Result"), LoadColumn(2)]
+        public bool Result { get; set; }
 
 
     }

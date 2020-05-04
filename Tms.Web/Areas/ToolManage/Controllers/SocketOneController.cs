@@ -18,12 +18,11 @@ namespace Tms.Web.Areas.ToolManage.Controllers
     {
         static Dictionary<string, WebSocket> CONNECT_POOL = new Dictionary<string, WebSocket>();//用户连接池
 
-
        //测试1,定义socke监听
         public void One(string user)
         {
-
            
+
 
             HttpContextBase context = ControllerContext.HttpContext;
             context.AcceptWebSocketRequest(async (ctx) =>
