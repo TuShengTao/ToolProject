@@ -98,6 +98,7 @@
     <Compile Include="04 IRepository\ToolManage\IJunkedView.cs" />
     <Compile Include="04 IRepository\ToolManage\IRepairView.cs" />
     <Compile Include="04 IRepository\ToolManage\IBtwhView.cs" />
+    <Compile Include="04 IRepository\ToolManage\IData.cs" />
     <Compile Include="04 IRepository\ToolManage\IWhfView.cs" />
     <Compile Include="04 IRepository\ToolManage\IType.cs" />
     <Compile Include="04 IRepository\ToolManage\IWareHouseFlow.cs" />

@@ -9,8 +9,6 @@
 using System;
 namespace Tms.Domain.Entity.ToolManage
 {
-   
-  
     public class DataEntity
     {
         public string T_Id { get; set; }
@@ -19,7 +17,5 @@ namespace Tms.Domain.Entity.ToolManage
         public string T_DepartmentId { get; set; }
         public int T_DealStatus { get; set; }
         public string T_DealPersonId { get; set; }
-
-
     }
 }

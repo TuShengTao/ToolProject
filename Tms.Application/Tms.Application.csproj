@@ -65,6 +65,7 @@
     <Compile Include="ToolManage\BtwhViewApp.cs" />
     <Compile Include="ToolManage\RepairViewApp.cs" />
     <Compile Include="ToolManage\JunkedViewApp.cs" />
+    <Compile Include="ToolManage\DataApp.cs" />
     <Compile Include="ToolManage\WhfViewApp.cs" />
     <Compile Include="ToolManage\EntityDefineApp.cs" />
     <Compile Include="ToolManage\ProductLinesApp.cs" />
