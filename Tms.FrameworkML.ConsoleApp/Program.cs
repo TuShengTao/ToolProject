@@ -48,6 +48,8 @@ namespace Tms_FrameworkML.ConsoleApp
             Console.WriteLine($"\n{predictionResult.Prediction}\n\n");
         }
 
+
+
         // Change this code to create your own sample data
         #region CreateSingleDataSample
         // Method to load single row of dataset to try a single prediction

@@ -22,8 +22,6 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         public void One(string user)
         {
            
-
-
             HttpContextBase context = ControllerContext.HttpContext;
             context.AcceptWebSocketRequest(async (ctx) =>
             {

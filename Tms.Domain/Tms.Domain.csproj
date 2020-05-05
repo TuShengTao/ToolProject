@@ -67,6 +67,7 @@
     <Compile Include="03 Entity\ToolManage\ProductLineEntity.cs" />
     <Compile Include="03 Entity\ToolManage\RepairEntity.cs" />
     <Compile Include="03 Entity\ToolManage\CodeSeqIdEntity.cs" />
+    <Compile Include="03 Entity\ToolManage\DataEntity.cs" />
     <Compile Include="03 Entity\ToolManage\TypeEntity.cs" />
     <Compile Include="03 Entity\ToolManage\RepairViewEntity.cs" />
     <Compile Include="03 Entity\ToolManage\WhfViewEntity.cs" />
