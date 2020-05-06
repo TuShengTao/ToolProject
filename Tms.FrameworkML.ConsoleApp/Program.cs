@@ -7,6 +7,7 @@ using System.Threading;
 using Microsoft.ML;
 using Tms_FrameworkML.Model;
 using Tms.Code;
+using Tms.Application.ToolManage;
 
 namespace Tms_FrameworkML.ConsoleApp
 {
@@ -14,10 +15,9 @@ namespace Tms_FrameworkML.ConsoleApp
     {
         //Dataset to use for predictions 
         private const string DATA_FILEPATH = @"C:\Users\tushengtao\AppData\Local\Temp\f878d682-ab9b-4dad-a137-750b3d9a4128.tsv";
-
+        DataApp dataApp = new DataApp();
         static void Main(string[] args)
         {
-
             //发送邮件
             MailHelper mailHelper = new MailHelper();
             mailHelper.MailUserName = "1450190944@qq.com";//替换自己的qq邮箱： 需要去qq邮箱设置里开启smpt服务,验证后替换下方授权码
@@ -25,6 +25,7 @@ namespace Tms_FrameworkML.ConsoleApp
             mailHelper.MailPassword = "xvocfkdafxtvfhbe";//可替换自己qq邮箱的授权码
             mailHelper.MailServer = "smtp.qq.com";
             mailHelper.Send("1450190944@qq.com","我的测试","工夹具测试的邮件","UTF-8", false,false);
+            
             // 定时任务 
             Timer timerClock;
             timerClock = new Timer(new TimerCallback(timerCall), null, 0, 3000);
@@ -47,8 +48,6 @@ namespace Tms_FrameworkML.ConsoleApp
             var predictionResult = ConsumeModel.Predict(sampleData);
             Console.WriteLine($"\n{predictionResult.Prediction}\n\n");
         }
-
-
 
         // Change this code to create your own sample data
         #region CreateSingleDataSample

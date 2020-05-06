@@ -20,7 +20,7 @@ namespace Tms.Application.ToolManage
         }
             public int UpDate(RepairViewEntity repairViewEntity,string type)
         {
-            if (type == "myApply")
+            if (type == "myRecordRepair")
             {
                 ToolEntity toolEntity = new ToolEntity();
                 RepairEntity repairEntity = new RepairEntity();
@@ -29,7 +29,7 @@ namespace Tms.Application.ToolManage
                 toolEntity.T_ToolStatus = 1;//入库
                 toolEntity.T_RepairedCounts = repairViewEntity.T_RepairedCounts + 1;
                 repairEntity.T_RepairedStatus = 1;//维修状态 完成
-                
+                repairEntity.T_Stauts = repairViewEntity.T_Stauts;
                 repairEntity.T_RepairPerson = repairViewEntity.T_RepairPerson;//修复人
                 return service.RepairCheck(repairEntity, toolEntity);
             }
@@ -66,8 +66,6 @@ namespace Tms.Application.ToolManage
                 repairEntity.T_FeedBack = repairViewEntity.T_FeedBack;
                 return service.RepairCheck(repairEntity, toolEntity);
             }
-
-            
             
         }
         public int Insert(RepairEntity repairEntity)

@@ -38,7 +38,7 @@ namespace Tms.Application.ToolManage
             {
                 expression = expression.And(t => t.T_Stauts.Equals(0));  
             }
-            if (searchType == "myRecord")
+            if (searchType == "myRecordRepair")
             {
                 expression = expression.And(t => t.T_ApplicantId.Equals(operatorProvider.UserId));//查出所有关于 我 的操作记录
                 expression = expression.Or(t => t.T_DealId.Equals(operatorProvider.UserId));

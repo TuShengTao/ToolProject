@@ -10,7 +10,6 @@ namespace Tms.Application.ToolManage
     public class DataApp
     {
         private IData service = new DataRepository();
-
         // 获取所有
         public List<DataEntity> GetList()
         {
