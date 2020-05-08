@@ -25,24 +25,28 @@ namespace Tms.Application.ToolManage
         public int Insert(FamilyEntity fanilyEntity)
         {
             fanilyEntity.T_Id = Common.GuId();
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            fanilyEntity.T_DepartmentId = operatorProvider.DepartmentId;
             return service.Insert(fanilyEntity);
         }
         public int Delete(string keyValue)
         {
             return service.Delete(t => t.T_Id == keyValue);
         }
-        public List<FamilyEntity> GetList(Pagination pagination, string keyword)
+        public List<FamilyEntity> GetList(Pagination pagination, string keyword,string parentId)
         {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
             var expression = ExtLinq.True<FamilyEntity>();
             if (!string.IsNullOrEmpty(keyword))
             {
-                expression = expression.And(t => t.T_Id.Contains(keyword));
                 expression = expression.Or(t => t.T_Name.Contains(keyword));
-                expression = expression.Or(t => t.T_DepartmentId.Contains(keyword));
             }
+           expression = expression.And(t => t.T_ParentId.Equals(parentId)); //区别 查询family、model、partNo
+           
+           expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId));//workcell索引
             return service.FindList(expression, pagination);
         }
-        // 判断是否已存在此名称
+        // 判断是否已存在此名称      
         public int GetFormByExit(string departmentId, string familyName)
         {
             var expression = ExtLinq.True<FamilyEntity>();

@@ -50,6 +50,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             useEntity.T_OutDate = DateTime.Now;
             useEntity.T_RecPersonId = operatorProvider.UserId;
             useEntity.T_DepartmentId = operatorProvider.DepartmentId;
+            useEntity.T_ToolStatus = 0;//未归还标记
             int flag = entityApp.UseUpdateInsert(useEntity);
             if(flag == 1)
             {

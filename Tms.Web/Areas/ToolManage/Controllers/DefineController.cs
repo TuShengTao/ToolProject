@@ -5,6 +5,8 @@ using Tms.Application.ToolManage;
 using Tms.Code;
 using Tms.Domain.Entity.ToolManage;
 using System.Web.Mvc;
+
+
 namespace Tms.Web.Areas.ToolManage.Controllers
 {
     // 夹具定义controller
@@ -59,13 +61,15 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         // 分页查询
        public ActionResult GetGridJson(Pagination pagination, string keyword)
         {
-         
+
+           
             var data = new
             {
                 rows = defineApp.GetList(pagination,keyword),
                 total = pagination.total,
                 page = pagination.page,
-                records = pagination.records
+                records = pagination.records,
+            
             };
             return Content(data.ToJson());
         }

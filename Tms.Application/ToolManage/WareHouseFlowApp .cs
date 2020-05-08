@@ -32,7 +32,12 @@ namespace Tms.Application.ToolManage
             string dtBack = houseFlowEntity.T_BackDate.ToDateTimeString();//这是归还时间
             string dtOut =whfViewEntity.T_OutDate.ToDateTimeString(); //这是出库时间
             TimeSpan ts = DateTime.Parse(dtBack) - DateTime.Parse(dtOut);  //可转为各种单位
-            toolEntity.T_UsedTime = ts.Seconds + whfViewEntity.T_UsedTime;     //夹具使用时间 以秒为单位
+            int days = ts.Days;
+            int hours = ts.Hours;
+            int minutes = ts.Minutes;
+            int seconds = ts.Seconds;
+            int allSeconds = days * 24 * 3600 + hours * 3600 + minutes * 60 + seconds;
+            toolEntity.T_UsedTime = allSeconds + whfViewEntity.T_UsedTime;     //夹具使用时间 以秒为单位
             return service.backTool(houseFlowEntity, toolEntity);
         }
         public int Insert(WareHouseFlowEntity wareHouseFlowEntity)

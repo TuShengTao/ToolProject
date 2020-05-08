@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tms.Domain</RootNamespace>
     <AssemblyName>Tms.Domain</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -66,6 +67,7 @@
     <Compile Include="03 Entity\ToolManage\ProductLineEntity.cs" />
     <Compile Include="03 Entity\ToolManage\RepairEntity.cs" />
     <Compile Include="03 Entity\ToolManage\CodeSeqIdEntity.cs" />
+    <Compile Include="03 Entity\ToolManage\DataEntity.cs" />
     <Compile Include="03 Entity\ToolManage\TypeEntity.cs" />
     <Compile Include="03 Entity\ToolManage\RepairViewEntity.cs" />
     <Compile Include="03 Entity\ToolManage\WhfViewEntity.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="04 IRepository\ToolManage\IJunkedView.cs" />
     <Compile Include="04 IRepository\ToolManage\IRepairView.cs" />
     <Compile Include="04 IRepository\ToolManage\IBtwhView.cs" />
+    <Compile Include="04 IRepository\ToolManage\IData.cs" />
     <Compile Include="04 IRepository\ToolManage\IWhfView.cs" />
     <Compile Include="04 IRepository\ToolManage\IType.cs" />
     <Compile Include="04 IRepository\ToolManage\IWareHouseFlow.cs" />

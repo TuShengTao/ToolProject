@@ -48,12 +48,12 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         }
         [HttpGet]
         // 分页查询
-       public ActionResult GetGridJson(Pagination pagination, string keyword)
+       public ActionResult GetGridJson(Pagination pagination, string keyword, string parentId)
         {
          
             var data = new
             {
-                rows = familyApp.GetList(pagination,keyword),
+                rows = familyApp.GetList(pagination,keyword,parentId),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records

@@ -36,11 +36,15 @@ namespace Tms.Application.ToolManage
                 expression = expression.Or(t => t.T_PartNo.Contains(keyword));
                 expression = expression.Or(t => t.T_Family.Contains(keyword));
             }
-            if (searchType == "back")
+            if (searchType == "back")  //查询 待归还夹具 
             {
                 expression = expression.And(t => t.T_ToolStatus == 0);
                 expression = expression.And(t => t.T_RecPersonId.Equals(operatorProvider.UserId));
 
+            }
+            if (searchType == "myRecord")
+            {
+                expression = expression.And(t => t.T_RecPersonId.Equals(operatorProvider.UserId));//查出所有关于 我 的操作记录
             }
 
             return service.FindList(expression, pagination);
