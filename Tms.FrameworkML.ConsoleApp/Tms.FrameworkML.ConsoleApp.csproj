@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Tms.Application\Tms.Application.csproj" />
     <ProjectReference Include="..\Tms.Code\Tms.Code.csproj" />
+    <ProjectReference Include="..\Tms.Domain\Tms.Domain.csproj" />
     <ProjectReference Include="..\Tms.FrameworkML.Model\Tms.FrameworkML.Model.csproj" />
   </ItemGroup>
 </Project>

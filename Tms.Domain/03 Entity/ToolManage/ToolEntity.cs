@@ -36,5 +36,6 @@ namespace Tms.Domain.Entity.ToolManage
         public Nullable<System.DateTime> T_ToolProductedDate { get; set; }
         public string T_DepartmentId { get; set; }
         public bool T_IsDelete { get; set; }
+        public int T_PmPeriod { get; set; }
     }
 }

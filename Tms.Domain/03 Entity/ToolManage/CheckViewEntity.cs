@@ -44,6 +44,7 @@ namespace Tms.Domain.Entity.ToolManage
         public string T_Family { get; set; }
         public string T_Model { get; set; }
         public string T_PartNo { get; set; }
+        public int T_PmPeriod { get; set; }
 
 
     }
