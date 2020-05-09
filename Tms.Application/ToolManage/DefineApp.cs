@@ -40,6 +40,10 @@ namespace Tms.Application.ToolManage
         {
             return service.Insert(defineEntity);
         }
+        public int InsertList(List<DefineEntity> defineEntity)
+        {
+            return service.Insert(defineEntity);
+        }
         public int Delete(DefineEntity defineEntity)
         {
             return service.Delete(defineEntity);

@@ -42,7 +42,12 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             var data = defineApp.Insert(defineEntity);
             return Content(data.ToJson());
         }
-
+        [HttpPost]
+        public ActionResult InsertList(List<DefineEntity> defineEntity)
+        {
+            var data = defineApp.InsertList(defineEntity);
+            return Content(data.ToJson());
+        }
         [HttpPost]
         public ActionResult Delete(DefineEntity defineEntity)
         {
