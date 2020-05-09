@@ -36,7 +36,6 @@ namespace Tms.Application.ToolManage
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.T_Id.Contains(keyword));
-                expression = expression.Or(t => t.T_CheckTime.ToString().Contains(keyword));
                 expression = expression.Or(t => t.T_DepartmentId.Contains(keyword));
             }
          /*   expression = expression.And(t => t.F_Account != "admin");*/

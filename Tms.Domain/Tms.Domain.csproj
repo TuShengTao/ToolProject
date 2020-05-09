@@ -57,6 +57,7 @@
     <Compile Include="02 ViewModel\AuthorizeActionModel.cs" />
     <Compile Include="03 Entity\ToolManage\BtwhViewEntity.cs" />
     <Compile Include="03 Entity\ToolManage\BuyToWareHouseEntity.cs" />
+    <Compile Include="03 Entity\ToolManage\CheckViewEntity.cs" />
     <Compile Include="03 Entity\ToolManage\CheckEntity.cs" />
     <Compile Include="03 Entity\ToolManage\DefineEntity.cs" />
     <Compile Include="03 Entity\ToolManage\EntityDefineEntity.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="04 IRepository\SystemSecurity\IFilterIPRepository.cs" />
     <Compile Include="04 IRepository\SystemSecurity\ILogRepository.cs" />
     <Compile Include="04 IRepository\ToolManage\IBuyToWareHouse.cs" />
+    <Compile Include="04 IRepository\ToolManage\ICheckView.cs" />
     <Compile Include="04 IRepository\ToolManage\ICheck.cs" />
     <Compile Include="04 IRepository\ToolManage\IDefine.cs" />
     <Compile Include="04 IRepository\ToolManage\IEntityDefine.cs" />

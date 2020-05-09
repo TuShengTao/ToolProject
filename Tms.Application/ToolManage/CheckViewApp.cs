@@ -5,27 +5,35 @@ using Tms.Repository.ToolManage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Data.Common;
-using System.Data.SqlClient;
-using System.Text;
-
 namespace Tms.Application.ToolManage
 {
-    public class EntityDefineApp
+    public class CheckViewApp
     {
-        private IEntityDefine service = new EntityDefineRepository();
+        private ICheckView service = new CheckViewRepository();
 
-        //获取所有
-        public List<EntityDefineEntity> getAll()
+        // 获取所有
+        public List<CheckViewEntity> GetList()
         {
+            
             return service.IQueryable().ToList();
-        }
 
-        public List<EntityDefineEntity> GetList(Pagination pagination, string keyword,int searchType)
+        }
+        public int UpDate(CheckViewEntity checkEntity)
+        {
+            return service.Update(checkEntity);
+        }
+        public int Insert(CheckViewEntity checkEntity)
+        {
+            return service.Insert(checkEntity);
+        }
+        public int Delete(CheckViewEntity checkEntity)
+        {
+            return service.Delete(checkEntity);
+        }
+        public List<CheckViewEntity> GetList(Pagination pagination, string keyword)
         {
             var operatorProvider = OperatorProvider.Provider.GetCurrent();
-
-            var expression = ExtLinq.True<EntityDefineEntity>();
+            var expression = ExtLinq.True<CheckViewEntity>();
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.T_Name.Contains(keyword));
@@ -34,15 +42,12 @@ namespace Tms.Application.ToolManage
                 expression = expression.Or(t => t.T_Model.Contains(keyword));
                 expression = expression.Or(t => t.T_PartNo.Contains(keyword));
                 expression = expression.Or(t => t.T_Family.Contains(keyword));
-            }
-            if (searchType == 1)
-            {
-                expression = expression.And(t => t.T_ToolStatus == 1);  //查询未出库的
+
             }
             expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId));
-
             /*   expression = expression.And(t => t.F_Account != "admin");*/
             return service.FindList(expression, pagination);
         }
+
     }
 }

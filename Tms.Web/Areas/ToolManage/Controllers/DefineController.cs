@@ -39,6 +39,10 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         [HttpPost]
         public ActionResult Insert(DefineEntity defineEntity)
         {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            defineEntity.T_DepartmentId = operatorProvider.DepartmentId;
+            defineEntity.T_CreatorTime = DateTime.Now;
+            defineEntity.T_RecPerson = operatorProvider.UserId;
             var data = defineApp.Insert(defineEntity);
             return Content(data.ToJson());
         }

@@ -26,6 +26,8 @@ namespace Tms.Domain.Entity.ToolManage
         public Nullable<int> T_DefineId { get; set; }
         public Nullable<System.DateTime> T_ToolProductedDate { get; set; }
         public Nullable<System.DateTime> T_CreatorTime { get; set; }
+
+        public Nullable<System.DateTime> T_LastCheckTime { get; set; }
         public string T_DepartmentId { get; set; }
         public bool T_IsDelete { get; set; }
 

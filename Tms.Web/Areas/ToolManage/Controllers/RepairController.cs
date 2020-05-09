@@ -27,20 +27,20 @@ namespace Tms.Web.Areas.ToolManage.Controllers
              return Content(data.ToJson());
         }
 
-        [HttpPost]
-        public ActionResult Insert(RepairEntity repairEntity)
-        {
-            var operatorProvider = OperatorProvider.Provider.GetCurrent();
-            repairEntity.T_ApplicantId = operatorProvider.UserId;
-            repairEntity.T_DepartmentId = operatorProvider.DepartmentId;
-            repairEntity.T_ApplicantTime = DateTime.Now;
-            var data = repairApp.Insert(repairEntity);
-            //修改实体表夹具状态 
-            ToolEntity toolEntity = new ToolEntity();
-            toolEntity.T_Id = repairEntity.T_Id;   //主键
-            toolEntity.T_ToolStatus = 4; //报修申请中
-            return Content(data.ToJson());
-        }
+        //[HttpPost]
+        //public ActionResult Insert(RepairEntity repairEntity)
+        //{
+        //    var operatorProvider = OperatorProvider.Provider.GetCurrent();
+        //    repairEntity.T_ApplicantId = operatorProvider.UserId;
+        //    repairEntity.T_DepartmentId = operatorProvider.DepartmentId;
+        //    repairEntity.T_ApplicantTime = DateTime.Now;
+        //    var data = repairApp.Insert(repairEntity);
+        //    //修改实体表夹具状态 
+        //    ToolEntity toolEntity = new ToolEntity();
+        //    toolEntity.T_Id = repairEntity.T_Id;   //主键
+        //    toolEntity.T_ToolStatus = 4; //报修申请中
+        //    return Content(data.ToJson());
+        //}
 
         [HttpPost]
         public ActionResult Delete(RepairEntity repairEntity)

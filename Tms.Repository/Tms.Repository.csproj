@@ -55,6 +55,7 @@
     <Compile Include="SystemSecurity\DbBackupRepository.cs" />
     <Compile Include="SystemSecurity\FilterIPRepository.cs" />
     <Compile Include="SystemSecurity\LogRepository.cs" />
+    <Compile Include="ToolManage\CheckViewRepository.cs" />
     <Compile Include="ToolManage\CheckRepository.cs" />
     <Compile Include="ToolManage\DefineRepository.cs" />
     <Compile Include="ToolManage\BtwhViewRepository.cs" />

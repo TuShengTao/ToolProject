@@ -146,6 +146,7 @@
     <Compile Include="Areas\SystemSecurity\Controllers\ServerMonitoringController.cs" />
     <Compile Include="Areas\SystemSecurity\SystemSecurityAreaRegistration.cs" />
     <Compile Include="Areas\ToolManage\Controllers\DataController.cs" />
+    <Compile Include="Areas\ToolManage\Controllers\CheckController.cs" />
     <Compile Include="Areas\ToolManage\Controllers\SocketOneController.cs" />
     <Compile Include="Areas\ToolManage\Controllers\TypeController.cs" />
     <Compile Include="Areas\ToolManage\Controllers\LineController.cs" />
