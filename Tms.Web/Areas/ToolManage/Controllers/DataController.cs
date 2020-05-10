@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Diagnostics;
+using System.Web.Mvc;
 using Tms.Code;
 namespace Tms.Web.Areas.ToolManage.Controllers
 {
@@ -16,13 +17,13 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             p.StartInfo.RedirectStandardOutput = true; // 关键行1  标准输出
            // 不显示命令行窗口
             p.StartInfo.CreateNoWindow = true; // 关键行2
-            //p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+          //  p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             p.Start();//启动进程
-            //获取输出
-            //需要说明的：此处是指明开始获取，要获取的内容，
-            //只有等进程退出后才能真正拿到
-            
-            p.WaitForExit(3000);//等待控制台程序执行完成
+                      //获取输出
+                      //需要说明的：此处是指明开始获取，要获取的内容，
+                      //只有等进程退出后才能真正拿到
+
+            p.WaitForExit(400000);//等待控制台程序执行完成
             if (!p.HasExited)
             {
                 p.Kill();

@@ -18,6 +18,15 @@ namespace Tms.Application.ToolManage
             return service.IQueryable().ToList();
 
         }
+
+       // 判断此夹具 在点检表是否存在且未被处理
+        public int judgeIfExist(EntityDefineEntity Entity)
+        {
+            int counts = service.judgeIfExist(Entity).Count;
+            return counts;  
+
+        }
+
         public int UpDate(CheckEntity checkEntity)
         {
             return service.Update(checkEntity);

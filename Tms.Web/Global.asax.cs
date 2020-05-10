@@ -1,6 +1,11 @@
-﻿using Tms.Code;
+﻿
 using System.Web.Mvc;
 using System.Web.Routing;
+using Quartz;
+using System;
+using Quartz.Impl.Triggers;
+
+
 
 namespace Tms.Web
 {
@@ -14,6 +19,11 @@ namespace Tms.Web
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            QuarzJobScheduler_1.Start(); //定时任务1
+           // QuarzJobScheduler_2.Start();// 定时任务2
+
         }
+       
+        
     }
 }

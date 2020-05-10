@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Tms.Application.ToolManage;
 using Tms.Code;
 using Tms.Domain.Entity.ToolManage;
 using System.Web.Mvc;
 namespace Tms.Web.Areas.ToolManage.Controllers
 {
-    
+
     // 夹具实体controller
     public class EntityController : ControllerBase
     {
@@ -17,7 +16,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         [HttpPost]
         public ActionResult InsertToWareHouse(BuyToWareHouseEntity buyToWareHouseEntity, ToolEntity toolEntity)
         {
-            string T_Id = Common.GuId();
+            string T_Id = Guid.NewGuid().ToString();
             var operatorProvider = OperatorProvider.Provider.GetCurrent();
             buyToWareHouseEntity.T_Id = T_Id;  //外键
             buyToWareHouseEntity.T_ApplicantId = operatorProvider.UserId;
@@ -136,7 +135,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         [HttpPost]
         public ActionResult Insert(ToolEntity toolEntity)
         {
-            toolEntity.T_Id = Common.GuId();
+            toolEntity.T_Id = Guid.NewGuid().ToString();
             toolEntity.T_RegDate = DateTime.Now;
             toolEntity.T_UsedCount = 0;
             var data = entityApp.Insert(toolEntity);
