@@ -54,7 +54,7 @@ namespace Tms.Web
                     checkEntity.T_DepartmentId = toolsList[i].T_DepartmentId;
                     // 如果是每天定时点检提醒，前一天提醒，但前一天未处理点检，第二天点检添加需要做判断
                     // 判断该夹具是否已经提醒过
-                    if (checkApp.judgeIfExist(toolsList[i]) < 0)
+                    if (checkApp.judgeIfExist(toolsList[i]) > 0 == false)
                     {
                         checkApp.Insert(checkEntity);  // 添加进 点检表
                         string mailMessage = "该夹具需要进行点检：\n" + toolsList[i].ToJson().ToString();

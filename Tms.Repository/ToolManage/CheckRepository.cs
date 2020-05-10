@@ -18,11 +18,11 @@ namespace Tms.Repository.ToolManage
             using (var db = new RepositoryBase().BeginTrans())
             {
                 StringBuilder strSql = new StringBuilder();
-
+                int IsChecked = 0;
                 strSql.Append(@"select * from Tools_Check where T_Id = @T_Id and T_IsChecked = @IsChecked and T_DepartmentId = @DId  ");
                 DbParameter[] dbParameter =
                 {
-                    new SqlParameter("@IsChecked",0),
+                    new SqlParameter("@IsChecked",IsChecked),
                     new SqlParameter("@T_Id",Entity.T_Id),
                     new SqlParameter("@DId",Entity.T_DepartmentId)
 
