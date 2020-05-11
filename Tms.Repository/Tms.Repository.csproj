@@ -62,6 +62,7 @@
     <Compile Include="ToolManage\RepairViewRepository.cs" />
     <Compile Include="ToolManage\JunkedViewRepository.cs" />
     <Compile Include="ToolManage\DataRepository.cs" />
+    <Compile Include="ToolManage\CheckItemRepository.cs" />
     <Compile Include="ToolManage\WhfViewRepository.cs" />
     <Compile Include="ToolManage\EntityDefineRepository.cs" />
     <Compile Include="ToolManage\EntityRepository.cs" />

@@ -73,7 +73,6 @@ namespace Tms.Web
             mailHelper.MailServer = "smtp.qq.com";
             mailHelper.Send("1450190944@qq.com", "夹具预警提醒", mailMessage, "UTF-8", false, false);
         }
-
     }
 
 }
