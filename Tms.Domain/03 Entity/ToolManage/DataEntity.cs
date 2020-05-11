@@ -17,5 +17,6 @@ namespace Tms.Domain.Entity.ToolManage
         public string T_DepartmentId { get; set; }
         public int T_DealStatus { get; set; }
         public string T_DealPersonId { get; set; }
-    }
+        public string T_Description  { get; set; }
+}
 }

@@ -21,6 +21,7 @@ namespace Tms.Domain.Entity.ToolManage
         public string T_DepartmentId { get; set; }
         public string T_EditedPerson { get; set; }
         public string T_Description { get; set; }
+        public string T_CheckedImg { get; set; }
         public Nullable<System.DateTime> T_LastCheckTime { get; set; }
         public Nullable<System.DateTime> T_ThisCheckTime { get; set; }
         public Nullable<System.DateTime> T_CreateTime { get; set; }
