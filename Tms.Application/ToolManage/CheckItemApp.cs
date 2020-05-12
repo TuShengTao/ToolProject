@@ -13,8 +13,7 @@ namespace Tms.Application.ToolManage
 
         // 获取所有
         public List<CheckItemEntity> GetList()
-        {
-            
+        {    
             return service.IQueryable().ToList();
 
         }

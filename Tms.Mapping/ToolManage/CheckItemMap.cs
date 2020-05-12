@@ -4,13 +4,12 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace Tms.Mapping.ToolManage
 {
-    public class DataMap : EntityTypeConfiguration<DataEntity>
+    public class CheckItemMap : EntityTypeConfiguration<CheckItemEntity>
     {
-        public DataMap()
+        public CheckItemMap()
         {
-            this.ToTable("Tools_Data");
+            this.ToTable("Tools_CheckItem");
             this.HasKey(t => t.Id);
         }
     }
 }
-

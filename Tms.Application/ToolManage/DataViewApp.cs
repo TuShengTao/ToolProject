@@ -13,12 +13,16 @@ namespace Tms.Application.ToolManage
 
         private IDataView service = new DataViewRepository();
         // 获取所有
-        public List<DataViewEntity> GetList()
+        public List<DataViewEntity> GetAllList()
         {
 
             return service.IQueryable().ToList();
 
         }
+      
+
+
+
         public List<DataViewEntity> GetList(Pagination pagination, string keyword)
         {
             var expression = ExtLinq.True<DataViewEntity>();
