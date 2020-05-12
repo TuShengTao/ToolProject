@@ -91,6 +91,7 @@
     <Compile Include="04 IRepository\ToolManage\IBuyToWareHouse.cs" />
     <Compile Include="04 IRepository\ToolManage\ICheckView.cs" />
     <Compile Include="04 IRepository\ToolManage\ICheck.cs" />
+    <Compile Include="04 IRepository\ToolManage\IDataView.cs" />
     <Compile Include="04 IRepository\ToolManage\IDefine.cs" />
     <Compile Include="04 IRepository\ToolManage\IEntityDefine.cs" />
     <Compile Include="04 IRepository\ToolManage\IEntity.cs" />
