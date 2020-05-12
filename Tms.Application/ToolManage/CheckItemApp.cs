@@ -17,6 +17,15 @@ namespace Tms.Application.ToolManage
             return service.IQueryable().ToList();
 
         }
+        //根据夹具类型Id查点检项目
+        public List<CheckItemEntity> GetListByTypeId(string toolTypeId)
+        {   
+            var expression = ExtLinq.True<CheckItemEntity>();
+            expression = expression.And(t => t.T_ToolTypeId.Equals(toolTypeId));
+            return service.IQueryable(expression).ToList();
+
+        }
+
         public int UpDate(CheckItemEntity checkItemEntity)
         {
             return service.Update(checkItemEntity);

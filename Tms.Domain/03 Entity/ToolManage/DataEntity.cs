@@ -13,7 +13,6 @@ namespace Tms.Domain.Entity.ToolManage
     {
         public string T_Id { get; set; }
         public int Id { get; set; }
-        public string T_TypeName { get; set; }
         public string T_DepartmentId { get; set; }
         public int T_DealStatus { get; set; }
         public string T_DealPersonId { get; set; }
