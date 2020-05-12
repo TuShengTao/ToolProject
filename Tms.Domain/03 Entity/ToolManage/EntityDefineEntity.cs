@@ -19,10 +19,10 @@ namespace Tms.Domain.Entity.ToolManage
         public string T_BillNo { get; set; }
         public string T_Location { get; set; }
         public Nullable<int> T_UsedCount { get; set; }
-        public Nullable<int> T_UsedTime { get; set; }
+        public int T_UsedTime { get; set; }
         public Nullable<System.DateTime> T_RegDate { get; set; }
         public Nullable<int> T_IsPassBuyToW { get; set; }
-        public Nullable<int> T_RepairedCounts { get; set; }
+        public int T_RepairedCounts { get; set; }
         public Nullable<int> T_DefineId { get; set; }
         public Nullable<System.DateTime> T_ToolProductedDate { get; set; }
         public Nullable<System.DateTime> T_CreatorTime { get; set; }

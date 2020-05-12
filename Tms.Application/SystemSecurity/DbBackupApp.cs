@@ -43,7 +43,7 @@ namespace Tms.Application.SystemSecurity
         }
         public void SubmitForm(DbBackupEntity dbBackupEntity)
         {
-            dbBackupEntity.F_Id = Common.GuId();
+            dbBackupEntity.F_Id = Guid.NewGuid().ToString();
             dbBackupEntity.F_EnabledMark = true;
             dbBackupEntity.F_BackupTime = DateTime.Now;
             service.ExecuteDbBackup(dbBackupEntity);

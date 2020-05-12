@@ -58,8 +58,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Quartz, Version=2.5.0.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
       <HintPath>..\packages\Quartz.2.5.0\lib\net40\Quartz.dll</HintPath>
@@ -130,10 +130,10 @@
     <Compile Include="App_Start\01 Handler\HandlerErrorAttribute.cs" />
     <Compile Include="App_Start\01 Handler\HandlerLoginAttribute.cs" />
     <Compile Include="App_Start\01 Handler\ControllerBase.cs" />
-    <Compile Include="App_Start\02 Quarz\QuartzJob_1.cs" />
-    <Compile Include="App_Start\02 Quarz\QuartzJob_2.cs" />
-    <Compile Include="App_Start\02 Quarz\QuarzJobScheduler_1.cs" />
-    <Compile Include="App_Start\02 Quarz\QuarzJobScheduler_2.cs" />
+    <Compile Include="App_Start\Quarz\QuartzJob_1.cs" />
+    <Compile Include="App_Start\Quarz\QuartzJob_2.cs" />
+    <Compile Include="App_Start\Quarz\QuarzJobScheduler_1.cs" />
+    <Compile Include="App_Start\Quarz\QuarzJobScheduler_2.cs" />
     <Compile Include="Areas\ExampleManage\Controllers\BarCodeController.cs" />
     <Compile Include="Areas\ExampleManage\Controllers\PrintController.cs" />
     <Compile Include="Areas\ExampleManage\Controllers\SendMailController.cs" />
@@ -180,6 +180,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -629,10 +634,17 @@
     <Content Include="Content\TmsContent\js\perfect-scrollbar.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Index.htm" />
+    <Content Include="Content\TmsContent\MLModel.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Views\Login\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -683,9 +695,9 @@
       <Project>{7dc886cd-b8a0-44e8-aadd-57fcb0cfecb8}</Project>
       <Name>Tms.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tms.FrameworkML.ConsoleApp\Tms.FrameworkML.ConsoleApp.csproj">
-      <Project>{728d1f10-c150-432c-9ad7-ff271495fe19}</Project>
-      <Name>Tms.FrameworkML.ConsoleApp</Name>
+    <ProjectReference Include="..\Tms.FrameworkML.Model\Tms.FrameworkML.Model.csproj">
+      <Project>{f14ccc64-0c12-4d7d-94e7-2a2835c28050}</Project>
+      <Name>Tms.FrameworkML.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tms.Mapping\Tms.Mapping.csproj">
       <Project>{4e642cbe-f6c5-4cb9-9474-6b349652fe77}</Project>

@@ -59,6 +59,7 @@
     <Compile Include="03 Entity\ToolManage\BuyToWareHouseEntity.cs" />
     <Compile Include="03 Entity\ToolManage\CheckViewEntity.cs" />
     <Compile Include="03 Entity\ToolManage\CheckEntity.cs" />
+    <Compile Include="03 Entity\ToolManage\DataViewEntity.cs" />
     <Compile Include="03 Entity\ToolManage\DefineEntity.cs" />
     <Compile Include="03 Entity\ToolManage\EntityDefineEntity.cs" />
     <Compile Include="03 Entity\ToolManage\JunkedViewEntity.cs" />

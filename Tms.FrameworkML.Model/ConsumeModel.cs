@@ -7,6 +7,8 @@ using System.Text;
 using Microsoft.ML;
 using Tms_FrameworkML.Model;
 
+
+
 namespace Tms_FrameworkML.Model
 {
     public class ConsumeModel
@@ -20,7 +22,8 @@ namespace Tms_FrameworkML.Model
             MLContext mlContext = new MLContext();
 
             // Load model & create prediction engine
-            string modelPath = @"C:\Users\tushengtao\AppData\Local\Temp\MLVSTools\Tms.FrameworkML\Tms.FrameworkML.Model\MLModel.zip";
+            // "~/Content/TmsContent/TmsImage/"     //  D:\MyStudy\NET\NetStudy\XmTest\ToolProject\ToolProject\Tms.Web\
+            string modelPath = @"D:/MyStudy/NET/NetStudy/XmTest/ToolProject/ToolProject/Tms.Web/Content/TmsContent/MLModel.zip";
             ITransformer mlModel = mlContext.Model.Load(modelPath, out var modelInputSchema);
             var predEngine = mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(mlModel);
 

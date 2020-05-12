@@ -24,7 +24,7 @@ namespace Tms.Application.ToolManage
         }
         public int Insert(FamilyEntity fanilyEntity)
         {
-            fanilyEntity.T_Id = Common.GuId();
+            fanilyEntity.T_Id = Guid.NewGuid().ToString();
             var operatorProvider = OperatorProvider.Provider.GetCurrent();
             fanilyEntity.T_DepartmentId = operatorProvider.DepartmentId;
             return service.Insert(fanilyEntity);

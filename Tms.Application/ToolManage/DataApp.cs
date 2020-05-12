@@ -9,6 +9,8 @@ namespace Tms.Application.ToolManage
 {
     public class DataApp
     {
+
+
         private IData service = new DataRepository();
         // 获取所有
         public List<DataEntity> GetList()
@@ -17,9 +19,30 @@ namespace Tms.Application.ToolManage
             return service.IQueryable().ToList();
 
         }
+
+        // 判断是否已存在此名称      
+        public int GetFormByExit(string T_Id)
+        {
+            var entityList = new { 
+                data = service.judgeExist(T_Id) 
+            };
+            if (entityList.data.Count > 0)
+            {
+                return 1;  // 存在
+            }
+            else 
+            {
+                return 0;
+            }
+            
+        }
         public int UpDate(DataEntity dataEntity)
         {
             return service.Update(dataEntity);
+        }
+        public int SelfInsert(string Did,string Tid, DateTime time)
+        {
+            return service.SelfInsert(Did,Tid,time);
         }
         public int Insert(DataEntity dataEntity)
         {

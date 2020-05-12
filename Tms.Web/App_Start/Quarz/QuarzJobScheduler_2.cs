@@ -11,7 +11,7 @@ namespace Tms.Web
     {
         public static void Start()
         {
-            // 任务1
+            // 任务1 预警任务
             IScheduler scheduler_2 = StdSchedulerFactory.GetDefaultScheduler();
             scheduler_2.Start();
 

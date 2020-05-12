@@ -23,7 +23,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
                       //需要说明的：此处是指明开始获取，要获取的内容，
                       //只有等进程退出后才能真正拿到
 
-            p.WaitForExit(400000);//等待控制台程序执行完成
+            p.WaitForExit(3000);//等待控制台程序执行完成
             if (!p.HasExited)
             {
                 p.Kill();

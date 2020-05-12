@@ -9,8 +9,17 @@
 using System;
 namespace Tms.Domain.Entity.ToolManage
 {
-    public class DataEntity
+    public class DataViewEntity
     {
+        public string T_Name { get; set; }
+        public string T_Family { get; set; }
+        public string T_Model { get; set; }
+        public string T_PartNo { get; set; }
+        public string T_Code { get; set; }
+        public int T_SeqId { get; set; }
+        public string T_ToolType { get; set; }
+        public int T_DefineId { get; set; }
+
         public string T_Id { get; set; }
         public int Id { get; set; }
         public string T_TypeName { get; set; }
@@ -19,5 +28,18 @@ namespace Tms.Domain.Entity.ToolManage
         public string T_DealPersonId { get; set; }
         public string T_Description  { get; set; }
         public Nullable<System.DateTime> T_CreateTime { get; set; }
+        public string T_Img { get; set; }
+        public string T_Location { get; set; }
+        public Nullable<int> T_UsedCount { get; set; }
+        public Nullable<int> T_UsedTime { get; set; }
+
+        public Nullable<System.DateTime> T_RegDate { get; set; }
+        public Nullable<int> T_RepairedCounts { get; set; }
+        public Nullable<System.DateTime> T_ToolProductedDate { get; set; }
+        public int T_PmPeriod { get; set; }
+
+
+
+
     }
 }

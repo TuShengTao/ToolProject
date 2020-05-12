@@ -19,22 +19,20 @@ namespace Tms_FrameworkML.ConsoleApp
     {
         //Dataset to use for predictions 
         private const string DATA_FILEPATH = @"C:\Users\tushengtao\AppData\Local\Temp\f878d682-ab9b-4dad-a137-750b3d9a4128.tsv";
-        DataApp dataApp = new DataApp();
+       
         static void Main(string[] args)
         {
             // 做预警任务 
 
             //ModelInput sampleData = CreateSingleDataSample(DATA_FILEPATH);
             ModelInput sampleData = new ModelInput();
-            sampleData.RepairCounts = 3;    // 维修次数
-            sampleData.UseTime = 5677;  // 使用时间 
+            sampleData.RepairCounts = 1;    // 维修次数
+            sampleData.UseTime = 77;  // 使用时间 
             var predictionResult = ConsumeModel.Predict(sampleData);
             Console.WriteLine($"\n{predictionResult.Prediction}\n\n");
             Console.ReadKey();
         }
         
-       
-
         // Change this code to create your own sample data
         #region CreateSingleDataSample
         // Method to load single row of dataset to try a single prediction

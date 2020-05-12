@@ -11,7 +11,7 @@ namespace Tms.Web
     {
         public static void Start()
         {
-            // 任务1
+            // 任务1  点检任务
             IScheduler scheduler_1 = StdSchedulerFactory.GetDefaultScheduler();
             scheduler_1.Start();
 
@@ -19,7 +19,7 @@ namespace Tms.Web
             ITrigger trigger_1 = TriggerBuilder.Create()
               .WithIdentity("triggerName_1", "groupName_1")
               .WithSimpleSchedule(t =>
-                t.WithIntervalInSeconds(600) //设置时间
+                t.WithIntervalInSeconds(3) //设置时间
                  .RepeatForever())
                  .Build();
 

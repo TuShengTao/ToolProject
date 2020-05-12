@@ -58,7 +58,7 @@ namespace Tms.Application.SystemManage
             foreach (string item in ArrayId)
             {
                 ModuleButtonEntity moduleButtonEntity = data.Find(t => t.F_Id == item);
-                moduleButtonEntity.F_Id = Common.GuId();
+                moduleButtonEntity.F_Id = Guid.NewGuid().ToString();
                 moduleButtonEntity.F_ModuleId = moduleId;
                 entitys.Add(moduleButtonEntity);
             }

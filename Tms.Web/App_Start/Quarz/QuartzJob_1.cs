@@ -12,6 +12,7 @@ using Tms.Code;
 using Tms.Domain.Entity.SystemManage;
 using Tms.Domain.Entity.ToolManage;
 
+
 namespace Tms.Web
 {
     public class QuartzJob_1 : IJob
@@ -33,7 +34,7 @@ namespace Tms.Web
             List<EntityDefineEntity> toolsList = new List<EntityDefineEntity>();
             toolsList = entityApp.getAll(); // 查询所有
             int counts = toolsList.Count;
-            Console.WriteLine($"记录总数：" + $"{counts}\n");
+          //  Console.WriteLine($"记录总数：" + $"{counts}\n");
             DateTime nowTime = DateTime.Now; // 现在的时间 
             string nowDateTime = nowTime.ToDateTimeString();//转换
             for (int i = 0; i < counts; i++)
@@ -42,7 +43,7 @@ namespace Tms.Web
 
                 TimeSpan ts = DateTime.Parse(nowDateTime) - DateTime.Parse(lastTime);  //可转为各种单位
                 int days = ts.Days;  //相隔的天数
-                Console.WriteLine($"{i}" + "相隔天数：" + $"{days}" + " 点检周期：" + $"{toolsList[i].T_PmPeriod}");
+                //Console.WriteLine($"{i}" + "相隔天数：" + $"{days}" + " 点检周期：" + $"{toolsList[i].T_PmPeriod}");
                 if (days >= toolsList[i].T_PmPeriod)
                 {
                     // 如果大于等于 就加入点检表 然后发邮件去提醒用户 
@@ -57,21 +58,25 @@ namespace Tms.Web
                     if (checkApp.judgeIfExist(toolsList[i]) > 0 == false)
                     {
                         checkApp.Insert(checkEntity);  // 添加进 点检表
-                        string mailMessage = "该夹具需要进行点检：\n" + toolsList[i].ToJson().ToString();
-                       // sendMail(mailMessage); // 发送点检任务提醒邮件
+                        string msg = $"夹具定时点检提醒，详细信息：\n" + $"夹具代码：" + $"{toolsList[i].T_Code}" + $"-" +
+                            $"{toolsList[i].T_SeqId}\n" + $"夹具名称：" + $"{toolsList[i].T_Name}\n" + $"夹具位置：" +
+                            $"{toolsList[i].T_Location}"
+                            ;
+                        sendMail(msg); // 发送点检任务提醒邮件
                     }
                 }
             }
         }
 
-       private static void sendMail(string mailMessage)
+      
+        private static void sendMail(string mailMessage)
         {
             MailHelper mailHelper = new MailHelper();
             mailHelper.MailUserName = "1450190944@qq.com";//替换自己的qq邮箱： 需要去qq邮箱设置里开启smpt服务,验证后替换下方授权码
-            mailHelper.MailName = "工夹具智能预警系统";
+            mailHelper.MailName = "工夹具智能管理系统";
             mailHelper.MailPassword = "xvocfkdafxtvfhbe";//可替换自己qq邮箱的授权码
             mailHelper.MailServer = "smtp.qq.com";
-            mailHelper.Send("1450190944@qq.com", "夹具预警提醒", mailMessage, "UTF-8", false, false);
+            mailHelper.Send("1450190944@qq.com", "夹具点检", mailMessage, "UTF-8", false, false);
         }
     }
 

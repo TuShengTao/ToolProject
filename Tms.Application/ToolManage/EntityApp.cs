@@ -135,7 +135,7 @@ namespace Tms.Application.ToolManage
             }
             else if (string.IsNullOrEmpty(keyValue) && string.IsNullOrEmpty(keyNumber))
             {
-                toolEntity.T_Id = Common.GuId();
+                toolEntity.T_Id = Guid.NewGuid().ToString();
                 toolEntity.T_RegDate = DateTime.Now;
                 toolEntity.T_UsedCount = 0;
                 toolEntity.T_SeqId = 1;
@@ -143,7 +143,7 @@ namespace Tms.Application.ToolManage
             }
             else
             {
-                toolEntity.T_Id = Common.GuId();
+                toolEntity.T_Id = Guid.NewGuid().ToString();
                 toolEntity.T_RegDate = DateTime.Now;
                 toolEntity.T_UsedCount = 0;
                 toolEntity.T_SeqId = int.Parse(keyNumber);
