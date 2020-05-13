@@ -696,7 +696,7 @@
       <Name>Tms.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tms.FrameworkML.Model\Tms.FrameworkML.Model.csproj">
-      <Project>{f14ccc64-0c12-4d7d-94e7-2a2835c28050}</Project>
+      <Project>{2b6f5e5a-ccb5-4666-b14e-101685dfa164}</Project>
       <Name>Tms.FrameworkML.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tms.Mapping\Tms.Mapping.csproj">

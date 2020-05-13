@@ -51,11 +51,5 @@
     <None Include="App.config" />
     <None Include="wikipedia-detox-250-line-data.tsv" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Tms.FrameworkML.Model\Tms.FrameworkML.Model.csproj">
-      <Project>{F14CCC64-0C12-4D7D-94E7-2A2835C28050}</Project>
-      <Name>Tms.FrameworkML.Model</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
