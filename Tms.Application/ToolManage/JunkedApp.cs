@@ -18,6 +18,17 @@ namespace Tms.Application.ToolManage
             return service.IQueryable().ToList();
 
         }
+
+        public int GetListByUserId()
+        {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            var expression = ExtLinq.True<JunkedEntity>();
+            expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId)); //各个workcell数据分离 
+            expression = expression.And(t => t.T_FirstDealResult != 0);
+            expression = expression.And(t => t.T_LastDealResult == null);  //查出所有的报废请求
+            return service.IQueryable(expression).ToList().Count;
+
+        }
         public int UpDate(JunkedViewEntity junkedViewEntity, string type)
         {
             var operatorProvider = OperatorProvider.Provider.GetCurrent();

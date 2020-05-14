@@ -50,6 +50,8 @@ namespace Tms.Web.Areas.SystemManage.Controllers
         public ActionResult GetPasswordById(string Id)
         {
             var count = userLogOnApp.GetForm(Id);
+           // 解密
+            count.F_UserPassword = DESEncrypt.Decrypt(count.F_UserPassword,count.F_UserSecretkey);
 
             return Content(count.ToJson());
         }
@@ -110,14 +112,15 @@ namespace Tms.Web.Areas.SystemManage.Controllers
         {
             return View();
         }
-        [HttpPost]
+
+        [HttpGet]
        // [HandlerAjaxOnly]
        //[HandlerAuthorize]
        // [ValidateAntiForgeryToken]
         public ActionResult SubmitRevisePassword(string userPassword, string keyValue)
         {
             userLogOnApp.RevisePassword(userPassword, keyValue);
-            return Success("重置密码成功。");
+            return Success("重置密码成功!");
         }
         [HttpPost]
        // [HandlerAjaxOnly]

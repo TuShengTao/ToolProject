@@ -18,6 +18,16 @@ namespace Tms.Application.ToolManage
             return service.IQueryable().ToList();
 
         }
+        public int GetListByUserId()
+        {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            var expression = ExtLinq.True<BuyToWareHouseEntity>();
+            expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId)); //各个workcell数据分离 
+            expression = expression.And(t => t.T_FirstDealResult != 0);
+            expression = expression.And(t => t.T_LastDealResult == null);  
+            return service.IQueryable(expression).ToList().Count;
+
+        }
         public int UpDate(BuyToWareHouseEntity buyToWareHouseEntity)
         {
             return service.Update(buyToWareHouseEntity);

@@ -89,7 +89,9 @@ namespace Tms.Code
             System.IO.MemoryStream ms = new System.IO.MemoryStream();
             CryptoStream cs = new CryptoStream(ms, des.CreateDecryptor(), CryptoStreamMode.Write);
             cs.Write(inputByteArray, 0, inputByteArray.Length);
+           // cs.Close();//自己增加
             cs.FlushFinalBlock();
+            
             return Encoding.Default.GetString(ms.ToArray());
         }
 

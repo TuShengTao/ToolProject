@@ -19,9 +19,6 @@ namespace Tms.Application.ToolManage
             return service.IQueryable().ToList();
 
         }
-      
-
-
 
         public List<DataViewEntity> GetList(Pagination pagination, string keyword)
         {
@@ -32,7 +29,6 @@ namespace Tms.Application.ToolManage
                 expression = expression.Or(t => t.T_TypeName.Contains(keyword));
                 expression = expression.Or(t => t.T_DepartmentId.Contains(keyword));
             }
-         /*   expression = expression.And(t => t.F_Account != "admin");*/
             return service.FindList(expression, pagination);
         }
 

@@ -11,11 +11,25 @@ namespace Tms.Application.ToolManage
     {
         private IWareHouseFlow service = new WareHouseFlowRepository();
 
-        // 获取所有
+        // 获取workcell所有目前在线上的 未归还的
         public List<WareHouseFlowEntity> GetList()
         {
-            
-            return service.IQueryable().ToList();
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            var expression = ExtLinq.True<WareHouseFlowEntity>();
+            expression = expression.And(t => t.T_ToolStatus == 0);
+            expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId)); //各个workcell数据分离 
+            return service.IQueryable(expression).ToList();
+
+        }
+        // 获取所有未归还的数量 根据userId
+        public int GetListByUserId()
+        {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            var expression = ExtLinq.True<WareHouseFlowEntity>();
+            expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId)); //各个workcell数据分离 
+            expression = expression.And(t => t.T_ToolStatus == 0);
+            expression = expression.And(t => t.T_RecPersonId.Equals(operatorProvider.UserId));
+            return service.IQueryable(expression).ToList().Count;
 
         }
         public int UpDate(WhfViewEntity whfViewEntity)

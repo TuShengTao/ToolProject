@@ -18,7 +18,16 @@ namespace Tms.Application.ToolManage
             return service.IQueryable().ToList();
 
         }
-            public int UpDate(RepairViewEntity repairViewEntity,string type)
+        public int GetListByUserId()
+        {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            var expression = ExtLinq.True<RepairEntity>();
+            expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId)); //各个workcell数据分离 
+            expression = expression.And(t => t.T_Stauts.Equals(0));
+            return service.IQueryable(expression).ToList().Count;
+
+        }
+        public int UpDate(RepairViewEntity repairViewEntity,string type)
         {
             if (type == "myRecordRepair")
             {
