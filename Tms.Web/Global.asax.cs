@@ -14,8 +14,9 @@ namespace Tms.Web
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            QuarzJobScheduler_1.Start(); //定时任务1
-            QuarzJobScheduler_2.Start();// 定时任务2
+            QuarzJobScheduler_1.Start(); //定时任务1  夹具定时点检任务
+            QuarzJobScheduler_2.Start();// 定时任务2  夹具预警任务
+            QuarzJobScheduler_3.Start();// 定时任务2  数据库定时备份任务
         }
     }
 }

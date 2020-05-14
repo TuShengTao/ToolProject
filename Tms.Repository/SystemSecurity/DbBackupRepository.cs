@@ -25,7 +25,7 @@ namespace Tms.Repository.SystemSecurity
         }
         public void ExecuteDbBackup(DbBackupEntity dbBackupEntity)
         {
-            dbBackupEntity.F_DbName = "TmsDataBase";
+            dbBackupEntity.F_DbName = "NewTmsBase";
             DbHelper.ExecuteSqlCommand(string.Format("backup database {0} to disk ='{1}'", dbBackupEntity.F_DbName, dbBackupEntity.F_FilePath));
             dbBackupEntity.F_FileSize = FileHelper.ToFileSize(FileHelper.GetFileSize(dbBackupEntity.F_FilePath));
             dbBackupEntity.F_FilePath = "/Resource/DbBackup/" + dbBackupEntity.F_FileName;

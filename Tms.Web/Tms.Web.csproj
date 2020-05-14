@@ -131,8 +131,10 @@
     <Compile Include="App_Start\01 Handler\HandlerLoginAttribute.cs" />
     <Compile Include="App_Start\01 Handler\ControllerBase.cs" />
     <Compile Include="App_Start\Quarz\QuartzJob_1.cs" />
+    <Compile Include="App_Start\Quarz\QuartzJob_3.cs" />
     <Compile Include="App_Start\Quarz\QuartzJob_2.cs" />
     <Compile Include="App_Start\Quarz\QuarzJobScheduler_1.cs" />
+    <Compile Include="App_Start\Quarz\QuarzJobScheduler_3.cs" />
     <Compile Include="App_Start\Quarz\QuarzJobScheduler_2.cs" />
     <Compile Include="Areas\ExampleManage\Controllers\BarCodeController.cs" />
     <Compile Include="Areas\ExampleManage\Controllers\PrintController.cs" />
