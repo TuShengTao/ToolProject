@@ -21,6 +21,8 @@ namespace Tms.Application.ToolManage
         public List<CheckItemEntity> GetListByTypeId(string toolTypeId)
         {   
             var expression = ExtLinq.True<CheckItemEntity>();
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId));
             expression = expression.And(t => t.T_ToolTypeId.Equals(toolTypeId));
             return service.IQueryable(expression).ToList();
 

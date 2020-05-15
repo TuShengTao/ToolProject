@@ -57,6 +57,7 @@ namespace Tms.Web
                     // 判断该夹具是否已经提醒过
                     if (checkApp.judgeIfExist(toolsList[i]) > 0 == false)
                     {
+                       
                         checkApp.Insert(checkEntity);  // 添加进 点检表
                         string msg = $"夹具定时点检提醒，详细信息：\n" + $"夹具代码：" + $"{toolsList[i].T_Code}" + $"-" +
                             $"{toolsList[i].T_SeqId}\n" + $"夹具名称：" + $"{toolsList[i].T_Name}\n" + $"夹具位置：" +

@@ -31,8 +31,11 @@ namespace Tms.Application.ToolManage
         {
             return service.Update(checkEntity);
         }
+ 
         public int Insert(CheckEntity checkEntity)
         {
+
+
             return service.Insert(checkEntity);
         }
         public int Delete(CheckEntity checkEntity)

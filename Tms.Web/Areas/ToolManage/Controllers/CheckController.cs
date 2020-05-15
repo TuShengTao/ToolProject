@@ -11,12 +11,20 @@ namespace Tms.Web.Areas.ToolManage.Controllers
     public class CheckController : ControllerBase
     {
         private CheckApp checkApp = new CheckApp();
+        private CheckItemApp checkItemApp = new CheckItemApp();
         private CheckViewApp checkViewApp = new CheckViewApp();
 
         [HttpGet]
         public ActionResult Get()
         {
             var data = checkApp.GetList();
+            return Content(data.ToJson());
+        }
+       //  根据夹具类型Id获取该夹具类型的点检项
+        [HttpGet]
+        public ActionResult GetCheckItems(string typeId)
+        {
+            var data = checkItemApp.GetListByTypeId(typeId);
             return Content(data.ToJson());
         }
         [HttpPost]
@@ -29,6 +37,15 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         [HttpPost]
         public ActionResult Insert(CheckEntity checkEntity)
         {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            checkEntity.T_CheckPerson = operatorProvider.UserId;
+            checkEntity.T_DepartmentId = operatorProvider.DepartmentId;
+            checkEntity.T_EditedPerson = operatorProvider.UserId;
+            checkEntity.T_ThisCheckTime = DateTime.Now;
+            checkEntity.T_CreateTime = checkEntity.T_ThisCheckTime;
+            checkEntity.T_IsChecked = 1; // 已经点检过
+
+
             var data = checkApp.Insert(checkEntity);
             return Content(data.ToJson());
         }

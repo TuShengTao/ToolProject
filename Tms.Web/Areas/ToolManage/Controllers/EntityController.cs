@@ -80,6 +80,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             }
 
         }
+        // 报修申请
         [HttpPost]
         public ActionResult RepairUpdateInsert(RepairEntity repairEntity)
         {

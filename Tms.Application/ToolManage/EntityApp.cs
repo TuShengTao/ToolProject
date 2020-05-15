@@ -90,18 +90,6 @@ namespace Tms.Application.ToolManage
 
         }
      
-        // 测试代码
-        //public List<ToolEntity> test()
-        //{
-        //    StringBuilder strSql = new StringBuilder();
-        //    strSql.Append(@"select * from Tools_Entity where T_Code = @Code ");
-        //    DbParameter[] parameter =
-        //    {
-        //         new SqlParameter("@Code","sss")
-        //    };
-        //    var data = service.FindList(strSql.ToString(),parameter);
-        //    return data; 
-        //}
 
         public List<ToolEntity> GetFormByCode(string code)
         {
