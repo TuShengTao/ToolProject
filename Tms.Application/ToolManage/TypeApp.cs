@@ -22,8 +22,14 @@ namespace Tms.Application.ToolManage
         {
             return service.Update(typeEntity);
         }
+        public void DeleteForm(string keyValue)
+        {
+             service.Delete(keyValue);
+        }
         public int Insert(TypeEntity typeEntity)
         {
+
+            typeEntity.T_Id = Common.GuId();//主键
             return service.Insert(typeEntity);
         }
         public int Delete(TypeEntity typeEntity)
@@ -41,6 +47,20 @@ namespace Tms.Application.ToolManage
             }
          /*   expression = expression.And(t => t.F_Account != "admin");*/
             return service.FindList(expression, pagination);
+        }
+        public int GetFormByDefine(string typeName)
+        {
+            var expression = ExtLinq.True<TypeEntity>();
+            expression = expression.And(t => t.T_TypeName.Contains(typeName));
+            if (service.FindEntity(expression) != null)
+            {
+                return 1;  // 存在
+            }
+            else
+            {
+                return 0; // 不存在
+            }
+
         }
 
     }
