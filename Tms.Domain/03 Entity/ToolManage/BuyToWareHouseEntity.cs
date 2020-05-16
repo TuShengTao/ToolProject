@@ -9,24 +9,25 @@
 using System;
 namespace Tms.Domain.Entity.ToolManage
 {
-    
-    
-    public class  BuyToWareHouseEntity : IEntity<BuyToWareHouseEntity>
+
+
+    public class BuyToWareHouseEntity
     {
+        public int Id {get;set;}
         public string T_Id { get; set; }
         public string T_ApplicantId { get; set; }
         public string T_FirstDealId { get; set; }
-        public string T_FirstDealer { get; set; }
         public Nullable<System.DateTime> T_FirstDealDate { get; set; }
         public string T_LastDealId { get; set; }
-        public string T_LastDealer { get; set; }
         public Nullable<System.DateTime> T_LastDealDate { get; set; }
         public string T_ApplicantPerson { get; set; }
-        public byte[] T_CreateTime { get; set; }
-        public Nullable<bool> T_FirstDealResult { get; set; }
-        public Nullable<bool> T_LastDealResult { get; set; }
-        public Nullable<bool> T_IsInWarehouse { get; set; }
+        public Nullable<System.DateTime> T_CreateTime { get; set; }
+        public Nullable<int> T_FirstDealResult { get; set; }
+        public Nullable<int> T_LastDealResult { get; set; }
+        public Nullable<int> T_IsInWarehouse { get; set; }
         public string T_Description { get; set; }
         public string T_DepartmentId { get; set; }
+        public string T_LastFeedBack { get; set; }
+        public string T_FirstFeedBack { get; set; }
     }
 }

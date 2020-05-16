@@ -11,7 +11,7 @@ namespace Tms.Domain.Entity.ToolManage
 {
    
   
-    public class TypeEntity : IEntity<TypeEntity>
+    public class TypeEntity
     {
         public string T_Id { get; set; }
         public string T_TypeName { get; set; }

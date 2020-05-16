@@ -14,10 +14,11 @@ namespace Tms.Repository.ToolManage
         {
             using (var db = new RepositoryBase().BeginTrans())
             {
+              
                 for (int i = 0; i < keyValues.Count; i++)
                 {
                     int value = keyValues[i];
-                    db.Delete<DefineEntity>(t => t.T_Id == value);
+                    db.Delete<DefineEntity>(t => t.Id == value);
                     
                 }
                 db.Commit();

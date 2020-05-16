@@ -5,6 +5,7 @@ using Tms.Domain.IRepository.SystemManage;
 using Tms.Repository.SystemManage;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Tms.Application.SystemManage
 {
@@ -59,7 +60,7 @@ namespace Tms.Application.SystemManage
             }
             else
             {
-                roleEntity.F_Id = Common.GuId();
+                roleEntity.F_Id = Guid.NewGuid().ToString();
             }
             var moduledata = moduleApp.GetList();
             var buttondata = moduleButtonApp.GetList();
@@ -67,7 +68,7 @@ namespace Tms.Application.SystemManage
             foreach (var itemId in permissionIds)
             {
                 RoleAuthorizeEntity roleAuthorizeEntity = new RoleAuthorizeEntity();
-                roleAuthorizeEntity.F_Id = Common.GuId();
+                roleAuthorizeEntity.F_Id = Guid.NewGuid().ToString();
                 roleAuthorizeEntity.F_ObjectType = 1; // 表示类型是角色
                 roleAuthorizeEntity.F_ObjectId = roleEntity.F_Id;// 角色表主键 赋值给角色资源表的ObjectId
                 roleAuthorizeEntity.F_ItemId = itemId;

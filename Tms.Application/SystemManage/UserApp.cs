@@ -64,7 +64,7 @@ namespace Tms.Application.SystemManage
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                userEntity.Modify(keyValue); //  如果 keyValue 是空 就去执行修改 否则去创建
+                userEntity.Modify(keyValue); //  如果 keyValue 不是空 就去执行修改 否则去创建
             }
             else
             {

@@ -9,7 +9,7 @@ namespace Tms.Mapping.ToolManage
         public DefineMap()
         {
             this.ToTable("Tools_Define");
-            this.HasKey(t => t.T_Id);
+            this.HasKey(t => t.Id);
         }
     }
 }

@@ -10,22 +10,21 @@
 using System;
 namespace Tms.Domain.Entity.ToolManage
 {
-
-
-    public  class CheckEntity : IEntity<CheckEntity>
+    public  class CheckEntity 
     {
+        public int T_CheckType { get; set; }
+        public int T_IsChecked { get; set; }
+        public int Id { get; set; }
         public string T_Id { get; set; }
-        public string T_One { get; set; }
-        public string T_Two { get; set; }
-        public string T_Three { get; set; }
-        public string T_Four { get; set; }
-        public string T_Five { get; set; }
-        public string T_Six { get; set; }
-        public string T_Seven { get; set; }
-        public string T_Eight { get; set; }
-        public Nullable<System.DateTime> T_CheckTime { get; set; }
-        public string T_CheckerId { get; set; }
-        public Nullable<System.DateTime> T_Creator { get; set; }
+        public string T_CheckPerson { get; set; }
+        public string T_CheckDetails { get; set; }
         public string T_DepartmentId { get; set; }
+        public string T_EditedPerson { get; set; }
+        public string T_Description { get; set; }
+        public string T_CheckedImg { get; set; }
+        public Nullable<System.DateTime> T_LastCheckTime { get; set; }
+        public Nullable<System.DateTime> T_ThisCheckTime { get; set; }
+        public Nullable<System.DateTime> T_CreateTime { get; set; }
+        
     }
 }

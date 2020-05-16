@@ -12,6 +12,7 @@ namespace Tms.Data
     {
         IRepositoryBase BeginTrans();
         int Commit();
+        int ExecuteSql(string strSql, DbParameter[] dbParameter);
         int Insert<TEntity>(TEntity entity) where TEntity : class;
         int Insert<TEntity>(List<TEntity> entitys) where TEntity : class;
         int Update<TEntity>(TEntity entity) where TEntity : class;
@@ -22,7 +23,7 @@ namespace Tms.Data
         IQueryable<TEntity> IQueryable<TEntity>() where TEntity : class;
         IQueryable<TEntity> IQueryable<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class;
         List<TEntity> FindList<TEntity>(string strSql) where TEntity : class;
-        List<TEntity> FindList<TEntity>(string strSql, DbParameter[] dbParameter) where TEntity : class;
+        List<TEntity> FindList<TEntity>(string strSql, DbParameter[] dbParameter) where TEntity : class ;
         List<TEntity> FindList<TEntity>(Pagination pagination) where TEntity : class,new();
         List<TEntity> FindList<TEntity>(Expression<Func<TEntity, bool>> predicate, Pagination pagination) where TEntity : class,new();
     }

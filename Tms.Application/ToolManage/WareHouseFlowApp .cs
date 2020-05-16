@@ -11,16 +11,48 @@ namespace Tms.Application.ToolManage
     {
         private IWareHouseFlow service = new WareHouseFlowRepository();
 
-        // 获取所有
+        // 获取workcell所有目前在线上的 未归还的
         public List<WareHouseFlowEntity> GetList()
         {
-            
-            return service.IQueryable().ToList();
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            var expression = ExtLinq.True<WareHouseFlowEntity>();
+            expression = expression.And(t => t.T_ToolStatus == 0);
+            expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId)); //各个workcell数据分离 
+            return service.IQueryable(expression).ToList();
 
         }
-        public int UpDate(WareHouseFlowEntity wareHouseFlowEntity)
+        // 获取所有未归还的数量 根据userId
+        public int GetListByUserId()
         {
-            return service.Update(wareHouseFlowEntity);
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            var expression = ExtLinq.True<WareHouseFlowEntity>();
+            expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId)); //各个workcell数据分离 
+            expression = expression.And(t => t.T_ToolStatus == 0);
+            expression = expression.And(t => t.T_RecPersonId.Equals(operatorProvider.UserId));
+            return service.IQueryable(expression).ToList().Count;
+
+        }
+        public int UpDate(WhfViewEntity whfViewEntity)
+        {
+            ToolEntity toolEntity = new ToolEntity();
+            WareHouseFlowEntity houseFlowEntity = new WareHouseFlowEntity();
+            toolEntity.T_Id = whfViewEntity.T_Id;
+            houseFlowEntity.Id = whfViewEntity.Id;
+            toolEntity.T_UsedCount = whfViewEntity.T_UsedCount + 1;
+            toolEntity.T_ToolStatus = 1;//入库
+            houseFlowEntity.T_ToolStatus = 1;//已归还
+            houseFlowEntity.T_BackDate = DateTime.Now;
+
+            string dtBack = houseFlowEntity.T_BackDate.ToDateTimeString();//这是归还时间
+            string dtOut =whfViewEntity.T_OutDate.ToDateTimeString(); //这是出库时间
+            TimeSpan ts = DateTime.Parse(dtBack) - DateTime.Parse(dtOut);  //可转为各种单位
+            int days = ts.Days;
+            int hours = ts.Hours;
+            int minutes = ts.Minutes;
+            int seconds = ts.Seconds;
+            int allSeconds = days * 24 * 3600 + hours * 3600 + minutes * 60 + seconds;
+            toolEntity.T_UsedTime = allSeconds + whfViewEntity.T_UsedTime;     //夹具使用时间 以秒为单位
+            return service.backTool(houseFlowEntity, toolEntity);
         }
         public int Insert(WareHouseFlowEntity wareHouseFlowEntity)
         {
@@ -38,9 +70,7 @@ namespace Tms.Application.ToolManage
                 expression = expression.And(t => t.T_Id.Contains(keyword));
                 expression = expression.And(t => t.T_RecPersonId.Contains(keyword)); // 记录人
                 expression = expression.And(t => t.T_ProductLineId.ToString().Contains(keyword)); // 生产线
-                //  expression = expression.And(t => t.T_Hander.Contains(keyword));  // 经手人
-                expression = expression.And(t => t.T_ApplicantName.Contains(keyword));  // 领用人
-                expression = expression.And(t => t.T_ProductModel.Contains(keyword)); // 生产型号
+               
                 expression = expression.And(t => t.T_Classes.Contains(keyword)); // 班次
 
             }

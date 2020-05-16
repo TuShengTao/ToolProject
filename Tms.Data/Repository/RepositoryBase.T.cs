@@ -76,7 +76,7 @@ namespace Tms.Data
         }
         public List<TEntity> FindList(string strSql)
         {
-            return dbcontext.Database.SqlQuery<TEntity>(strSql).ToList<TEntity>();
+           return dbcontext.Database.SqlQuery<TEntity>(strSql).ToList<TEntity>();
         }
         public List<TEntity> FindList(string strSql, DbParameter[] dbParameter)
         {

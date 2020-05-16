@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tms.Repository</RootNamespace>
     <AssemblyName>Tms.Repository</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,13 +55,23 @@
     <Compile Include="SystemSecurity\DbBackupRepository.cs" />
     <Compile Include="SystemSecurity\FilterIPRepository.cs" />
     <Compile Include="SystemSecurity\LogRepository.cs" />
+    <Compile Include="ToolManage\CheckViewRepository.cs" />
     <Compile Include="ToolManage\CheckRepository.cs" />
+    <Compile Include="ToolManage\DataViewRepository.cs" />
     <Compile Include="ToolManage\DefineRepository.cs" />
+    <Compile Include="ToolManage\BtwhViewRepository.cs" />
+    <Compile Include="ToolManage\RepairViewRepository.cs" />
+    <Compile Include="ToolManage\JunkedViewRepository.cs" />
+    <Compile Include="ToolManage\DataRepository.cs" />
+    <Compile Include="ToolManage\CheckItemRepository.cs" />
+    <Compile Include="ToolManage\WhfViewRepository.cs" />
+    <Compile Include="ToolManage\EntityDefineRepository.cs" />
     <Compile Include="ToolManage\EntityRepository.cs" />
     <Compile Include="ToolManage\FamilyRepository.cs" />
     <Compile Include="ToolManage\JunkedRepository.cs" />
     <Compile Include="ToolManage\ProductLinesRepository.cs" />
     <Compile Include="ToolManage\RepairRepository.cs" />
+    <Compile Include="ToolManage\CodeSeqIdRepository.cs" />
     <Compile Include="ToolManage\TypeRepository.cs" />
     <Compile Include="ToolManage\WareHouseFlowRepository.cs" />
   </ItemGroup>

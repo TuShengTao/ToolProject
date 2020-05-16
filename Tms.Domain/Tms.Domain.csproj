@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tms.Domain</RootNamespace>
     <AssemblyName>Tms.Domain</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,15 +55,25 @@
     <Compile Include="03 Entity\SystemSecurity\FilterIPEntity.cs" />
     <Compile Include="03 Entity\SystemSecurity\LogEntity.cs" />
     <Compile Include="02 ViewModel\AuthorizeActionModel.cs" />
+    <Compile Include="03 Entity\ToolManage\BtwhViewEntity.cs" />
     <Compile Include="03 Entity\ToolManage\BuyToWareHouseEntity.cs" />
+    <Compile Include="03 Entity\ToolManage\CheckViewEntity.cs" />
     <Compile Include="03 Entity\ToolManage\CheckEntity.cs" />
+    <Compile Include="03 Entity\ToolManage\DataViewEntity.cs" />
     <Compile Include="03 Entity\ToolManage\DefineEntity.cs" />
+    <Compile Include="03 Entity\ToolManage\EntityDefineEntity.cs" />
+    <Compile Include="03 Entity\ToolManage\JunkedViewEntity.cs" />
     <Compile Include="03 Entity\ToolManage\ToolEntity.cs" />
     <Compile Include="03 Entity\ToolManage\FamilyEntity.cs" />
     <Compile Include="03 Entity\ToolManage\JunkedEntity.cs" />
     <Compile Include="03 Entity\ToolManage\ProductLineEntity.cs" />
     <Compile Include="03 Entity\ToolManage\RepairEntity.cs" />
+    <Compile Include="03 Entity\ToolManage\CodeSeqIdEntity.cs" />
+    <Compile Include="03 Entity\ToolManage\DataEntity.cs" />
+    <Compile Include="03 Entity\ToolManage\CheckItemEntity.cs" />
     <Compile Include="03 Entity\ToolManage\TypeEntity.cs" />
+    <Compile Include="03 Entity\ToolManage\RepairViewEntity.cs" />
+    <Compile Include="03 Entity\ToolManage\WhfViewEntity.cs" />
     <Compile Include="03 Entity\ToolManage\WareHouseFlowEntity.cs" />
     <Compile Include="04 IRepository\SystemManage\IAreaRepository.cs" />
     <Compile Include="04 IRepository\SystemManage\IItemsDetailRepository.cs" />
@@ -78,13 +89,23 @@
     <Compile Include="04 IRepository\SystemSecurity\IFilterIPRepository.cs" />
     <Compile Include="04 IRepository\SystemSecurity\ILogRepository.cs" />
     <Compile Include="04 IRepository\ToolManage\IBuyToWareHouse.cs" />
+    <Compile Include="04 IRepository\ToolManage\ICheckView.cs" />
     <Compile Include="04 IRepository\ToolManage\ICheck.cs" />
+    <Compile Include="04 IRepository\ToolManage\IDataView.cs" />
     <Compile Include="04 IRepository\ToolManage\IDefine.cs" />
+    <Compile Include="04 IRepository\ToolManage\IEntityDefine.cs" />
     <Compile Include="04 IRepository\ToolManage\IEntity.cs" />
     <Compile Include="04 IRepository\ToolManage\IFamily.cs" />
     <Compile Include="04 IRepository\ToolManage\IJunked.cs" />
     <Compile Include="04 IRepository\ToolManage\IProductLines.cs" />
     <Compile Include="04 IRepository\ToolManage\IRepair.cs" />
+    <Compile Include="04 IRepository\ToolManage\ICodeSeqId.cs" />
+    <Compile Include="04 IRepository\ToolManage\IJunkedView.cs" />
+    <Compile Include="04 IRepository\ToolManage\IRepairView.cs" />
+    <Compile Include="04 IRepository\ToolManage\IBtwhView.cs" />
+    <Compile Include="04 IRepository\ToolManage\IData.cs" />
+    <Compile Include="04 IRepository\ToolManage\ICheckItem.cs" />
+    <Compile Include="04 IRepository\ToolManage\IWhfView.cs" />
     <Compile Include="04 IRepository\ToolManage\IType.cs" />
     <Compile Include="04 IRepository\ToolManage\IWareHouseFlow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

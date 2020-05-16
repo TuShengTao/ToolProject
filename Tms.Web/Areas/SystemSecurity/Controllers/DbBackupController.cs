@@ -37,7 +37,7 @@ namespace Tms.Web.Areas.SystemSecurity.Controllers
             return Success("删除成功。");
         }
         [HttpPost]
-        [HandlerAuthorize]
+       // [HandlerAuthorize]
         public void DownloadBackup(string keyValue)
         {
             var data = dbBackupApp.GetForm(keyValue);

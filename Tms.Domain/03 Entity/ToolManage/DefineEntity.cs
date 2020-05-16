@@ -12,12 +12,12 @@ namespace Tms.Domain.Entity.ToolManage
 {
 
 
-    public  class DefineEntity : IEntity<DefineEntity>
+    public  class DefineEntity 
     {
-        public int T_Id { get; set; }
+        public int Id { get; set; }
         public string T_Code { get; set; }
         public string T_Name { get; set; }
-        public string T_FamilyId { get; set; }
+        public string T_Family { get; set; }
         public string T_Model { get; set; }
         public string T_PartNo { get; set; }
         public Nullable<int> T_Upl { get; set; }
