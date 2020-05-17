@@ -26,7 +26,7 @@ namespace Tms.Application.ToolManage
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.T_Id.ToString().Contains(keyword));
-                expression = expression.Or(t => t.T_TypeName.Contains(keyword));
+                //expression = expression.Or(t => t.T_TypeName.Contains(keyword));
                 expression = expression.Or(t => t.T_DepartmentId.Contains(keyword));
             }
             return service.FindList(expression, pagination);

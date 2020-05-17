@@ -155,6 +155,13 @@ namespace Tms.Code
                 return string.Empty;
             return HttpContext.Current.Session[key] as string;
         }
+
+        //public static string GetAllSession(string key)
+        //{
+        //   // return 
+        //   // return HttpContext.Current.Session[key] as string;
+        //}
+
         /// <summary>
         /// 删除指定Session
         /// </summary>
