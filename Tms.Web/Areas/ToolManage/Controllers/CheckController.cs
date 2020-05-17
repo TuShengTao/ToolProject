@@ -13,6 +13,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         private CheckApp checkApp = new CheckApp();
         private CheckItemApp checkItemApp = new CheckItemApp();
         private CheckViewApp checkViewApp = new CheckViewApp();
+        private EntityApp entityApp = new EntityApp();
 
         [HttpGet]
         public ActionResult Get()
@@ -45,6 +46,10 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             checkEntity.T_CreateTime = checkEntity.T_ThisCheckTime;
             checkEntity.T_IsChecked = 1; // 已经点检过
 
+            ToolEntity toolEntity = new ToolEntity();
+            toolEntity.T_Id = checkEntity.T_Id;
+            toolEntity.T_LastCheckTime = checkEntity.T_ThisCheckTime;
+            entityApp.UpDate(toolEntity);  //修改夹具实体里的 上次点检时间
 
             var data = checkApp.Insert(checkEntity);
             return Content(data.ToJson());
@@ -58,12 +63,12 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         }
         [HttpGet]
         // 分页查询
-       public ActionResult GetGridJson(Pagination pagination, string keyword)
+       public ActionResult GetGridJson(Pagination pagination, string keyword,int checkType)
         {
          
             var data = new
             {
-                rows = checkViewApp.GetList(pagination,keyword),
+                rows = checkViewApp.GetList(pagination,keyword,checkType),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records
