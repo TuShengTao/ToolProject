@@ -44,6 +44,5 @@ namespace Tms.Application.ToolManage
             /*   expression = expression.And(t => t.F_Account != "admin");*/
             return service.FindList(expression, pagination);
         }
-
     }
 }

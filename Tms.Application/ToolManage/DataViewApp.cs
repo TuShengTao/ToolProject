@@ -20,8 +20,10 @@ namespace Tms.Application.ToolManage
 
         }
 
-        public List<DataViewEntity> GetList(Pagination pagination, string keyword)
+        public List<DataViewEntity> GetList(Pagination pagination, string keyword,int searchType)
         {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+
             var expression = ExtLinq.True<DataViewEntity>();
             if (!string.IsNullOrEmpty(keyword))
             {
@@ -29,8 +31,12 @@ namespace Tms.Application.ToolManage
                 //expression = expression.Or(t => t.T_TypeName.Contains(keyword));
                 expression = expression.Or(t => t.T_DepartmentId.Contains(keyword));
             }
+            if (searchType !=666) {
+                expression = expression.And(t => t.T_DealStatus.Equals(searchType));
+            }
+            expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId));
+
             return service.FindList(expression, pagination);
         }
-
     }
 }

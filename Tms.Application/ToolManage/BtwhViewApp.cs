@@ -34,6 +34,40 @@ namespace Tms.Application.ToolManage
                 expression = expression.Or(t => t.T_PartNo.Contains(keyword));
                 expression = expression.Or(t => t.T_Family.Contains(keyword));
             }
+
+            // 采购入库记录查询筛选条件判断 开始
+            // 所有记录  '已入库','未入库','初审未通过','终审未通过'  未初审  未终审 
+            //  666        6        7        8           9              10      11
+            if (searchType == 6)
+            {
+                expression = expression.And(t => t.T_IsInWarehouse.Equals(1)); //已入库
+            }
+            else if (searchType == 7)
+            {
+                expression = expression.And(t => t.T_IsInWarehouse.Equals(0)); //未入库
+            }
+            else if (searchType == 8)
+            {
+                expression = expression.And(t => t.T_FirstDealResult == 0);  //初审未通过
+            }
+            else if (searchType == 10)
+            {
+                expression = expression.And(t => t.T_FirstDealId == null); //查未初审的
+            }
+            else if (searchType == 9)
+            {
+                expression = expression.And(t => t.T_LastDealResult == 0); //终审未通过
+            }
+            else if (searchType == 11)
+            {
+                expression = expression.And(t => t.T_LastDealResult == null); //未终审
+            }
+            else
+            {
+
+            }
+
+
             if (searchType == 1)
             {
                 expression = expression.And(t => t.T_FirstDealId == null); //查未初审的
