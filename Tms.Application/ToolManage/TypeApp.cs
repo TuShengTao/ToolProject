@@ -33,13 +33,15 @@ namespace Tms.Application.ToolManage
         public List<TypeEntity> GetList(Pagination pagination, string keyword)
         {
             var expression = ExtLinq.True<TypeEntity>();
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.T_Id.ToString().Contains(keyword));
                 expression = expression.Or(t => t.T_TypeName.Contains(keyword));
                 expression = expression.Or(t => t.T_DepartmentId.Contains(keyword));
             }
-         /*   expression = expression.And(t => t.F_Account != "admin");*/
+            expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId));
+            /*   expression = expression.And(t => t.F_Account != "admin");*/
             return service.FindList(expression, pagination);
         }
 
