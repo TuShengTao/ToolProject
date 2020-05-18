@@ -20,10 +20,14 @@ namespace Tms.Application.ToolManage
         }
         public int UpDate(TypeEntity typeEntity)
         {
+           
+            
             return service.Update(typeEntity);
         }
         public int Insert(TypeEntity typeEntity)
         {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            typeEntity.T_DepartmentId = operatorProvider.DepartmentId;
             return service.Insert(typeEntity);
         }
         public int Delete(TypeEntity typeEntity)
