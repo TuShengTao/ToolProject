@@ -41,11 +41,11 @@ namespace Tms.Application.ToolManage
             //  666        6        7        8           9              10      11
             if (searchType == 6)
             {
-                expression = expression.And(t => t.T_IsJunked.Equals(1)); //已废弃
+                expression = expression.And(t => t.T_IsJunked == 1); //已废弃
             }
             else if (searchType == 7)
             {
-                expression = expression.And(t => t.T_IsJunked.Equals(0)); //未废弃
+                expression = expression.And(t => t.T_IsJunked == 0); //未废弃
             }
             else if (searchType == 8)
             {

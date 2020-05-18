@@ -37,7 +37,7 @@ namespace Tms.Application.ToolManage
             }
             if (searchType != 666)
             {
-                expression = expression.And(t => t.T_ToolStatus.Equals(searchType));  //查询根据夹具状态类型
+                expression = expression.And(t => t.T_ToolStatus == searchType);  //查询根据夹具状态类型
             }
             
             expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId));

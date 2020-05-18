@@ -44,7 +44,7 @@ namespace Tms.Application.ToolManage
                 expression = expression.Or(t => t.T_Family.Contains(keyword));
 
             }
-            expression = expression.And(t => t.T_CheckType.Equals(checkType));// 点检类型
+            expression = expression.And(t => t.T_CheckType == checkType);// 点检类型
             expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId));
             /*   expression = expression.And(t => t.F_Account != "admin");*/
             return service.FindList(expression, pagination);

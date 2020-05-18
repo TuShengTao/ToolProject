@@ -40,11 +40,11 @@ namespace Tms.Application.ToolManage
             //  666        6        7        8           9              10      11
             if (searchType == 6)
             {
-                expression = expression.And(t => t.T_IsInWarehouse.Equals(1)); //已入库
+                expression = expression.And(t => t.T_IsInWarehouse == 1); //已入库
             }
             else if (searchType == 7)
             {
-                expression = expression.And(t => t.T_IsInWarehouse.Equals(0)); //未入库
+                expression = expression.And(t => t.T_IsInWarehouse == 0); //未入库
             }
             else if (searchType == 8)
             {
