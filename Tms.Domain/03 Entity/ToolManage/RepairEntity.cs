@@ -25,10 +25,10 @@ namespace Tms.Domain.Entity.ToolManage
         public string T_RepairPerson { get; set; }
         public int T_Stauts { get; set; }
         public string T_DepartmentId { get; set; }
-        public int T_RepairedStatus { get; set; }
+        public Nullable<int> T_RepairedStatus { get; set; }
         public Nullable<System.DateTime> T_CreatorTime { get; set; }
         public Nullable<System.DateTime> T_RepairedDate { get; set; }
-        public int T_IsToRepair { get; set; }
+        public Nullable<int> T_IsToRepair { get; set; }
         public string T_FeedBack { get; set; }
     }
 }

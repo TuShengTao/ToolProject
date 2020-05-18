@@ -51,8 +51,9 @@ namespace Tms.Application.ToolManage
             {
                 expression = expression.And(t => t.T_RepairedStatus == 1);
             }
-            if (searchType == "修复未完成")
+            if (searchType == "修复未完成")                                                                                                                           
             {
+                expression = expression.And(t => t.T_Stauts == 1);
                 expression = expression.And(t => t.T_RepairedStatus == 0);
             }
 
