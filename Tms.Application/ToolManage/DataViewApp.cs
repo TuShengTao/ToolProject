@@ -20,7 +20,7 @@ namespace Tms.Application.ToolManage
 
         }
 
-        public List<DataViewEntity> GetList(Pagination pagination, string keyword,int searchType)
+        public List<DataViewEntity> GetList(Pagination pagination, string keyword)
         {
             var operatorProvider = OperatorProvider.Provider.GetCurrent();
 
@@ -31,9 +31,7 @@ namespace Tms.Application.ToolManage
                 //expression = expression.Or(t => t.T_TypeName.Contains(keyword));
                 expression = expression.Or(t => t.T_DepartmentId.Contains(keyword));
             }
-            if (searchType !=666) {
-                expression = expression.And(t => t.T_DealStatus.Equals(searchType));
-            }
+
             expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId));
 
             return service.FindList(expression, pagination);
