@@ -22,6 +22,7 @@ namespace Tms.Domain.Entity.ToolManage
         public int T_SeqId { get; set; }
         public string T_ToolType { get; set; }
         public Nullable<int> T_DefineId { get; set; }
+        public string T_Location { get; set; }
 
         public int Id { get; set; }
         public string T_Id { get; set; }
