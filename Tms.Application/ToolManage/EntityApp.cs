@@ -81,7 +81,7 @@ namespace Tms.Application.ToolManage
         public List<ToolEntity> VerifyIfExist(ToolEntity toolEntity)
         {
             // 员工手动发起报修和报废 夹具应该是已经入库的
-            var sql = "select * from Tools_Entity where T_Code = '" + toolEntity.T_Code + "'and T_SeqId = '" + toolEntity.T_SeqId + "' and T_ToolStatus == 1 ";  
+            var sql = "select * from Tools_Entity where T_Code = '" + toolEntity.T_Code + "'and T_SeqId = '" + toolEntity.T_SeqId + "' and T_ToolStatus = 1 ";  
 
             // var sql = "select * from Tools_Entity where T_Code = '" + toolEntity.T_Code + "'and T_SeqId = '"+toolEntity.T_SeqId+"' and T_ToolStatus in(1,2) ";
             var list = service.FindList(sql);
