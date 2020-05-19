@@ -38,6 +38,7 @@ namespace Tms.Application.ToolManage
             WareHouseFlowEntity houseFlowEntity = new WareHouseFlowEntity();
             toolEntity.T_Id = whfViewEntity.T_Id;
             houseFlowEntity.Id = whfViewEntity.Id;
+            toolEntity.T_Location = whfViewEntity.T_Location;
             toolEntity.T_UsedCount = whfViewEntity.T_UsedCount + 1;
             toolEntity.T_ToolStatus = 1;//入库
             houseFlowEntity.T_ToolStatus = 1;//已归还
