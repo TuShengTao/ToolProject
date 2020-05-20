@@ -29,7 +29,7 @@ namespace Tms.Application.ToolManage
         public int Insert(TypeEntity typeEntity)
         {
 
-            typeEntity.T_Id = Common.GuId();//主键
+            //typeEntity.T_Id = Common.GuId();//主键
             return service.Insert(typeEntity);
         }
         public int Delete(TypeEntity typeEntity)

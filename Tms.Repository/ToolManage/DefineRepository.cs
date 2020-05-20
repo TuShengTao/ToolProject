@@ -29,7 +29,7 @@ namespace Tms.Repository.ToolManage
         {
             using (var db = new RepositoryBase().BeginTrans())
             {
-                db.Delete<DefineEntity>(t => t.T_Id == keyValue);
+                db.Delete<DefineEntity>(t => t.Id == keyValue);
                 db.Commit();
             }
         }
