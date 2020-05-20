@@ -22,6 +22,7 @@ namespace Tms.Domain.Entity.ToolManage
         public int T_SeqId { get; set; }
         public string T_ToolType { get; set; }
         public Nullable<int> T_DefineId { get; set; }
+        public string T_Location { get; set; }
 
         public int Id { get; set; }
         public string T_Id { get; set; }
@@ -34,6 +35,7 @@ namespace Tms.Domain.Entity.ToolManage
         public string T_Description { get; set; }
         public Nullable<DateTime> T_OutDate { get; set; }
         public Nullable<DateTime> T_BackDate { get; set; }
+        public Nullable<DateTime>  T_LastCheckTime { get; set; }
 
         public string T_Classes { get; set; }
         public string T_DepartmentId { get; set; }

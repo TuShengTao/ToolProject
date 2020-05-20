@@ -67,7 +67,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
          
             var data = new
             {
-                rows = JunkedViewApp.GetList(pagination,keyword, searchType),
+                rows = JunkedViewApp.GetList(pagination,keyword,searchType),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records

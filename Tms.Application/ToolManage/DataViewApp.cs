@@ -22,15 +22,19 @@ namespace Tms.Application.ToolManage
 
         public List<DataViewEntity> GetList(Pagination pagination, string keyword)
         {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+
             var expression = ExtLinq.True<DataViewEntity>();
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.T_Id.ToString().Contains(keyword));
-                expression = expression.Or(t => t.T_TypeName.Contains(keyword));
+                //expression = expression.Or(t => t.T_TypeName.Contains(keyword));
                 expression = expression.Or(t => t.T_DepartmentId.Contains(keyword));
             }
+
+            expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId));
+
             return service.FindList(expression, pagination);
         }
-
     }
 }

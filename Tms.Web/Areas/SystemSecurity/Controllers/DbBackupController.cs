@@ -11,7 +11,7 @@ namespace Tms.Web.Areas.SystemSecurity.Controllers
         private DbBackupApp dbBackupApp = new DbBackupApp();
 
         [HttpGet]
-        //[HandlerAjaxOnly]
+       // [HandlerAjaxOnly]
         public ActionResult GetGridJson(string queryJson)
         {
             var data = dbBackupApp.GetList(queryJson);
