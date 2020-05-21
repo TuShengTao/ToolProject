@@ -54,11 +54,11 @@ namespace Tms.Web
                     checkEntity.T_IsChecked = 0; // 未点检 / 未处理  ;1处理
                     checkEntity.T_DepartmentId = toolsList[i].T_DepartmentId;
                     checkEntity.T_CheckType = 0;
+                    checkEntity.T_Description = "定时点检";
                     // 如果是每天定时点检提醒，前一天提醒，但前一天未处理点检，第二天点检添加需要做判断
                     // 判断该夹具是否已经提醒过
                     if (checkApp.judgeIfExist(toolsList[i]) > 0 == false)
                     {
-                       
                         checkApp.Insert(checkEntity);  // 添加进 点检表
                         string msg = $"夹具定时点检提醒，详细信息：\n" + $"夹具代码：" + $"{toolsList[i].T_Code}" + $"-" +
                             $"{toolsList[i].T_SeqId}\n" + $"夹具名称：" + $"{toolsList[i].T_Name}\n" + $"夹具位置：" +

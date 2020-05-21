@@ -62,6 +62,7 @@
     <Compile Include="03 Entity\ToolManage\DataViewEntity.cs" />
     <Compile Include="03 Entity\ToolManage\DefineEntity.cs" />
     <Compile Include="03 Entity\ToolManage\EntityDefineEntity.cs" />
+    <Compile Include="03 Entity\ToolManage\LocationEntity.cs" />
     <Compile Include="03 Entity\ToolManage\JunkedViewEntity.cs" />
     <Compile Include="03 Entity\ToolManage\ToolEntity.cs" />
     <Compile Include="03 Entity\ToolManage\FamilyEntity.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="04 IRepository\ToolManage\IDefine.cs" />
     <Compile Include="04 IRepository\ToolManage\IEntityDefine.cs" />
     <Compile Include="04 IRepository\ToolManage\IEntity.cs" />
+    <Compile Include="04 IRepository\ToolManage\ILocation.cs" />
     <Compile Include="04 IRepository\ToolManage\IFamily.cs" />
     <Compile Include="04 IRepository\ToolManage\IJunked.cs" />
     <Compile Include="04 IRepository\ToolManage\IProductLines.cs" />
