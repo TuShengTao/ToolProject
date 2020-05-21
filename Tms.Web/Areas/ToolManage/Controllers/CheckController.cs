@@ -30,17 +30,17 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         }
         [HttpPost]
         // 在点检界面 定时点检类型 需要修改点检状态 
-        public ActionResult Update(CheckEntity checkEntity)
+        public ActionResult Update(CheckEntity updateCheckEntity)
         {
-            checkEntity.T_ThisCheckTime = DateTime.Now;
-            checkEntity.T_IsChecked = 1; // 已经点检过
+            updateCheckEntity.T_ThisCheckTime = DateTime.Now;
+            updateCheckEntity.T_IsChecked = 1; // 已经点检过
 
             ToolEntity toolEntity = new ToolEntity();
-            toolEntity.T_Id = checkEntity.T_Id;
-            toolEntity.T_LastCheckTime = checkEntity.T_ThisCheckTime;
+            toolEntity.T_Id = updateCheckEntity.T_Id;
+            toolEntity.T_LastCheckTime = updateCheckEntity.T_ThisCheckTime;
             entityApp.UpDate(toolEntity);  //修改夹具实体里的 上次点检时间
             //定时点检完毕 以后 需要修改 实体表最后的点检时间
-            var data = checkApp.UpDate(checkEntity);
+            var data = checkApp.UpDate(updateCheckEntity);
             return Content(data.ToJson());
         }
 

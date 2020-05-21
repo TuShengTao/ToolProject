@@ -47,8 +47,6 @@ namespace Tms.Application.ToolManage
         {
             return service.UpdateByJudge(insertEntity, insertEntity.T_Id, 4);
         }
-
-
         public void BatchDeleteForm(List<string> keyValues)
         {
             service.BatchDeleteForm(keyValues);
