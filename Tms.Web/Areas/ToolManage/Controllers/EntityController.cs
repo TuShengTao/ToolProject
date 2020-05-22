@@ -192,5 +192,11 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             };
             return Content(data.ToJson());
         }
+        [HttpGet]
+        public ActionResult GetStatus()
+        {
+            var data=entityApp.GetStatus();
+            return Content(data.ToJson()); ;
+        }
     }
 }
