@@ -29,6 +29,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             toolEntity.T_CreatorTime = buyToWareHouseEntity.T_CreateTime;
             toolEntity.T_DepartmentId = operatorProvider.DepartmentId;
             toolEntity.T_RecPersonId = operatorProvider.UserId;
+            toolEntity.T_LastCheckTime = toolEntity.T_CreatorTime;  // 新入库的夹具 点检时间为入库申请时间
 
             int result = entityApp.InsertToWareHouse(buyToWareHouseEntity, toolEntity);
 

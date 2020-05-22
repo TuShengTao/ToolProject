@@ -35,10 +35,11 @@ namespace Tms.Application.ToolManage
                 expression = expression.Or(t => t.T_PartNo.Contains(keyword));
                 expression = expression.Or(t => t.T_Family.Contains(keyword));
             }
-            if (searchType == 1)
+            if (searchType != 666)
             {
-                expression = expression.And(t => t.T_ToolStatus == 1);  //查询未出库的
+                expression = expression.And(t => t.T_ToolStatus == searchType);  //查询根据夹具状态类型
             }
+            
             expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId));
 
             /*   expression = expression.And(t => t.F_Account != "admin");*/

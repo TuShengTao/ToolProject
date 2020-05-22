@@ -34,9 +34,32 @@ namespace Tms.Application.ToolManage
                 expression = expression.Or(t => t.T_PartNo.Contains(keyword));
                 expression = expression.Or(t => t.T_Family.Contains(keyword));
             }
-            if(searchType == "dealRepair")
+            // 所有记录   '已通过',  '未通过', '待处理','修复已完成'  '修复未完成'
+            if (searchType == "待处理")
             {
-                expression = expression.And(t => t.T_Stauts.Equals(0));  
+                expression = expression.And(t => t.T_Stauts == 0);
+            }
+            if (searchType == "已通过")
+            {
+                expression = expression.And(t => t.T_Stauts == 1);
+            }
+            if (searchType == "未通过")
+            {
+                expression = expression.And(t => t.T_Stauts == -1);
+            }
+            if (searchType == "修复已完成")
+            {
+                expression = expression.And(t => t.T_RepairedStatus == 1);
+            }
+            if (searchType == "修复未完成")                                                                                                                           
+            {
+                expression = expression.And(t => t.T_Stauts == 1);
+                expression = expression.And(t => t.T_RepairedStatus == 0);
+            }
+
+            if (searchType == "dealRepair")
+            {
+                expression = expression.And(t => t.T_Stauts == 0);  
             }
             if (searchType == "myRecordRepair")
             {

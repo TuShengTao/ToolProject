@@ -38,6 +38,8 @@ namespace Tms.Application.ToolManage
         }
         public int Insert(DefineEntity defineEntity)
         {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            defineEntity.T_DepartmentId = operatorProvider.DepartmentId;
             return service.Insert(defineEntity);
         }
         public int InsertList(List<DefineEntity> defineEntity)
@@ -51,6 +53,7 @@ namespace Tms.Application.ToolManage
         public List<DefineEntity> GetList(Pagination pagination, string keyword)
         {
             var expression = ExtLinq.True<DefineEntity>();
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
             if (!string.IsNullOrEmpty(keyword))
             {
                 expression = expression.And(t => t.T_Name.Contains(keyword));// 夹具经手人 关键字查询且分页
@@ -60,8 +63,9 @@ namespace Tms.Application.ToolManage
                 expression = expression.Or(t => t.T_PartNo.Contains(keyword));
                 expression = expression.Or(t => t.T_Model.Contains(keyword));
             }
-            
-         /*   expression = expression.And(t => t.F_Account != "admin");*/
+            expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId));
+
+            /*   expression = expression.And(t => t.F_Account != "admin");*/
             return service.FindList(expression, pagination);
         }
 
