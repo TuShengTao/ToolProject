@@ -7,6 +7,7 @@ namespace Tms.Domain.IRepository.ToolManage
     public interface IDefine : IRepositoryBase<DefineEntity>
     {
         void BatchDeleteForm(List<int> keyValues);
+        void Delete(int keyValue);
     }
 }
 
