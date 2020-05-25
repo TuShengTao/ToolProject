@@ -10,7 +10,6 @@ namespace Tms.Application.ToolManage
     public class CheckViewApp
     {
         private ICheckView service = new CheckViewRepository();
-
         // 获取所有
         public List<CheckViewEntity> GetList()
         {

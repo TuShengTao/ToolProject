@@ -91,6 +91,38 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             return Content(data.ToJson());
         }
 
+        //点检项操作
+        [HttpGet]
+        // 分页查询
+        public ActionResult GetCheckItem(Pagination pagination, string keyword)
+        {
 
+            var data = new
+            {
+                rows = checkItemApp.GetCheckItem(pagination, keyword),
+                total = pagination.total,
+                page = pagination.page,
+                records = pagination.records
+            };
+            return Content(data.ToJson());
+        }
+        [HttpPost]
+        public ActionResult InsertCheckItem(CheckItemEntity checkItemEntity)
+        {
+            var data = checkItemApp.Insert(checkItemEntity);
+            return Content(data.ToJson());
+        }
+        [HttpPost]
+        public ActionResult UpdataCheckItem(CheckItemEntity checkItemEntity)
+        {
+            var data = checkItemApp.UpDate(checkItemEntity);
+            return Content(data.ToJson());
+        }
+        [HttpPost]
+        public ActionResult DeleteCheckItem(CheckItemEntity checkItemEntity)
+        {
+            var data = checkItemApp.Delete(checkItemEntity);
+            return Success("删除成功！");
+        }
     }
 }
