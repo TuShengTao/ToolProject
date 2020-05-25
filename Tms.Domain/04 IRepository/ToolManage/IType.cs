@@ -4,5 +4,6 @@ namespace Tms.Domain.IRepository.ToolManage
 {
     public interface IType : IRepositoryBase<TypeEntity>
     {
+        void Delete(string keyValue);
     }
 }
