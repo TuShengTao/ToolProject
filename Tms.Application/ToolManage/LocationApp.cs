@@ -36,7 +36,7 @@ namespace Tms.Application.ToolManage
         {
             return service.Delete(t => t.T_Id == keyValue);
         }
-        public List<LocationEntity> GetList(Pagination pagination, string keyword,string parentId)
+        public List<LocationEntity> GetList(Pagination pagination, string keyword,string parentId,string typeId)
         {
             var operatorProvider = OperatorProvider.Provider.GetCurrent();
             var expression = ExtLinq.True<LocationEntity>();
@@ -44,8 +44,11 @@ namespace Tms.Application.ToolManage
             {
                 expression = expression.Or(t => t.T_Name.Contains(keyword));
             }
-           expression = expression.And(t => t.T_ParentId.Equals(parentId)); //区别 查询Counter、Location、Bin
-
+            if (!string.IsNullOrEmpty(typeId))
+            {
+                expression = expression.And(t => t.ToolType.Equals(typeId));
+            }
+            expression = expression.And(t => t.T_ParentId.Equals(parentId)); //区别 查询Counter、Location、Bin
             expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId));//workcell索引
             return service.FindList(expression, pagination);
         }
@@ -60,6 +63,5 @@ namespace Tms.Application.ToolManage
             }
             return 0;
         }
-
     }
 }

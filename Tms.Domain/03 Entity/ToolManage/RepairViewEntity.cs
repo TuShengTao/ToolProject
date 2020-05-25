@@ -27,6 +27,7 @@ namespace Tms.Domain.Entity.ToolManage
         public Nullable<System.DateTime> T_ApplicantTime { get; set; }
         public string T_DealId { get; set; }
         public Nullable<System.DateTime> T_DealTime { get; set; }
+        public Nullable<System.DateTime> T_LastCheckTime { get; set; }
         public string T_RepairPerson { get; set; }
         public int T_Stauts { get; set; }
         public string T_DepartmentId { get; set; }

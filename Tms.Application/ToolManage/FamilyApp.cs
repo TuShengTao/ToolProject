@@ -39,7 +39,7 @@ namespace Tms.Application.ToolManage
             var expression = ExtLinq.True<FamilyEntity>();
             if (!string.IsNullOrEmpty(keyword))
             {
-                expression = expression.Or(t => t.T_Name.Contains(keyword));
+                expression = expression.And(t => t.T_Name.Contains(keyword));
             }
            expression = expression.And(t => t.T_ParentId.Equals(parentId)); //区别 查询family、model、partNo
            
