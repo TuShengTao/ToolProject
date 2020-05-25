@@ -152,11 +152,18 @@ namespace Tms.Application.ToolManage
             /*   expression = expression.And(t => t.F_Account != "admin");*/
             return service.FindList(expression, pagination);
         }
-        public List<ToolEntity> GetStatus()
+        public List<long> GetStatus()
         {
             var expression = ExtLinq.True<ToolEntity>();
+            List<long> list1 = new List<long>();
+            for (int i = -1; i < 6; i++)
+            {
+                expression = expression.And(t => t.T_ToolStatus == i);
+                list1.Add(service.IQueryable(expression).ToList().Count);
+            }
+
             /*   expression = expression.And(t => t.F_Account != "admin");*/
-            return service.IQueryable(expression).ToList();
+            return list1;
         }
     }
 }
