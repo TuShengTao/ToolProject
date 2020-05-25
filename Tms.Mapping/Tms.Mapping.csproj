@@ -71,6 +71,7 @@
     <Compile Include="ToolManage\EntityDefineMap.cs" />
     <Compile Include="ToolManage\DefineMap.cs" />
     <Compile Include="ToolManage\EntityMap.cs" />
+    <Compile Include="ToolManage\LocationMap.cs" />
     <Compile Include="ToolManage\FamilyMap.cs" />
     <Compile Include="ToolManage\JunkedViewMap.cs" />
     <Compile Include="ToolManage\JunkedMap.cs" />

@@ -60,6 +60,7 @@
     <Compile Include="ToolManage\DataViewRepository.cs" />
     <Compile Include="ToolManage\DefineRepository.cs" />
     <Compile Include="ToolManage\BtwhViewRepository.cs" />
+    <Compile Include="ToolManage\LocationRepository.cs" />
     <Compile Include="ToolManage\RepairViewRepository.cs" />
     <Compile Include="ToolManage\JunkedViewRepository.cs" />
     <Compile Include="ToolManage\DataRepository.cs" />

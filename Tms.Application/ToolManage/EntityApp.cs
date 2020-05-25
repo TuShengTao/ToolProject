@@ -47,8 +47,6 @@ namespace Tms.Application.ToolManage
         {
             return service.UpdateByJudge(insertEntity, insertEntity.T_Id, 4);
         }
-
-
         public void BatchDeleteForm(List<string> keyValues)
         {
             service.BatchDeleteForm(keyValues);
@@ -154,6 +152,11 @@ namespace Tms.Application.ToolManage
             /*   expression = expression.And(t => t.F_Account != "admin");*/
             return service.FindList(expression, pagination);
         }
-
+        public List<ToolEntity> GetStatus()
+        {
+            var expression = ExtLinq.True<ToolEntity>();
+            /*   expression = expression.And(t => t.F_Account != "admin");*/
+            return service.IQueryable(expression).ToList();
+        }
     }
 }

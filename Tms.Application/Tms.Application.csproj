@@ -100,6 +100,7 @@
     <Compile Include="ToolManage\DefineApp.cs" />
     <Compile Include="ToolManage\BuyToWareHouseApp .cs" />
     <Compile Include="ToolManage\BtwhViewApp.cs" />
+    <Compile Include="ToolManage\LocationApp.cs" />
     <Compile Include="ToolManage\RepairViewApp.cs" />
     <Compile Include="ToolManage\JunkedViewApp.cs" />
     <Compile Include="ToolManage\DataApp.cs" />

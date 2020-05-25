@@ -23,7 +23,7 @@ namespace Tms_FrameworkML.Model
 
             // Load model & create prediction engine
             // "~/Content/TmsContent/TmsImage/"     //  D:\MyStudy\NET\NetStudy\XmTest\ToolProject\ToolProject\Tms.Web\
-            string modelPath = @"C:\Users\DELL\source\repos\ToolProject\Tms.Web\Content\TmsContent\MLModel.zip";
+            string modelPath = @"C:\Users\Xili\Desktop\ToolProject1\Tms.Web\Content\TmsContent\MLModel.zip";
             ITransformer mlModel = mlContext.Model.Load(modelPath, out var modelInputSchema);
             var predEngine = mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(mlModel);
 
