@@ -21,7 +21,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             var data = checkApp.GetList();
             return Content(data.ToJson());
         }
-       //  根据夹具类型Id获取该夹具类型的点检项
+        //  根据夹具类型Id获取该夹具类型的点检项
         [HttpGet]
         public ActionResult GetCheckItems(string typeId)
         {
@@ -49,7 +49,7 @@ namespace Tms.Web.Areas.ToolManage.Controllers
         {
 
             // 如果是入库和出库点检   //夹具预警界面 点检
-            if (checkEntity.T_CheckType == 1 || checkEntity.T_CheckType == 2 || checkEntity.T_CheckType == 3) {
+            if (checkEntity.T_CheckType == 1 || checkEntity.T_CheckType == 2 || checkEntity.T_CheckType == 3 || checkEntity.T_CheckType == 6) {
                 var operatorProvider = OperatorProvider.Provider.GetCurrent();
                 checkEntity.T_CheckPerson = operatorProvider.UserId;
                 checkEntity.T_DepartmentId = operatorProvider.DepartmentId;
