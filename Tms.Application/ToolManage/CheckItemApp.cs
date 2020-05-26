@@ -57,8 +57,8 @@ namespace Tms.Application.ToolManage
             var expression = ExtLinq.True<CheckItemEntity>();
             if (!string.IsNullOrEmpty(keyword))
             {
-                expression = expression.And(t => t.T_ToolTypeId.Contains(keyword));
-                expression = expression.Or(t => t.T_CheckItemName.Contains(keyword));
+                expression = expression.And(t => t.T_ToolTypeId.Equals(keyword));
+              //  expression = expression.Or(t => t.T_CheckItemName.Contains(keyword));
             }
             expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId));
             /*   expression = expression.And(t => t.F_Account != "admin");*/
