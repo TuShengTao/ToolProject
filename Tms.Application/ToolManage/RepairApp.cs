@@ -37,6 +37,7 @@ namespace Tms.Application.ToolManage
                 toolEntity.T_Id = repairViewEntity.T_Id; //主键
                 toolEntity.T_ToolStatus = 1;//入库
                 toolEntity.T_RepairedCounts = repairViewEntity.T_RepairedCounts + 1;
+                toolEntity.T_Location = repairViewEntity.T_Location;// 有肯能归还的时候修改位置
                 repairEntity.T_RepairedStatus = 1;//维修状态 完成
                 repairEntity.T_Stauts = repairViewEntity.T_Stauts;
                 repairEntity.T_RepairPerson = repairViewEntity.T_RepairPerson;//修复人

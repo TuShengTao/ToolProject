@@ -12,7 +12,15 @@ namespace Tms.Web.Areas.ToolManage.Controllers
     {
         private EntityApp entityApp = new EntityApp();
         private EntityDefineApp entityDefineApp = new EntityDefineApp();
-        
+        // 查询位置是否被占用
+        [HttpPost]
+        public ActionResult searchLocationIfUsed(ToolEntity toolEntityLocation)
+        {
+           
+            var data = entityApp.searchLocationIfUsed(toolEntityLocation);
+           return Content(data.ToJson());
+        }
+
         [HttpPost]
         public ActionResult InsertToWareHouse(BuyToWareHouseEntity buyToWareHouseEntity, ToolEntity toolEntity)
         {

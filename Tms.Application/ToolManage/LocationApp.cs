@@ -21,6 +21,29 @@ namespace Tms.Application.ToolManage
 
             return service.IQueryable(expression).ToList();
         }
+
+        // 获取所有 根据workcell
+        public List<LocationEntity> GetAll()
+        {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            var expression = ExtLinq.True<LocationEntity>();
+            expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId));//workcell索引
+
+            return service.IQueryable(expression).ToList();
+        }
+
+
+        public List<LocationEntity> getByPAndT(LocationEntity locationEntity)
+        {
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            var expression = ExtLinq.True<LocationEntity>();
+            expression = expression.And(t => t.ToolType.Equals(locationEntity.ToolType));
+            expression = expression.And(t=> t.T_ParentId.Equals(locationEntity.T_ParentId));
+
+            expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId));//workcell索引
+
+            return service.IQueryable(expression).ToList();
+        }
         public int UpDate(LocationEntity locationEntity)
         {
             return service.Update(locationEntity);

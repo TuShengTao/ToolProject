@@ -15,6 +15,20 @@ namespace Tms.Application.ToolManage
     {
         private IEntity service = new EntityRepository();
         private IBuyToWareHouse buyService = new BuyToWareHouseRepository();
+        // 查询位置信息是否被 未出库 和 申请采购入库的夹具占用 
+        public int searchLocationIfUsed(ToolEntity toolEntity) {
+            // 夹具状态（0：维修中 、 1：未出库、2：已出库 、-1：已废弃、3：报废申请中 、4：报修申请中5：采购入库申请）
+            var operatorProvider = OperatorProvider.Provider.GetCurrent();
+            var expression = ExtLinq.True<ToolEntity>();
+            expression = expression.And(t => t.T_Location.Equals(toolEntity.T_Location));
+            expression = expression.And(t => t.T_DepartmentId.Equals(operatorProvider.DepartmentId));//workcell索引
+            expression = expression.And(t => t.T_ToolStatus == 1);
+            expression = expression.Or(t => t.T_ToolStatus == 3);
+            expression = expression.Or(t => t.T_ToolStatus == 4);
+            expression = expression.Or(t => t.T_ToolStatus == 5);
+
+            return service.IQueryable(expression).ToList().Count;
+        }
         public int InsertToWareHouse(BuyToWareHouseEntity buyToWareHouseEntity,ToolEntity toolEntity)
         {
             toolEntity.T_IsPassBuyToW = 0;//默认为 未入库

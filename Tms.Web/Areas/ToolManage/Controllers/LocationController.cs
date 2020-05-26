@@ -18,10 +18,24 @@ namespace Tms.Web.Areas.ToolManage.Controllers
             var data = locationApp.GetListByTpye(typeId);
             return Content(data.ToJson());
         }
+        //  // 获取所有 根据 typeId
+        [HttpGet]
+        public ActionResult GetAll()
+        {
+            var data = locationApp.GetAll();
+            return Content(data.ToJson());
+        }
         [HttpPost]
         public ActionResult Update(LocationEntity locationEntity)
         {
             var data = locationApp.UpDate(locationEntity);
+            return Content(data.ToJson());
+        }
+
+        [HttpPost]
+        public ActionResult getByPAndT(LocationEntity locationEntity)
+        {
+            var data = locationApp.getByPAndT(locationEntity);
             return Content(data.ToJson());
         }
 
