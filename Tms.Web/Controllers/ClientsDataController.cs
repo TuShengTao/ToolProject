@@ -55,7 +55,7 @@ namespace Tms.Web.Controllers
                 return Content(exceptionData.ToString());
             }
             string roleId = operatorProvider.RoleId;  //用户角色Id
-
+            
             var moduledata = moduleApp.GetList();
             var buttondata = moduleButtonApp.GetList();
             var authorizedata = new List<RoleAuthorizeEntity>();
@@ -88,7 +88,7 @@ namespace Tms.Web.Controllers
             var dataTest = new
             {
                 roles = roles,
-                name = "屠圣涛",
+                name = operatorProvider.UserName,
                 avatar = "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
                 introduction = "后台模拟的用户信息描述！"
             };
