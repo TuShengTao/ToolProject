@@ -41,12 +41,14 @@ namespace Tms.Application.SystemSecurity
         {
             service.DeleteForm(keyValue);
         }
-        public void SubmitForm(DbBackupEntity dbBackupEntity)
+        public string SubmitForm(DbBackupEntity dbBackupEntity)
         {
             dbBackupEntity.F_Id = Guid.NewGuid().ToString();
             dbBackupEntity.F_EnabledMark = true;
             dbBackupEntity.F_BackupTime = DateTime.Now;
+            
             service.ExecuteDbBackup(dbBackupEntity);
+            return dbBackupEntity.F_FilePath;
         }
     }
 }

@@ -20,15 +20,17 @@ namespace Tms_FrameworkML.Model
 
             // Create new MLContext
             MLContext mlContext = new MLContext();
+            //tst: string modelPath = @"D:\MyStudy\NET\NetStudy\XmTest\ToolProject\ToolProject\Tms.Web\Content\TmsContent\MLModel.zip";
 
             // Load model & create prediction engine
             // "~/Content/TmsContent/TmsImage/"     //  D:\MyStudy\NET\NetStudy\XmTest\ToolProject\ToolProject\Tms.Web\
-            string modelPath = @"C:\Users\Xili\Desktop\ToolProject1\Tms.Web\Content\TmsContent\MLModel.zip";
+            string modelPath = @"D:\MyStudy\NET\NetStudy\XmTest\ToolProject\ToolProject\Tms.Web\Content\TmsContent\MLModel.zip";
             ITransformer mlModel = mlContext.Model.Load(modelPath, out var modelInputSchema);
             var predEngine = mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(mlModel);
 
             // Use model to make prediction on input data
             ModelOutput result = predEngine.Predict(input);
+      
             return result;
         }
     }

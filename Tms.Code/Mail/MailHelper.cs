@@ -63,6 +63,36 @@ namespace Tms.Code
                 throw;
             }
         }
+
+        public bool SendWithFile(string F_FileName, string to, string subject, string body, string encoding = "UTF-8", bool isBodyHtml = true, bool enableSsl = false)
+        {
+            try
+            {
+                MailMessage message = new MailMessage();
+                // 接收人邮箱地址
+                message.To.Add(new MailAddress(to));
+                message.From = new MailAddress(MailUserName, MailName);
+                message.BodyEncoding = Encoding.GetEncoding(encoding);
+                message.Body = body;
+                //GB2312
+                message.SubjectEncoding = Encoding.GetEncoding(encoding);
+                message.Subject = subject;
+                message.IsBodyHtml = isBodyHtml;
+                message.Attachments.Add(new Attachment(@"D:\MyStudy\NET\NetStudy\XmTest\ToolProject\ToolProject\Tms.Web\Resource\DbBackup\"+F_FileName));
+               // message.Attachments.Add(new Attachment(@"D:\MyStudy\NET\NetStudy\XmTest\ToolProject\ToolProject\Tms.Web\Resource\DbBackup\666.txt"));
+
+                SmtpClient smtpclient = new SmtpClient(MailServer, 25);
+                smtpclient.Credentials = new System.Net.NetworkCredential(MailUserName, MailPassword);
+                //SSL连接
+                smtpclient.EnableSsl = enableSsl;
+                smtpclient.Send(message);
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         /// <summary>
         /// 异步发送邮件 独立线程
         /// </summary>
@@ -71,7 +101,7 @@ namespace Tms.Code
         /// <param name="body">邮件内容</param>
         /// <param name="port">端口号</param>
         /// <returns></returns>
-        public void SendByThread(string to, string title, string body, int port = 25)
+        public void SendByThread(string F_FileName, string to, string title, string body, int port = 25)
         {
             new Thread(new ThreadStart(delegate()
             {
@@ -86,6 +116,7 @@ namespace Tms.Code
                     smtp.Credentials = new NetworkCredential(MailUserName, MailPassword);
                     //构建消息类
                     MailMessage objMailMessage = new MailMessage();
+                    objMailMessage.Attachments.Add(new Attachment(@"D:\MyStudy\NET\NetStudy\XmTest\ToolProject\ToolProject\Tms.Web\Resource\DbBackup\" + F_FileName));
                     //设置优先级
                     objMailMessage.Priority = MailPriority.High;
                     //消息发送人

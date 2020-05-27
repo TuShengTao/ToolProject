@@ -21,7 +21,7 @@ namespace Tms.Web
         {
             MailHelper mailHelper = new MailHelper();
             mailHelper.MailUserName = "1450190944@qq.com";//替换自己的qq邮箱： 需要去qq邮箱设置里开启smpt服务,验证后替换下方授权码
-            mailHelper.MailName = "工夹具智能管理系统";
+            mailHelper.MailName = "工夹具全寿命智能管理系统";
             mailHelper.MailPassword = "xvocfkdafxtvfhbe";//可替换自己qq邮箱的授权码
             mailHelper.MailServer = "smtp.qq.com";
             mailHelper.Send("1450190944@qq.com", "夹具预警", mailMessage, "UTF-8", false, false);
@@ -36,7 +36,9 @@ namespace Tms.Web
             for (int i = 0; i < entityDefineList.Count; i++)
             {
                //去预测
-                bool predictFlag = ToolPredict(entityDefineList[i].T_RepairedCounts,entityDefineList[i].T_UsedTime).Prediction;
+                 ModelOutput output = ToolPredict(entityDefineList[i].T_RepairedCounts,entityDefineList[i].T_UsedTime);
+                bool predictFlag = output.Prediction;
+                float score = output.Score;
                 if (predictFlag != true)  // 如果 未通过 去提醒
                 {
                     string T_DepartmentId = entityDefineList[i].T_DepartmentId;
@@ -49,9 +51,9 @@ namespace Tms.Web
                     {
                         dataApp.SelfInsert(T_DepartmentId,T_Id,T_CreateTime);  // 添加进数据库  ：预警记录
 
-                        string msg = $"夹具预警提醒，详细信息：\n" + $"夹具代码：" + $"{entityDefineList[i].T_Code}" + $"-" +
+                        string msg = $"您好！您有一条夹具预警提醒，不要忘记登录系统去处理喔！点击 http://192.168.43.187:81 去处理\n夹具详细信息：\n" + $"夹具代码：" + $"{entityDefineList[i].T_Code}" + $"-" +
                             $"{entityDefineList[i].T_SeqId}\n" + $"夹具名称：" + $"{entityDefineList[i].T_Name}\n" + $"夹具位置：" +
-                            $"{entityDefineList[i].T_Location}"
+                            $"{entityDefineList[i].T_Location}" + "\nScore: "+score
                             ;
                         sendMail(msg);  // 发送邮件提醒
                     }
@@ -67,6 +69,7 @@ namespace Tms.Web
             sampleData.RepairCounts = repairCounts;    // 维修次数
             sampleData.UseTime = usedTime;  // 使用时间 
             var predictionResult = ConsumeModel.Predict(sampleData);
+           
             return predictionResult;
         }
 

@@ -19,7 +19,7 @@ namespace Tms.Web
             ITrigger trigger_2 = TriggerBuilder.Create()
               .WithIdentity("triggerName_2", "groupName_2")
               .WithSimpleSchedule(t =>
-                t.WithIntervalInSeconds(6) //设置时间
+                t.WithIntervalInSeconds(10) //设置时间  10秒
                  .RepeatForever())
                  .Build();
 
